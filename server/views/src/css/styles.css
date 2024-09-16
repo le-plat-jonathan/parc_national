@@ -1,0 +1,86 @@
+/*======= GOOGLE FONTS =======*/
+
+/*======= VARIABLES CSS =======*/
+
+:root {
+  /*--- Colors ---*/
+  --white-color: ;
+  --black-color: ;
+
+  /*--- Font family ---*/
+  --body-font: ;
+
+  /*--- Font sizes ---*/
+  --h1-fs: ;
+  --normal-fs: ;
+  --small-fs: ;
+
+  /*--- Font weight ---*/
+  --medium: ;
+}
+
+/*======= BASE =======*/
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+input,
+button,
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-fs);
+}
+
+body {
+  color: var(--white-color);
+}
+
+input,
+button {
+  outline: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* CONFIG CLASS */
+
+.container {
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.section {
+  padding: 4rem 0 2rem;
+}
+
+.section__title {
+  font-family: var(--title-font);
+  font-size: var(--h1-fs);
+}
+
+.section__subtitle {
+  display: block;
+  font-size: var(--small-fs);
+  margin-bottom: 2rem;
+}
+
+.section__title,
+.section__subtitle {
+  text-align: center;
+  color: var(--white-color);
+}
+
+.button {
+  cursor: pointer;
+  background-color: var(--white-color);
+  border: 1px solid var(--black-color);
+  box-shadow: var(--white-color) 4px 4px 0 0, var(--black-color) 4px 4px 0 1px;
+  padding: 1rem;
+  transition: transform 0.5s;
+}
