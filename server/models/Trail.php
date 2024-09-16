@@ -13,7 +13,7 @@ class Trail {
   public $latitude_B;
 
 
-
+//connexion a la db
   public function __construct($pdo) {
     $this->pdo = $pdo;
   }
