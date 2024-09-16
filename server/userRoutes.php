@@ -1,54 +1,53 @@
 <?php
-
-require 'vendor/autoload.php';
+require_once './vendor/autoload.php';
 include_once 'cors.php';
-include_once 'db.php';
-include_once 'models/User.php';
+include_once './models/Database.php';
+include_once './controllers/UserController.php';
 
-// connexion à la BDD
-try {
-    $pdo = new PDO("mysql:host=localhost;dbname=parc_national;charset=utf8", 'root', '');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-    exit();
-}
+// Initialisation de la base de données et du contrôleur
+$database = new Database();
+$pdo = $database->databaseConnect();
+$user = new UserController($pdo);
 
 $request_method = $_SERVER['REQUEST_METHOD'];
 $request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
 $endpoint = isset($request_uri[1]) ? $request_uri[1] : '';
 $id = isset($request_uri[2]) ? $request_uri[2] : null;
 
-// Création des objets
-$user = new User($pdo);
-
-// gestion des requêtes en fonction de la méthode
-switch ($request_method) {
-    case 'POST':
-        handlePostRequest($endpoint);
-        break;
-    case 'GET':
-        handleGetRequest($endpoint, $id);
-        break;
-    case 'PUT':
-        handlePutRequest($endpoint, $id);
-        break;
-    case 'DELETE':
-        handleDeleteRequest($endpoint, $id);
-        break;
-    default:
-        echo json_encode(['message' => 'Invalid request method.']);
-        break;
+// Vérifier si la requête concerne les routes utilisateurs
+if (in_array($endpoint, ['register', 'login', 'get_user', 'update_user', 'delete_user'])) {
+    // Gestion des requêtes en fonction de la méthode
+    switch ($request_method) {
+        case 'POST':
+            handlePostRequest($endpoint);
+            break;
+        case 'GET':
+            handleGetRequest($endpoint, $id);
+            break;
+        case 'PUT':
+            handlePutRequest($endpoint, $id);
+            break;
+        case 'DELETE':
+            handleDeleteRequest($endpoint, $id);
+            break;
+        default:
+            echo json_encode(['message' => 'Invalid request method.']);
+            break;
+    }
+} else {
+    // Redirection ou gestion pour d'autres routes
+    header("HTTP/1.0 404 Not Found");
+    echo json_encode(['message' => 'Not Found']);
 }
 
-// gestion des requêtes POST
+// Gestion des requêtes POST
 function handlePostRequest($endpoint) {
     global $user;
     $input = json_decode(file_get_contents('php://input'), true);
 
     switch ($endpoint) {
         case 'register':
-            echo json_encode($user->create($input['email'], $input['password'], $input['username']));
+            echo json_encode($user->register($input['email'], $input['password'], $input['username']));
             break;  
         case 'login':
             echo json_encode(handleLoginRequest($input['email'], $input['password']));
@@ -59,7 +58,7 @@ function handlePostRequest($endpoint) {
     }
 }
 
-// gestion de la connexion de l'utilisateur + JWT + session
+// Gestion de la connexion de l'utilisateur + JWT + session
 function handleLoginRequest($email, $password) {
     global $user;
 
@@ -86,12 +85,12 @@ function handleLoginRequest($email, $password) {
     }
 }
 
-// gestion des requêtes GET
+// Gestion des requêtes GET
 function handleGetRequest($endpoint, $id) {
     global $user;
     switch ($endpoint) {
         case 'get_user':
-            echo json_encode($user->getById($id));
+            echo json_encode($user->getUserById($id));
             break;
         default:
             echo json_encode(['message' => 'Invalid GET action.']);
@@ -99,7 +98,7 @@ function handleGetRequest($endpoint, $id) {
     }
 }
 
-// gestion des requêtes PUT
+// Gestion des requêtes PUT
 function handlePutRequest($endpoint, $id) {
     global $user;
     $input = json_decode(file_get_contents('php://input'), true);
@@ -119,8 +118,7 @@ function handlePutRequest($endpoint, $id) {
     }
 }
 
-
-// gestion des requêtes DELETE
+// Gestion des requêtes DELETE
 function handleDeleteRequest($endpoint, $id) {
     global $user;
 
@@ -133,4 +131,3 @@ function handleDeleteRequest($endpoint, $id) {
             break;
     }
 }
-?>
