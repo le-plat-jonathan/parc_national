@@ -26,6 +26,13 @@ $sql= "INSERT TO trail ( name, length, difficulty, longitude_A, latitude_A, long
  VALUES( :name, :length, :difficulty, :longitude_A, :latitude_A, :longitude_B, :latitude_B, NOW())";
 
  $stmt= $this -> $pdo-> prepare($sql);
+ $stmt-> bindValue(':name', $name, PDO::PARAM_STR);
+ $stmt-> bindValue(':length', $length, PDO::PARAM_FLOAT);
+ $stmt-> bindValue(':difficulty', $difficulty, PDO::PARAM_STR);
+ $stmt-> bindValue(':longitude_A', $longitude_A, PDO::PARAM_FLOAT);
+ $stmt-> bindValue(':latitude_A', $latitude_A, PDO::PARAM_FLOAT);
+ $stmt-> bindValue(':longitude_B', $longitude_B, PDO::PARAM_FLOAT);
+ $stmt-> bindValue(':latitude_B', $latitude_B, PDO::PARAM_FLOAT);
  $stmt= execute();
 
 }
@@ -48,9 +55,15 @@ return $stmt -> fetch(PDO::FETCH_ASSOC);
 // update a trail
 public function updateTrail($name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B){
 
-
   $sql= "UPDATE trail SET name= ?, length= ?, difficulty= ?, longtidude_A= ?, latitude_A=?, longitude_B=?, latitude_B=? WHERE id= :id  ";
   $stmt= $this->pdo-> prepare($sql);
+  $stmt-> bindValue(':name', $name, PDO::PARAM_STR);
+  $stmt-> bindValue(':length', $length, PDO::PARAM_FLOAT);
+  $stmt-> bindValue(':difficulty', $difficulty, PDO::PARAM_STR);
+  $stmt-> bindValue(':longitude_A', $longitude_A, PDO::PARAM_FLOAT);
+  $stmt-> bindValue(':latitude_A', $latitude_A, PDO::PARAM_FLOAT);
+  $stmt-> bindValue(':longitude_B', $longitude_B, PDO::PARAM_FLOAT);
+  $stmt-> bindValue(':latitude_B', $latitude_B, PDO::PARAM_FLOAT);
   return $stmt-> execute([$name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B]);
 
 }
@@ -65,3 +78,6 @@ public function deleteTrail($id){
 
 }
 
+
+$trail= new Trail();
+$trail-> createTrail('test', 5, 'easy', 15, 14, 55, 14);
