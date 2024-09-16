@@ -117,7 +117,6 @@ class User {
         return ['message' => 'User updated successfully'];
     }
 
-    
     // suppression d'un compte utilisateur
     public function delete($id) {
         if (!ctype_digit($id)) {

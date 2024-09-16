@@ -3,7 +3,7 @@
 require 'vendor/autoload.php';
 include_once 'cors.php';
 include_once 'db.php';
-include_once 'classes/User.php';
+include_once 'models/User.php';
 
 // connexion à la BDD
 try {
