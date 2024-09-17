@@ -5,9 +5,8 @@ include_once './models/Database.php';
 include_once './controllers/trailController.php';
 
 // Initialisation de la base de données et du contrôleur
-$database = new Database();
-$pdo = $database->databaseConnect();
-$user = new UserController($pdo);
+
+$trail = new TrailController($pdo);
 
 $request_method = $_SERVER['REQUEST_METHOD'];
 $request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
@@ -15,7 +14,7 @@ $endpoint = isset($request_uri[1]) ? $request_uri[1] : '';
 $id = isset($request_uri[2]) ? $request_uri[2] : null;
 
 // Vérifier si la requête concerne les routes utilisateurs
-if (in_array($endpoint, ['register', 'login', 'get_user', 'update_user', 'delete_user'])) {
+if (in_array($endpoint, ['get_trail', 'get_all_trail', 'create_trail', 'update_trail', 'delete_trail'])) {
     // Gestion des requêtes en fonction de la méthode
     switch ($request_method) {
         case 'POST':
@@ -42,55 +41,26 @@ if (in_array($endpoint, ['register', 'login', 'get_user', 'update_user', 'delete
 
 // Gestion des requêtes POST
 function handlePostRequest($endpoint) {
-    global $user;
+    global $trail;
     $input = json_decode(file_get_contents('php://input'), true);
 
     switch ($endpoint) {
-        case 'register':
-            echo json_encode($user->register($input['email'], $input['password'], $input['username']));
+        case 'create_trail':
+            echo json_encode($trail->create($input['name'], $input['length'], $input['difficulty'], $input['longitude_A'], $input['latitude_A'], $input['longitude_B'], $input['latitude_B']));
             break;  
-        case 'login':
-            echo json_encode(handleLoginRequest($input['email'], $input['password']));
-            break;
-        default:
-            echo json_encode(['message' => 'Invalid POST action.']);
-            break;
-    }
-}
-
-// Gestion de la connexion de l'utilisateur + JWT + session
-function handleLoginRequest($email, $password) {
-    global $user;
-
-    if (!$email || !$password) {
-        return ['message' => 'Invalid input data.'];
-    }
-
-    $result = $user->login($email, $password);
-
-    if ($result) {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        $_SESSION['user_id'] = $result['id'];
-        $_SESSION['username'] = $result['username'];
-
-        return [
-            'message' => 'Login successful.',
-            'user_id' => $result['id'],
-            'token' => $result['token']
-        ];
-    } else {
-        return ['message' => 'Login failed.'];
+        
     }
 }
 
 // Gestion des requêtes GET
-function handleGetRequest($endpoint, $id) {
-    global $user;
+function handleGetRequest($endpoint, $id = null) {
+    global $trail;
     switch ($endpoint) {
-        case 'get_user':
-            echo json_encode($user->getUserById($id));
+        case 'get_trail':
+            echo json_encode($trail->getTrailById($id));
+            break;
+        case 'get_all_trail':
+            echo json_encode($trail->getAllTrail());
             break;
         default:
             echo json_encode(['message' => 'Invalid GET action.']);
@@ -100,16 +70,19 @@ function handleGetRequest($endpoint, $id) {
 
 // Gestion des requêtes PUT
 function handlePutRequest($endpoint, $id) {
-    global $user;
+    global $trail;
     $input = json_decode(file_get_contents('php://input'), true);
 
     switch ($endpoint) {
-        case 'update_user':
-            echo json_encode($user->update(
-                $id, 
-                $input['email'] ?? null, 
-                $input['password'] ?? null, 
-                $input['username'] ?? null
+        case 'update_trail':
+            echo json_encode($trail->update(
+                $input['name'] ?? null, 
+                $input['length'] ?? null, 
+                $input['dificulty'] ?? null, 
+                $input['longitude_A'] ?? null,
+                $input['latitude_A'] ?? null,
+                $input['longitude_B'] ?? null,
+                $input['latitude_B'] ?? null
             ));
             break;
         default:
@@ -120,11 +93,11 @@ function handlePutRequest($endpoint, $id) {
 
 // Gestion des requêtes DELETE
 function handleDeleteRequest($endpoint, $id) {
-    global $user;
+    global $trail;
 
     switch ($endpoint) {
-        case 'delete_user':
-            echo json_encode($user->delete($id));
+        case 'delete_trail':
+            echo json_encode($trail->delete($id));
             break;
         default:
             echo json_encode(['message' => 'Invalid DELETE action.']);
