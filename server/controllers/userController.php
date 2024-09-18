@@ -1,11 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../models/User.php';
-include_once __DIR__ . '/../views/getUser.php';
-include_once __DIR__ . '/../views/register.php';
 
 class UserController {
-    private User $model;
+    private $model;
 
     public function __construct(\PDO $pdo) {
         $this->model = new User($pdo);
