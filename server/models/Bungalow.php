@@ -19,7 +19,7 @@ class Bungalow extends Database {
     public function __construct() {
         parent::__construct();
     }
-    public function searchBungalow($id) {
+    public function getBungalowById($id) {
         try {
             $req = $this->bdd->prepare("SELECT * FROM bungalow WHERE `id` = :id");
             $req->bindValue(':id', $id, PDO::PARAM_STR);
@@ -45,7 +45,7 @@ class Bungalow extends Database {
             echo "Erreur : " . $e->getMessage();
         }
     }
-    public function readBungalow() {
+    public function getAllBungalow() {
         try {
             $req = $this->bdd->prepare("SELECT * FROM bungalow");
             $req->execute();
@@ -80,6 +80,3 @@ class Bungalow extends Database {
     }
     
 }
-
-$bungalow = new Bungalow();
-var_dump($bungalow->readBungalow());

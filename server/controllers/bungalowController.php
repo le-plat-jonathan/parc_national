@@ -1,48 +1,23 @@
 <?php
 
 require_once __DIR__ . '/../models/Bungalow.php';
-include_once __DIR__ . '/../views/getBungalow.php';
+// include_once __DIR__ . '/../views/getBungalow.php';
 
 class BungalowController {
-    private $model;
+    private $bungalowModel;
 
     public function __construct() {
-        $this->model = new Bungalow();
+        $this->bungalowModel = new Bungalow();
     }
 
-    public function searchBungalow($id) {
-        $response = $this->model->searchBungalow($id);
-        if (!$response) {
-            $response = ['message' => 'User not found'];
-        }
-        $this->render('./views/getBungalow.php', $response);
-    }
-    
-    public function register($email, $password, $username) {
-        $response = $this->model->createUser($email, $password, $username);
-        $this->render('./views/register.php', $response);
+    public function getBungalowById($id) {
+        $data = $this->bungalowModel->getBungalowById($id);
+        require __DIR__ . '/../views/getBungalow.php';
     }
 
-    public function login($email, $password) {
-        $response = $this->model->loginUser($email, $password);
-        $this->render('./views/login.php', $response);
-    }
-
-    public function update($id, $email, $password, $username) {
-        $response = $this->model->updateUser($id, $email, $password, $username);
-        $this->render('./views/update.php', $response);
-    }
-
-    public function delete($id) {
-        $response = $this->model->deleteUser($id);
-        $this->render('./views/delete.php', $response);
-    }
-
-    public function render($view, $data) {
-        include $view;
+    public function getAllBungalow() {
+        $data = $this->bungalowModel->getAllBungalow();
+        require __DIR__ . '/../views/getBungalow.php';
     }
 
 }
-
-$bungalowController = new BungalowCrontoller();
-$bungalowController->searchBungalow(1);
