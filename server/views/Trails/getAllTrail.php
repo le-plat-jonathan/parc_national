@@ -4,6 +4,7 @@
     <title>Liste des sentiers</title>
 </head>
 <body>
+  <p>Je suis dans la view</p>
   <?php var_dump($trails) ?>
    
 </body>
