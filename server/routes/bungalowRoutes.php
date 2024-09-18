@@ -12,9 +12,15 @@ $url = str_replace($script_name, "", $request_uri);
 $url = trim($url, '/');
 
 $urlParsed = explode('/', $url );
-$endpoint = isset($urlParsed[1]) ? $urlParsed[1] : '';
+$endpoint = isset($urlParsed[0]) ? $urlParsed[0] : '';
+$id = isset($urlParsed[1]) ? $urlParsed[1] : '';
 
 $bungalow = new bungalowController();
+echo '<pre>';
+echo $request_uri;
+echo '<br>';
+echo $script_name;
+echo '<br>';
 
 switch ($request_method) {
     case 'GET':
@@ -22,7 +28,7 @@ switch ($request_method) {
             $bungalow->getAllBungalow();
             break;
     
-        } else if  ($urlParsed[0] === 'getBungalowById' && isset($urlParsed[1])) {
+        } else if  ($endpoint === 'getBungalowById' && $id!="") {
             $bungalow->getBungalowById($urlParsed[1]); // Passer l'ID en paramètre
             break;
         }
