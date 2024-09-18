@@ -1,23 +1,20 @@
 <?php
-
-include '../cors.php';
+include './../cors.php';
 
 class Database {
-
     protected $pdo;
-
-    function __construct(){
-        $dsn = "mysql:host=localhost;dbname=parc_national";
-        $user = "root";
-        $pass = "";
-
-        try {
-            $this->pdo = new PDO($dsn, $user, $pass);
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo 'Échec de la connexion : ' . $e->getMessage();
-            exit;
-        }
+ 
+public function __construct (){
+    $host = 'localhost';
+    $dbname = 'parc_national';
+    $user = 'root';  
+    $password = '';
+    try {
+        $this->pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $password);
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("Impossible de se connecter à la base de données : " . $e->getMessage());
     }
-
+}
 }
