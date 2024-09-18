@@ -1,6 +1,6 @@
 <?php
-require_once './../models/Trail.php';
-require_once './../models/Database.php';
+require_once __DIR__ . '/../models/Trail.php';
+require_once __DIR__ . '/../models/Database.php';
 
 class TrailController extends Database {
     private $trailModel;
@@ -69,5 +69,5 @@ class TrailController extends Database {
         include $view;
     }
 }
-$trail_test = new trailController();
-$trail_test->getAllTrail();
+// $trail_test = new trailController();
+// $trail_test->getAllTrail();

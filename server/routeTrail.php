@@ -1,17 +1,35 @@
 <?php
-require_once './vendor/autoload.php';
-include_once 'cors.php';
+//require_once './vendor/autoload.php';
+//include_once './cors.php';
 include_once './controllers/trailController.php';
-require_once './models/Database.php';
+//require_once './models/Database.php';
 
-$controller = new TrailController($pdo);
+$controller = new TrailController();
 
-$request_method = $_SERVER['REQUEST_METHOD'];
-$request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-$endpoint = isset($request_uri[1]) ? $request_uri[1] : '';
-$id = isset($request_uri[2]) ? $request_uri[2] : null;
+// $request_method = $_SERVER['REQUEST_METHOD'];
+// $request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
+// $endpoint = isset($request_uri[1]) ? $request_uri[1] : '';
+// $id = isset($request_uri[2]) ? $request_uri[2] : null;
+
+// echo '<pre>';
+// echo 'request method : ' . $request_method;
+// echo 'request uri : ' . $request_uri;
+// echo 'endpoint : ' . $endpoint;
+// echo 'id : ' . $id;
+
+// switch ($request_method) {
+//     case 'GET':
+//         if ($endpoint === 'getAllTrail'){
+//             $controller->getAllTrail();
+//             break;
+//         }
+//     default:
+//         echo "Erreur 404";
+//         exit;
+// }
 
 // Vérifier si la requête concerne les routes utilisateurs
+/*
 if (in_array($endpoint, ['get_trail', 'get_all_trail', 'create_trail', 'update_trail', 'delete_trail'])) {
     switch ($request_method) {
         case 'POST':
@@ -155,3 +173,4 @@ function handleDeleteRequest($endpoint, $id) {
             break;
     }
 }
+*/

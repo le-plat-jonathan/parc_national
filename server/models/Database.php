@@ -1,5 +1,5 @@
 <?php
-include './../cors.php';
+//include __DIR__ . '/../cors.php';
 
 class Database {
     protected $pdo;
