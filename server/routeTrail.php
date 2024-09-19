@@ -23,12 +23,16 @@ $id = isset($request_uri[2]) ? $request_uri[2] : null;
 // echo 'id : ' . $id;
 
 switch ($request_method) {
-    case 'GET':
+        case 'GET':
         $trail->getAllTrail();
-        break;
-    default:
-        echo "Erreur 404";
-        exit;
+             break;
+        case 'POST':
+        $trail->create();
+             break;
+
+            default:
+            echo "Erreur 404";
+            exit;
 }
 
 // Vérifier si la requête concerne les routes utilisateurs
