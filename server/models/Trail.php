@@ -30,12 +30,12 @@ class Trail extends Database {
     }
 
     // Récupérer un sentier par ID
-    public function getTrailById(int $id): ?array {
+    public function getTrailById(int $id) {
         try {
             $stmt = $this->pdo->prepare("SELECT * FROM trail WHERE id = :id");
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Erreur lors de la récupération du sentier : " . $e->getMessage());
             return null;

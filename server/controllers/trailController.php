@@ -13,23 +13,34 @@ class TrailController  {
     // // Récupérer un sentier par son ID
     // public function getTrailById($id) {
     //     $trail = $this->trailModel->getTrailById($id);
-        
-
-    //     if (!$trail) {
-    //         // Gérer le cas où le sentier n'est pas trouvé
-    //         $error = "Sentier introuvable.";
-    //         $this->render('../views/Trails/getTrailById.php', ['error' => $error]);
-    //         return;
-    //     }
-
-    //     $this->render('../views/Trails/getTrailById.php', $trail);
+    //     require __DIR__ . '/../views/Trails/getTrailById';
+       
     // }
+    public function getTrailById($id) {
+      
+      // Appeler la méthode du modèle pour obtenir le sentier
+      $trail = $this->trailModel->getTrailById($id);
+
+      if (!$trail) {
+          // Si aucun sentier trouvé, on passe un message d'erreur à la vue
+          $error = "Sentier introuvable.";
+          require __DIR__ . '/../views/Trails/getTrailById.php';
+      } else {
+          // Sinon, on passe les données du sentier à la vue
+          $data = $trail;
+          require __DIR__ . '/../views/Trails/getTrailById.php';
+      }
+  }
+  
 
     // Récupérer tous les sentiers
     public function getAllTrail() {
         $trails = $this->trailModel->getAllTrail();
+        
         require __DIR__ . '/../views/Trails/getAllTrail.php';
     }
+  
+  
 
     // Créer un sentier
     public function create() {
@@ -41,22 +52,28 @@ class TrailController  {
       $latitude_A= $_POST['latitude_A'] ?? null;
       $longitude_B= $_POST['longitude_B'] ?? null;
       $latitude_B= $_POST['latitude_B'] ?? null;
-      
+
         $trails = $this->trailModel->createTrail($name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B);
 
         require __DIR__ . '/../views/Trails/createTrail.php';
     }
 
-    // // Mettre à jour un sentier
-    // public function update(int $id, string $name, string $length, string $difficulty, string $longitude_A, string $latitude_A, string $longitude_B, string $latitude_B) {
-    //     $response = $this->trailModel->updateTrail($name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B, $id);
-    //     if ($response) {
-    //         $message = "Sentier mis à jour avec succès.";
-    //     } else {
-    //         $message = "Erreur lors de la mise à jour du sentier.";
-    //     }
-    //     $this->render('./views/Trails/updateTrail.php', ['message' => $message]);
-    // }
+    // Mettre à jour un sentier
+    public function update() {
+
+      $name= $_PUT['name'] ?? null;
+      $length= $_PUT['length'] ?? null;
+      $difficulty= $_PUT['difficulty'] ?? null;
+      $longitude_A= $_PUT['longitude_A'] ?? null;
+      $latitude_A= $_PUT['latitude_A'] ?? null;
+      $longitude_B= $_PUT['longitude_B'] ?? null;
+      $latitude_B= $_PUT['latitude_B'] ?? null;
+
+
+        $trails = $this->trailModel->updateTrail($name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B, $id);
+       
+      require __DIR__ . '/../views/Trails/updateTrail.php';
+    }
 
     // // Supprimer un sentier
     // public function delete(int $id) {

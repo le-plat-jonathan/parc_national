@@ -8,32 +8,31 @@ $trail = new TrailController();
 
 $request_method = $_SERVER['REQUEST_METHOD'];
 $request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-$endpoint = isset($request_uri[1]) ? $request_uri[1] : '';
-$id = isset($request_uri[2]) ? $request_uri[2] : null;
+$endpoint = isset($request_uri[3]) ? $request_uri[3] : ''; 
+$id = isset($request_uri[4]) ? intval($request_uri[4]) : null; // Utilisez [4] pour l'ID
 
+// // Debugging: Afficher l'endpoint et l'ID
+// echo 'Request method: ' . $request_method . '<br>';
+// echo 'Endpoint: ' . $endpoint . '<br>';
+// echo 'ID: ' . $id . '<br>';
 
-
-// echo '<pre>';
-// echo 'request method : ' . $request_method;
-// echo '</br>';
-// var_dump($request_uri);
-// echo '</br>';
-// echo 'endpoint : ' . $endpoint;
-// echo '</br>';
-// echo 'id : ' . $id;
 
 switch ($request_method) {
-        case 'GET':
-        $trail->getAllTrail();
-             break;
-        case 'POST':
+    case 'GET':
+        if ($endpoint === 'getTrailById' && $id) {
+            $trail->getTrailById($id);
+        } else {
+            $trail->getAllTrail();
+        }
+        break;
+    case 'POST':
         $trail->create();
-             break;
-
-            default:
-            echo "Erreur 404";
-            exit;
+        break;
+    default:
+        echo "Erreur 404: Route non trouvée";
+        exit;
 }
+
 
 // Vérifier si la requête concerne les routes utilisateurs
 /*
