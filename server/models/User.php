@@ -1,14 +1,15 @@
 <?php
+require_once __DIR__ . '/Database.php';
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-class User {
-    private $pdo;
+class User extends Database {
+
     private $secretKey = 'your-secret-key';
 
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
+    public function __construct() {
+        parent::__construct();
     }
 
     public function createUser($email, $password, $username) {
@@ -108,3 +109,6 @@ class User {
         return false;
     }
 }
+
+$user = new User();
+var_dump($user->getUserById(4));

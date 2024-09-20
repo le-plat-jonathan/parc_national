@@ -21,7 +21,7 @@ class Bungalow extends Database {
     }
     public function getBungalowById($id) {
         try {
-            $req = $this->bdd->prepare("SELECT * FROM bungalow WHERE `id` = :id");
+            $req = $this->pdo->prepare("SELECT * FROM bungalow WHERE `id` = :id");
             $req->bindValue(':id', $id, PDO::PARAM_STR);
             $req->execute();
             $result = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ class Bungalow extends Database {
     
     public function createBungalow($name, $description, $price) {
         try {
-            $req = $this->bdd->prepare("INSERT INTO bungalow (name, description, price) VALUES (:name, :description, :price)");
+            $req = $this->pdo->prepare("INSERT INTO bungalow (name, description, price) VALUES (:name, :description, :price)");
 
             $req->bindValue(':name', $name, PDO::PARAM_STR);
             $req->bindValue(':description', $description, PDO::PARAM_STR);
@@ -47,7 +47,7 @@ class Bungalow extends Database {
     }
     public function getAllBungalow() {
         try {
-            $req = $this->bdd->prepare("SELECT * FROM bungalow");
+            $req = $this->pdo->prepare("SELECT * FROM bungalow");
             $req->execute();
             $result = $req->fetchAll(PDO::FETCH_ASSOC);
             return $result;
@@ -58,7 +58,7 @@ class Bungalow extends Database {
 
     public function updateBungalow($id, $name, $description, $price) {
         try {
-            $req = $this->bdd->prepare("UPDATE `bungalow` SET `id`=:id,`name`=:name,`description`=:description,`price`=:price WHERE `id`=:id");
+            $req = $this->pdo->prepare("UPDATE `bungalow` SET `id`=:id,`name`=:name,`description`=:description,`price`=:price WHERE `id`=:id");
             $req->bindValue(':id', $id);
             $req->bindValue(':name', $name, PDO::PARAM_STR);
             $req->bindValue(':description', $description, PDO::PARAM_STR);
@@ -71,7 +71,7 @@ class Bungalow extends Database {
 
     public function deleteBungalow($id) {
         try {
-            $req = $this->bdd->prepare("DELETE FROM `bungalow` WHERE `id`=:id");
+            $req = $this->pdo->prepare("DELETE FROM `bungalow` WHERE `id`=:id");
             $req->bindValue(':id', $id);
             $req->execute();
         } catch (PDOException $e) {
