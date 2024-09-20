@@ -15,7 +15,6 @@
     </style>
 </head>
 <body>
-    <h1>Détails de l'utilisateur</h1>
 
     <?php if (!empty($data)) { ?>
         <ul>

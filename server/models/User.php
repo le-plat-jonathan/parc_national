@@ -1,19 +1,21 @@
 <?php
 
+require_once './../config/Database.php';
+
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-class User {
-    private \PDO $pdo;
-    private string $secretKey = 'your-secret-key';
+class User extends Database {
 
-    public function __construct(\PDO $pdo) {
-        $this->pdo = $pdo;
+    private $secretKey = 'your-secret-key';
+
+    public function __construct() {
+        parent::__construct();
     }
 
-    public function createUser(string $email, string $password, string $username): array {
+    public function createUser($email, $password, $username) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new \InvalidArgumentException('Invalid email address');
+            throw new InvalidArgumentException('Invalid email address');
         }
         if ($this->emailExists($email)) {
             return ['message' => 'Email already exists'];
@@ -34,15 +36,15 @@ class User {
         return ['message' => 'User created successfully', 'token' => $jwt];
     }
 
-    private function emailExists(string $email): bool {
+    private function emailExists($email) {
         $sql = "SELECT COUNT(*) FROM user WHERE email = :email";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchColumn() > 0;
     }
 
-    private function generateJWT(int $userId, string $username): string {
+    private function generateJWT($userId, $username) {
         $payload = [
             'iss' => 'localhost',
             'aud' => 'localhost',
@@ -55,23 +57,23 @@ class User {
         return JWT::encode($payload, $this->secretKey, 'HS256');
     }
 
-    public function getUserById(int $id): array|false {
+    public function getUserById($id) {
         $sql = "SELECT * FROM user WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updateUser(int $id, ?string $email = null, ?string $password = null, ?string $username = null): array {
+    public function updateUser($id, $email = null, $password = null, $username = null) {
         $user = $this->getUserById($id);
         if (!$user) {
             return ['message' => 'User not found'];
         }
 
         if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new \InvalidArgumentException('Invalid email address');
+            throw new InvalidArgumentException('Invalid email address');
         }
-        if ($email && $this->emailExists($email) && $email !== $user['email']) {
+        if ($this->emailExists($email) && $email !== $user['email']) {
             return ['message' => 'Email already exists'];
         }
 
@@ -85,21 +87,21 @@ class User {
         return ['message' => 'User updated successfully'];
     }
 
-    public function deleteUser(int $id): array {
+    public function deleteUser($id) {
         $sql = "DELETE FROM user WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
         return ['message' => 'User deleted successfully'];
     }
 
-    public function loginUser(string $email, string $password): array|false {
+    public function loginUser($email, $password) {
         $sql = "SELECT id, username, password FROM user WHERE email = :email LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($password, $row['password'])) {
                 $jwt = $this->generateJWT($row['id'], $row['username']);
                 return ["id" => $row['id'], "username" => $row['username'], "token" => $jwt];

@@ -1,18 +1,21 @@
 <?php
-require_once './vendor/autoload.php';
-include_once 'cors.php';
-include_once './models/Database.php';
-include_once './controllers/UserController.php';
 
-// Initialisation de la base de données et du contrôleur
-$database = new Database();
-$pdo = $database->databaseConnect();
-$user = new UserController($pdo);
+require_once './../vendor/autoload.php';
+require_once  './../Helpers/cors.php';
+require_once  './../Controllers/UserController.php';
 
 $request_method = $_SERVER['REQUEST_METHOD'];
-$request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-$endpoint = isset($request_uri[1]) ? $request_uri[1] : '';
-$id = isset($request_uri[2]) ? $request_uri[2] : null;
+
+$request_uri = $_SERVER['REQUEST_URI'];
+$script_name = $_SERVER['SCRIPT_NAME'];
+$url = str_replace($script_name, "", $request_uri);
+$url = trim($url, '/');
+
+$urlParsed = explode('/', $url );
+$endpoint = isset($urlParsed[0]) ? $urlParsed[0] : '';
+$id = isset($urlParsed[1]) ? $urlParsed[1] : '';
+
+$user = new UserController();
 
 // Vérifier si la requête concerne les routes utilisateurs
 if (in_array($endpoint, ['register', 'login', 'get_user', 'update_user', 'delete_user'])) {
@@ -43,7 +46,12 @@ if (in_array($endpoint, ['register', 'login', 'get_user', 'update_user', 'delete
 // Gestion des requêtes POST
 function handlePostRequest($endpoint) {
     global $user;
-    $input = json_decode(file_get_contents('php://input'), true);
+    
+    if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
+        $input = json_decode(file_get_contents('php://input'), true);
+    } else {
+        $input = $_POST;
+    }
 
     switch ($endpoint) {
         case 'register':
