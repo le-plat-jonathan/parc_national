@@ -28,6 +28,9 @@ switch ($request_method) {
     case 'POST':
         $trail->create();
         break;
+        case 'DELETE': 
+            $trail->delete($id);
+            break;
     default:
         echo "Erreur 404: Route non trouvée";
         exit;

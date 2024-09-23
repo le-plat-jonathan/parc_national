@@ -18,15 +18,13 @@ class TrailController  {
     // }
     public function getTrailById($id) {
       
-      // Appeler la méthode du modèle pour obtenir le sentier
+     
       $trail = $this->trailModel->getTrailById($id);
 
       if (!$trail) {
-          // Si aucun sentier trouvé, on passe un message d'erreur à la vue
           $error = "Sentier introuvable.";
           require __DIR__ . '/../views/Trails/getTrailById.php';
       } else {
-          // Sinon, on passe les données du sentier à la vue
           $data = $trail;
           require __DIR__ . '/../views/Trails/getTrailById.php';
       }
@@ -59,32 +57,19 @@ class TrailController  {
     }
 
     // Mettre à jour un sentier
-    public function update() {
-
-      $name= $_PUT['name'] ?? null;
-      $length= $_PUT['length'] ?? null;
-      $difficulty= $_PUT['difficulty'] ?? null;
-      $longitude_A= $_PUT['longitude_A'] ?? null;
-      $latitude_A= $_PUT['latitude_A'] ?? null;
-      $longitude_B= $_PUT['longitude_B'] ?? null;
-      $latitude_B= $_PUT['latitude_B'] ?? null;
-
+    public function update($id, $name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B) {
 
         $trails = $this->trailModel->updateTrail($name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B, $id);
        
       require __DIR__ . '/../views/Trails/updateTrail.php';
     }
 
-    // // Supprimer un sentier
-    // public function delete(int $id) {
-    //     $response = $this->trailModel->deleteTrail($id);
-    //     if ($response) {
-    //         $message = "Sentier supprimé avec succès.";
-    //     } else {
-    //         $message = "Erreur lors de la suppression du sentier.";
-    //     }
-    //     $this->render('./views/Trails/deleteTrail.php', ['message' => $message]);
-    // }
+    // Supprimer un sentier
+    public function delete(int $id) {
+        $trails = $this->trailModel->deleteTrail($id);
+       
+        // require __DIR__ . '/../views/Trails/deleteTrail.php';
+    }
 
     // // Méthode pour afficher les vues avec les données
     // public function render($view, $data = []) {
@@ -92,5 +77,3 @@ class TrailController  {
     //     include $view;
     // }
 }
-// $trail_test = new trailController();
-// $trail_test->getAllTrail();
