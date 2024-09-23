@@ -32,8 +32,8 @@ class BungalowController {
 
     public function getAllBungalow() {
         $data = $this->bungalowModel->getAllBungalow();
-        require __DIR__ . '/../views/getBungalow.php';
-    }
+        echo json_encode($data);
+     }
 
     public function createBungalow() {
         $name = $_POST['name'] ?? null;
