@@ -1,31 +1,3 @@
-<?php 
-
-require_once __DIR__ . '/../models/Bungalow.php';
-
-$request_uri = $_SERVER['REQUEST_URI'];
-$script_name = $_SERVER['SCRIPT_NAME'];
-$url = str_replace($script_name, "", $request_uri);
-$url = trim($url, '/');
-
-$urlParsed = explode('/', $url );
-$id = $urlParsed[0];
-$valid_id = false;
-
-$bungalow = new Bungalow();
-if ($id != "") {
-    $data = $bungalow->getBungalowById($id);
-
-    if (!empty($data)) {
-        $valid_id = true;
-    } else {
-        echo 'Aucun bungalow trouvé avec cet ID';
-    }
-} else {
-    echo 'ID MANQUANT';
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +7,7 @@ if ($id != "") {
     <title>Document</title>
 </head>
 <body>
-    <?php if($valid_id): ?>
+    <?php if($data): ?>
         <form action="/routes/bungalowRoutes.php/updateBungalow/<?= $id ?>" method="post">
             <label for="name">Name</label>
             <input type="text" value="<?= isset($data[0]['name']) ? $data[0]['name'] : "" ?>" name="name">

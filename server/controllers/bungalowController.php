@@ -50,17 +50,18 @@ class BungalowController {
         }
     
     public function updateBungalow($id){
+      $data = $this->bungalowModel->getBungalowById($id);
+
         $name = $_POST['name'] ?? null;
         $description = $_POST['description'] ?? null;
         $price = $_POST['price'] ?? null;
 
         if ($name && $description && $price) {
-            // Appeler la méthode du modèle pour créer le bungalow
             $this->bungalowModel->updateBungalow($id,$name, $description, $price);
-            echo "Bungalow modifié avec succès!";
-          } else {
-            echo "Données invalides.";
-          }
+          } 
+
+        require __DIR__ . '/../views/updateBungalow.php';
+
         }
 
     public function deleteBungalow($id) {

@@ -56,6 +56,10 @@ if ($request_method==='GET'){
             }
         break;
 
+        case 'updateBungalow':
+            $bungalow->updateBungalow($id);
+        break;
+
         default:
         echo "Erreur de endpoint";
         exit;
