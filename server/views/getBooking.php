@@ -1,11 +1,20 @@
+/*
+Calendrier: gestion de l'affichage d'un calendrier mensuel.
+
+Méthodes:
+
+- Incrémentation et décrémentation du mois en cours via des paramètres GET.
+- Récupération du nom du mois et du nombre de jours.
+- Affichage des jours réservés en utilisant le stockage local.
+
+*/
+
 <?php
-// Vérifiez si le mois et l'année sont passés dans l'URL
-$currentMonth = isset($_GET['month']) ? (int)$_GET['month'] : (int)date('n'); // mois courant
-$currentYear = isset($_GET['year']) ? (int)$_GET['year'] : (int)date('Y'); // année courante
+$currentMonth = isset($_GET['month']) ? (int)$_GET['month'] : (int)date('n');
+$currentYear = isset($_GET['year']) ? (int)$_GET['year'] : (int)date('Y');
 $date = new DateTime("$currentYear-$currentMonth-01");
 $monthName = $date->format('F');
 
-// Gestion de l'incrémentation ou de la décrémentation
 if (isset($_GET['action'])) {
     if ($_GET['action'] === 'addOne') {
         $currentMonth++;
@@ -22,14 +31,12 @@ if (isset($_GET['action'])) {
     }
 }
 
-// Créez un objet DateTime pour le premier et le dernier jour du mois
 $dateFirstDayOfMonth = new DateTime("$currentYear-$currentMonth-01");
 $dateLastDayOfMonth = clone $dateFirstDayOfMonth;
 $dateLastDayOfMonth->modify('last day of this month');
 
 $dayFirstMonth = (int)$dateFirstDayOfMonth->format('N') % 7;
 $lastDayOfMonth = $dateLastDayOfMonth->format('d');
-
 $emptyDay = 0;
 ?>
 
@@ -49,7 +56,7 @@ $emptyDay = 0;
         <input type="hidden" name="year" value="<?php echo $currentYear; ?>">
         <button type="submit" name="action" value="lessOne">Moins un</button>
     </form>
-    <p><?=$monthName?>
+    <p><?= $monthName ?></p>
     <form method="get" style="display:inline;">
         <input type="hidden" name="month" value="<?php echo $currentMonth; ?>">
         <input type="hidden" name="year" value="<?php echo $currentYear; ?>">
@@ -68,15 +75,15 @@ $emptyDay = 0;
         </tr>
         <tr>
         <?php 
-        for($i = 0; $i < $dayFirstMonth; $i++){
+        for ($i = 0; $i < $dayFirstMonth; $i++) {
             echo "<th>vide</th>";
             $emptyDay++;
         }
         
-        for($i = 1; $i <= $lastDayOfMonth; $i++){
+        for ($i = 1; $i <= $lastDayOfMonth; $i++) {
             $currentDay = $dateFirstDayOfMonth->format("Y-M-" . $i);
             echo '<th id="' . $currentDay . '">' . $i . '</th>';
-            if (($i + $emptyDay) % 7 === 0){
+            if (($i + $emptyDay) % 7 === 0) {
                 echo '</tr><tr>';
             }
         }
