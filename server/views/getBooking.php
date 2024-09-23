@@ -2,6 +2,8 @@
 // Vérifiez si le mois et l'année sont passés dans l'URL
 $currentMonth = isset($_GET['month']) ? (int)$_GET['month'] : (int)date('n'); // mois courant
 $currentYear = isset($_GET['year']) ? (int)$_GET['year'] : (int)date('Y'); // année courante
+$date = new DateTime("$currentYear-$currentMonth-01");
+$monthName = $date->format('F');
 
 // Gestion de l'incrémentation ou de la décrémentation
 if (isset($_GET['action'])) {
@@ -38,7 +40,7 @@ $emptyDay = 0;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendrier</title>
-    <link rel="stylesheet" href="/views/style.css">
+    <link rel="stylesheet" href="/views/style/calendar.css">
     <link rel="icon" href="data:,">
 </head>
 <body>
@@ -47,6 +49,7 @@ $emptyDay = 0;
         <input type="hidden" name="year" value="<?php echo $currentYear; ?>">
         <button type="submit" name="action" value="lessOne">Moins un</button>
     </form>
+    <p><?=$monthName?>
     <form method="get" style="display:inline;">
         <input type="hidden" name="month" value="<?php echo $currentMonth; ?>">
         <input type="hidden" name="year" value="<?php echo $currentYear; ?>">
