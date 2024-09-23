@@ -57,12 +57,31 @@ class TrailController  {
     }
 
     // Mettre à jour un sentier
-    public function update($id, $name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B) {
+    public function update() {
 
-        $trails = $this->trailModel->updateTrail($name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B, $id);
-       
+      $id=$_POST['id'];
+      $name= $_POST['name'] ?? null;
+      $length= $_POST['length'] ?? null;
+      $difficulty= $_POST['difficulty'] ?? null;
+      $longitude_A= $_POST['longitude_A'] ?? null;
+      $latitude_A= $_POST['latitude_A'] ?? null;
+      $longitude_B= $_POST['longitude_B'] ?? null;
+      $latitude_B= $_POST['latitude_B'] ?? null;
+
+      // $data = $this->trailModel->getTrailById($id);
+
+
+      // if (!$data) {
+      //     $data = ["message" => 'Trail not found'];
+      // } else {
+      //     $data = ["data" => $data]; // Attention à cette ligne
+      // }
+      $trails = $this->trailModel->updateTrail($id, $name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B);
+      
       require __DIR__ . '/../views/Trails/updateTrail.php';
-    }
+
+  }
+  
 
     // Supprimer un sentier
     public function delete(int $id) {
@@ -77,3 +96,10 @@ class TrailController  {
     //     include $view;
     // }
 }
+
+
+// $update= New TrailController();
+// $update->update(5,"testupdatetest", "15", "189","154848","1548","26595", "4848");
+
+
+

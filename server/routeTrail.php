@@ -7,34 +7,98 @@ include_once __DIR__ . '/controllers/trailController.php';
 $trail = new TrailController();
 
 $request_method = $_SERVER['REQUEST_METHOD'];
-$request_uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-$endpoint = isset($request_uri[3]) ? $request_uri[3] : ''; 
-$id = isset($request_uri[4]) ? intval($request_uri[4]) : null; // Utilisez [4] pour l'ID
+$uri = $_SERVER['REQUEST_URI'];
+$scriptName = $_SERVER['SCRIPT_NAME'];
 
-// // Debugging: Afficher l'endpoint et l'ID
-// echo 'Request method: ' . $request_method . '<br>';
-// echo 'Endpoint: ' . $endpoint . '<br>';
-// echo 'ID: ' . $id . '<br>';
+$url = str_replace($scriptName, "", $uri);
+$url = trim($url, "/");
 
+$urlParsed = explode('/', $url );
 
-switch ($request_method) {
-    case 'GET':
-        if ($endpoint === 'getTrailById' && $id) {
-            $trail->getTrailById($id);
-        } else {
-            $trail->getAllTrail();
-        }
+$endPoint = isset($urlParsed[0]) ? $urlParsed[0] : "";
+$id = isset($urlParsed[1]) ? $urlParsed[1] : "";
+
+if($request_method=== 'GET'){
+    echo 'GET';
+switch ($endPoint){
+    case 'getTrailById':
+    $trail->getTrailById($id);
+    break;
+    case 'update_trail':
+        $trail->update();
         break;
-    case 'POST':
-        $trail->create();
+    case 'getAllTrail':
+        $trail->getAllTrail();
         break;
-        case 'DELETE': 
-            $trail->delete($id);
-            break;
-    default:
-        echo "Erreur 404: Route non trouvée";
+        default:
+        echo "Erreur 404: erreur de endpoint dans GET";
         exit;
 }
+
+}else if($request_method==='POST'){
+    echo 'POST';
+    switch($endPoint){
+        case 'create_trail':
+            $trail->create();
+            break;
+        case 'update_trail':
+            $trail->update((int)$id);
+            break;
+        case 'delete_trail':
+            $trail->delete($id);
+            break;
+            defaut: 
+            echo 'Erreur de endpoint dans POST';
+            exit;
+    }
+}else {
+    echo 'Error request method';
+}
+
+
+// switch ($request_method) {
+//     case 'GET':
+//         if ($endpoint === 'getTrailById' && $id) {
+//             $trail->getTrailById($id);
+//         } else {
+//             $trail->getAllTrail();
+//         }
+//         break;
+//         case 'POST':
+//             if($endpoint=== 'create_trail'){
+//                 $trail->create();
+//             } else {
+//                 echo 'Creation error';
+//             }
+//             break;
+//             if ($endpoint === 'update_trail' && $id) {
+//                 // Récupérer les données du formulaire
+//                 $name = $_POST['name'] ?? '';
+//                 $length = $_POST['length'] ?? '';
+//                 $difficulty = $_POST['difficulty'] ?? '';
+//                 $longitude_A = $_POST['longitude_A'] ?? '';
+//                 $latitude_A = $_POST['latitude_A'] ?? '';
+//                 $longitude_B = $_POST['longitude_B'] ?? '';
+//                 $latitude_B = $_POST['latitude_B'] ?? '';
+    
+//                 // Appeler la méthode de mise à jour
+//                 $trail->update($id, $name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B);
+//             } else{
+//                 echo 'update error';
+//             }
+//             break;
+//         case 'DELETE': 
+//             if($endpoint=== 'delete_trail'){
+//                 $trail->delete($id);
+//             } else{
+//                 echo 'delete error';
+//             }
+           
+//             break;
+//     default:
+//         echo "Erreur 404: Route non trouvée";
+//         exit;
+// }
 
 
 // Vérifier si la requête concerne les routes utilisateurs

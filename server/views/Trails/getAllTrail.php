@@ -4,7 +4,7 @@
     <title>Liste des sentiers</title>
 </head>
 <body>
-  <p>Je suis dans la views</p>
+  <p>Je suis dans la views getAll</p>
 
   <h1>Tous les sentiers</h1>
 
