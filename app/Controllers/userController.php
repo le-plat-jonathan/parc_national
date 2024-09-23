@@ -16,6 +16,16 @@ class UserController {
         }
         $this->render('./../views/getUser.php', $response);
     }
+
+    public function getAllUsers(){
+        $response = $this->user->getAllUsers();
+        if (!$response) {
+            $response = ['message' => 'No user found'];
+        } else {
+            $response = ['users' => $response];
+        }
+        $this->render('./../views/getAllUsers.php', $response);
+    }
     
     public function register(string $email, string $password, string $username): void {
         $response = $this->user->createUser($email, $password, $username);
@@ -38,6 +48,8 @@ class UserController {
     }
 
     public function render(string $view, array $data): void {
+        extract($data);
         include $view;
     }
+    
 }

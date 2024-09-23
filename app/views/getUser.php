@@ -15,8 +15,8 @@
     </style>
 </head>
 <body>
-
-    <?php if (!empty($data)) { ?>
+    <?php 
+    if (!empty($data)) { ?>
         <ul>
             <li><strong>Nom d'utilisateur :</strong> <?php echo htmlspecialchars($data['username']); ?></li>
             <li><strong>Email :</strong> <?php echo htmlspecialchars($data['email']); ?></li>
@@ -27,6 +27,5 @@
     <?php } else { ?>
         <p>Aucune donnée utilisateur disponible.</p>
     <?php } ?>
-
 </body>
 </html>

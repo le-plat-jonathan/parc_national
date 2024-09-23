@@ -64,12 +64,18 @@ class User extends Database {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getAllUsers() {
+        $sql = "SELECT * FROM user";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function updateUser($id, $email = null, $password = null, $username = null) {
         $user = $this->getUserById($id);
         if (!$user) {
             return ['message' => 'User not found'];
         }
-
         if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidArgumentException('Invalid email address');
         }

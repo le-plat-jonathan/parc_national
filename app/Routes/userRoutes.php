@@ -18,7 +18,7 @@ $id = isset($urlParsed[1]) ? $urlParsed[1] : '';
 $user = new UserController();
 
 // Vérifier si la requête concerne les routes utilisateurs
-if (in_array($endpoint, ['register', 'login', 'get_user', 'update_user', 'delete_user'])) {
+if (in_array($endpoint, ['register', 'login', 'get_user', 'update_user', 'delete_user', 'get_all_users'])) {
     // Gestion des requêtes en fonction de la méthode
     switch ($request_method) {
         case 'POST':
@@ -100,6 +100,9 @@ function handleGetRequest($endpoint, $id) {
         case 'get_user':
             echo json_encode($user->getUserById($id));
             break;
+        case 'get_all_users':
+            echo json_encode($user->getAllUsers());
+            break;
         default:
             echo json_encode(['message' => 'Invalid GET action.']);
             break;
@@ -109,7 +112,12 @@ function handleGetRequest($endpoint, $id) {
 // Gestion des requêtes PUT
 function handlePutRequest($endpoint, $id) {
     global $user;
-    $input = json_decode(file_get_contents('php://input'), true);
+
+    if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
+        $input = json_decode(file_get_contents('php://input'), true);
+    } else {
+        $input = $_PUT;
+    }
 
     switch ($endpoint) {
         case 'update_user':
