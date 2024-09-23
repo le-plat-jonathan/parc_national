@@ -19,7 +19,6 @@ $endPoint = isset($urlParsed[0]) ? $urlParsed[0] : "";
 $id = isset($urlParsed[1]) ? $urlParsed[1] : "";
 
 if($request_method=== 'GET'){
-    echo 'GET';
 switch ($endPoint){
     case 'getTrailById':
     $trail->getTrailById($id);
@@ -36,7 +35,6 @@ switch ($endPoint){
 }
 
 }else if($request_method==='POST'){
-    echo 'POST';
     switch($endPoint){
         case 'create_trail':
             $trail->create();

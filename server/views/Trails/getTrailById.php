@@ -8,8 +8,8 @@
 <body>
   
 <h1>Détails du sentier</h1>
-
 <?php if (!empty($trail)) { ?>
+   
 <ul>
     <li><strong>Nom :</strong> <?= htmlspecialchars($trail['name']); ?></li>
     <li><strong>Longueur :</strong> <?= htmlspecialchars($trail['length']); ?></li>

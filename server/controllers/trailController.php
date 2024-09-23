@@ -59,7 +59,7 @@ class TrailController  {
     // Mettre à jour un sentier
     public function update() {
 
-      $id=$_POST['id'];
+      $id=$_POST['id'] ?? null;
       $name= $_POST['name'] ?? null;
       $length= $_POST['length'] ?? null;
       $difficulty= $_POST['difficulty'] ?? null;
@@ -76,7 +76,10 @@ class TrailController  {
       // } else {
       //     $data = ["data" => $data]; // Attention à cette ligne
       // }
-      $trails = $this->trailModel->updateTrail($id, $name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B);
+      if ($id === null || empty($name) || empty($length) || empty($difficulty) || empty($longitude_A) || empty($latitude_A) || empty($longitude_B) || empty($latitude_B)) {
+        ;} else {
+          $trails = $this->trailModel->updateTrail($id, $name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B);
+        }
       
       require __DIR__ . '/../views/Trails/updateTrail.php';
 
