@@ -31,9 +31,8 @@ class User extends Database {
         ]);
 
         $userId = $this->pdo->lastInsertId();
-        $jwt = $this->generateJWT($userId, $username);
 
-        return ['message' => 'User created successfully', 'token' => $jwt];
+        return ['message' => 'User created successfully'];
     }
     
     public function loginUser($email, $password) {

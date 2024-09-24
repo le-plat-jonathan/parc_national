@@ -29,7 +29,6 @@ class UserController {
     
     public function register(string $email, string $password, string $username): void {
         $response = $this->user->createUser($email, $password, $username);
-        $this->render('./../views/user/register.php', $response);
     }
 
     public function login(string $email, string $password) {
@@ -42,8 +41,6 @@ class UserController {
         } else {
             $response = $this->user->loginUser($email, $password);
         }
-        
-        $this->render('./../views/user/login.php', $response);
         return($response);
     }
 

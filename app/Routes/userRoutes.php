@@ -56,7 +56,7 @@ function handlePostRequest($endpoint) {
     } else {
         $input = $_POST;
     }
-
+    
     switch ($endpoint) {
         case 'register':
             echo json_encode($user->register($input['email'], $input['password'], $input['username']));
