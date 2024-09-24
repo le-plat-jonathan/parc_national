@@ -35,6 +35,25 @@ class User extends Database {
 
         return ['message' => 'User created successfully', 'token' => $jwt];
     }
+    
+    public function loginUser($email, $password) {
+        $sql = "SELECT * FROM user WHERE email = :email LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+    
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (password_verify($password, $row['password'])) {
+                $jwt = $this->generateJWT($row['id'], $row['username']);
+                return ["id" => $row['id'], "username" => $row['username'], "email" => $row['email'], "role" => $row['role'], "token" => $jwt];
+            } else {
+                return ['message' => 'Invalid password'];
+            }
+        }
+        return ['message' => 'Email not found'];
+    }
+    
 
     private function emailExists($email) {
         $sql = "SELECT COUNT(*) FROM user WHERE email = :email";
@@ -98,21 +117,5 @@ class User extends Database {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
         return ['message' => 'User deleted successfully'];
-    }
-
-    public function loginUser($email, $password) {
-        $sql = "SELECT id, username, password FROM user WHERE email = :email LIMIT 1";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if (password_verify($password, $row['password'])) {
-                $jwt = $this->generateJWT($row['id'], $row['username']);
-                return ["id" => $row['id'], "username" => $row['username'], "token" => $jwt];
-            }
-        }
-        return false;
     }
 }

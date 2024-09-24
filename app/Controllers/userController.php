@@ -14,7 +14,7 @@ class UserController {
         if (!$response) {
             $response = ['message' => 'User not found'];
         }
-        $this->render('./../views/getUser.php', $response);
+        $this->render('./../views/user/getUser.php', $response);
     }
 
     public function getAllUsers(){
@@ -24,27 +24,37 @@ class UserController {
         } else {
             $response = ['users' => $response];
         }
-        $this->render('./../views/getAllUsers.php', $response);
+        $this->render('./../views/user/getAllUsers.php', $response);
     }
     
     public function register(string $email, string $password, string $username): void {
         $response = $this->user->createUser($email, $password, $username);
-        $this->render('./../views/register.php', $response);
+        $this->render('./../views/user/register.php', $response);
     }
 
-    public function login(string $email, string $password): void {
-        $response = $this->user->loginUser($email, $password);
-        $this->render('./../views/login.php', $response);
+    public function login(string $email, string $password) {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        if (empty($email) || empty($password)) {
+            $response = ['message' => 'Email or password missing'];
+        } else {
+            $response = $this->user->loginUser($email, $password);
+        }
+        
+        $this->render('./../views/user/login.php', $response);
+        return($response);
     }
 
     public function update(int $id, string $email, string $password, string $username): void {
         $response = $this->user->updateUser($id, $email, $password, $username);
-        $this->render('./../views/updateUser.php', $response);
+        $this->render('./../views/user/updateUser.php', $response);
     }
 
     public function delete(int $id): void {
         $response = $this->user->deleteUser($id);
-        $this->render('./../views/deleteUser.php', $response);
+        $this->render('./../views/user/deleteUser.php', $response);
     }
 
     public function render(string $view, array $data): void {

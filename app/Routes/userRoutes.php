@@ -4,6 +4,10 @@ require_once './../vendor/autoload.php';
 require_once  './../Helpers/cors.php';
 require_once  './../Controllers/UserController.php';
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $request_method = $_SERVER['REQUEST_METHOD'];
 
 $request_uri = $_SERVER['REQUEST_URI'];
@@ -75,18 +79,15 @@ function handleLoginRequest($email, $password) {
     }
 
     $result = $user->login($email, $password);
-
     if ($result) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
         $_SESSION['user_id'] = $result['id'];
         $_SESSION['username'] = $result['username'];
-
+        
         return [
             'message' => 'Login successful.',
-            'user_id' => $result['id'],
-            'token' => $result['token']
         ];
     } else {
         return ['message' => 'Login failed.'];
