@@ -1,3 +1,5 @@
+<?php
+
 /*
 Calendrier: gestion de l'affichage d'un calendrier mensuel.
 
@@ -9,7 +11,6 @@ Méthodes:
 
 */
 
-<?php
 $currentMonth = isset($_GET['month']) ? (int)$_GET['month'] : (int)date('n');
 $currentYear = isset($_GET['year']) ? (int)$_GET['year'] : (int)date('Y');
 $date = new DateTime("$currentYear-$currentMonth-01");

@@ -1,9 +1,21 @@
 <?php
-// Vérifiez si le mois et l'année sont passés dans l'URL
-$currentMonth = isset($_GET['month']) ? (int)$_GET['month'] : (int)date('n'); // mois courant
-$currentYear = isset($_GET['year']) ? (int)$_GET['year'] : (int)date('Y'); // année courante
 
-// Gestion de l'incrémentation ou de la décrémentation
+/*
+Calendrier: gestion de l'affichage d'un calendrier mensuel.
+
+Méthodes:
+
+- Incrémentation et décrémentation du mois en cours via des paramètres GET.
+- Récupération du nom du mois et du nombre de jours.
+- Affichage des jours réservés en utilisant le stockage local.
+
+*/
+
+$currentMonth = isset($_GET['month']) ? (int)$_GET['month'] : (int)date('n');
+$currentYear = isset($_GET['year']) ? (int)$_GET['year'] : (int)date('Y');
+$date = new DateTime("$currentYear-$currentMonth-01");
+$monthName = $date->format('F');
+
 if (isset($_GET['action'])) {
     if ($_GET['action'] === 'addOne') {
         $currentMonth++;
@@ -20,14 +32,12 @@ if (isset($_GET['action'])) {
     }
 }
 
-// Créez un objet DateTime pour le premier et le dernier jour du mois
 $dateFirstDayOfMonth = new DateTime("$currentYear-$currentMonth-01");
 $dateLastDayOfMonth = clone $dateFirstDayOfMonth;
 $dateLastDayOfMonth->modify('last day of this month');
 
 $dayFirstMonth = (int)$dateFirstDayOfMonth->format('N') % 7;
 $lastDayOfMonth = $dateLastDayOfMonth->format('d');
-
 $emptyDay = 0;
 ?>
 
@@ -38,7 +48,7 @@ $emptyDay = 0;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendrier</title>
-    <link rel="stylesheet" href="/views/style.css">
+    <link rel="stylesheet" href="/views/style/calendar.css">
     <link rel="icon" href="data:,">
 </head>
 <body>
@@ -47,6 +57,7 @@ $emptyDay = 0;
         <input type="hidden" name="year" value="<?php echo $currentYear; ?>">
         <button type="submit" name="action" value="lessOne">Moins un</button>
     </form>
+    <p><?= $monthName ?></p>
     <form method="get" style="display:inline;">
         <input type="hidden" name="month" value="<?php echo $currentMonth; ?>">
         <input type="hidden" name="year" value="<?php echo $currentYear; ?>">
@@ -65,19 +76,25 @@ $emptyDay = 0;
         </tr>
         <tr>
         <?php 
-        for($i = 0; $i < $dayFirstMonth; $i++){
+        for ($i = 0; $i < $dayFirstMonth; $i++) {
             echo "<th>vide</th>";
             $emptyDay++;
         }
         
-        for($i = 1; $i <= $lastDayOfMonth; $i++){
-            echo "<th>" . $i . "</th>";
-            if (($i + $emptyDay) % 7 === 0){
+        for ($i = 1; $i <= $lastDayOfMonth; $i++) {
+            $currentDay = $dateFirstDayOfMonth->format("Y-M-" . $i);
+            echo '<th id="' . $currentDay . '">' . $i . '</th>';
+            if (($i + $emptyDay) % 7 === 0) {
                 echo '</tr><tr>';
-            } 
+            }
         }
         ?>
         </tr>
     </table>
+    <script src="/views/script/calendar.js"></script>
 </body>
+<script>
+    const reservedDays = <?php echo json_encode($data); ?>;
+    localStorage.setItem('reservedDays', JSON.stringify(reservedDays));
+</script>
 </html>
