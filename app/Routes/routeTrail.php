@@ -4,6 +4,7 @@ include_once __DIR__ . '/../controllers/trailController.php';
 
 $trail = new TrailController();
 
+//Parse de mon url
 $request_method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 $scriptName = $_SERVER['SCRIPT_NAME'];
@@ -16,6 +17,7 @@ $urlParsed = explode('/', $url );
 $endPoint = isset($urlParsed[0]) ? $urlParsed[0] : "";
 $id = isset($urlParsed[1]) ? $urlParsed[1] : "";
 
+//Méthode get avec switch selon endpoint( getById, updateById, getAll)
 if($request_method=== 'GET'){
 switch ($endPoint){
     case 'getTrailById':
@@ -31,7 +33,7 @@ switch ($endPoint){
         echo "Erreur 404: erreur de endpoint dans GET";
         exit;
 }
-
+//Méthode post avec switch selon endpoint(creer, update, delete)
 }else if($request_method==='POST'){
     switch($endPoint){
         case 'create_trail':

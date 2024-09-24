@@ -8,6 +8,7 @@ class TrailController  {
         $this->trailModel = new Trail();
     }
 
+//récupérer un Trail par rapport à son id
     public function getTrailById($id) {
       $trail = $this->trailModel->getTrailById($id);
 
@@ -68,7 +69,7 @@ class TrailController  {
     public function delete(int $id) {
         $trails = $this->trailModel->deleteTrail($id);
        
-        // require __DIR__ . '/../views/Trails/deleteTrail.php';
+      
     }
 
 }
