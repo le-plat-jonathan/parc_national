@@ -7,7 +7,7 @@
 </head>
 <body>
   <h1>Mise à jour des infos d'un sentier:</h1>
-  <form action='/parc_national/server/routeTrail.php/update_trail' method="post">
+  <form action='/parc_national/app/routes/routeTrail.php/update_trail' method="post">
 
   <label for="id">Id:</label>
     <input type="int" id="id" name="id" value="<?= htmlspecialchars($data['data']['id'] ?? ''); ?>" required>

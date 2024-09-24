@@ -22,10 +22,13 @@ if($request_method=== 'GET'){
       case 'getRessourcesById':
       $ressource->getNaturalRessourcesById($id);
       break;
+      case 'getRessourcesByEnvironmentId':
+        $ressource->getNaturalRessourcesByEnvironmentId($id);
+        break;
       case 'update_ressources':
           $ressource->update();
           break;
-      case 'getAllressource':
+      case 'getAllRessources':
           $ressource->getAllNaturalRessources();
           break;
           default:

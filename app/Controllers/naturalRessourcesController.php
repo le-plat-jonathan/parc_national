@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../models/Trail.php';
+require_once __DIR__ . '/../models/NaturalRessources.php';
 
 class NaturalRessourcesController{
 
@@ -20,6 +20,19 @@ class NaturalRessourcesController{
         require __DIR__ . '/../views/NaturalRessources/getNaturalRessourcesById.php';
     }
 }
+
+public function getNaturalRessourcesByEnvironmentId($id) {
+  $ressource = $this->naturalRessourcesModel->getNaturalRessourcesByEnvironmentId($id);
+
+  if (!$ressource) {
+      $error = "Ressource naturelle introuvable.";
+      require __DIR__ . '/../views/NaturalRessources/getNaturalRessourcesById.php';
+  } else {
+      $data = $ressource;
+      require __DIR__ . '/../views/NaturalRessources/getNaturalRessourcesById.php';
+  }
+}
+
 public function getAllNaturalRessources() {
   $ressources = $this->naturalRessourcesModel->getAllNaturalRessources();
   
@@ -55,7 +68,7 @@ public function update() {
 }
 
 public function delete(int $id) {
-  $resources = $this->naturalRessourcesModel->deleteNaturalRessources($id);
+  $resource = $this->naturalRessourcesModel->deleteNaturalRessource($id);
  
   // require __DIR__ . '/../views/NaturalRessources/deleteNaturalRessources.php';
 }

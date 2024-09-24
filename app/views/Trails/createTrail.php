@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Ajouter un nouveau sentier</h1>
-    <form method="POST" action="/parc_national/server/routeTrail.php/create_trail">
+    <form method="POST" action="/parc_national/app/routes/routeTrail.php/create_trail">
         <label for="name">Name : </label>
         <input type="text" id="name" name="name" required>
         <br>
