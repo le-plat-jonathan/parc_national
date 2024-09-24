@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendrier</title>
-    <link rel="stylesheet" href="/views/style/calendar.css">
-    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
 </head>
 <body>
     <div id="optCalendar">
@@ -33,11 +32,10 @@
     <button id="chalet-1">Chalet-1</button>
     <button id="chalet-2">Chalet-2</button>
     <button id="chalet-3">Chalet-3</button>
-    <script src="script.js"></script>
+    <script src="script/script.js"></script>
 </body>
 <script>
     const reservedDays = <?php echo json_encode($data); ?>;
-    localStorage.setItem('dates', JSON.stringify(reservedDays));
+    localStorage.setItem('reservedDays', JSON.stringify(reservedDays));
 </script>
-<script src="/views/script/script.js"></script>
 </html>
