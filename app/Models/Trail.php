@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once './../config/Database.php';
 
 class Trail extends Database {
     protected $pdo;
