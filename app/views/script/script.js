@@ -119,8 +119,6 @@ function handleClick (event) {
         firstDate = undefined;
         secondDate = undefined;
         initCalendar()
-
-
     }
 }
 
