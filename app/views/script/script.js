@@ -115,12 +115,12 @@ function handleClick (event) {
             }
         });
 
-    } else { // Si deux dates sont déjà sélectionnées, réinitialise la sélection
-        allCellsClicked = document.getElementsByClassName("clicked")
-        console.log(allCellsClicked)
+    } else {
         firstDate = undefined;
         secondDate = undefined;
-        document.location.href
+        initCalendar()
+
+
     }
 }
 
@@ -135,15 +135,6 @@ async function reserve (firstDate, secondDate) {
     // Attendre la réponse de checkReserve
     let check = await checkReserve(allCellsClicked);
     console.log(check);
-
-    // Vérifier si check est true ou false
-    if (check) {
-        // Ajoute le code à exécuter si la réservation est possible
-        console.log("Réservation possible");
-    } else {
-        // Ajoute le code à exécuter si la réservation n'est pas possible
-        console.log("Réservation non possible");
-    }
 
     if (check) {
 
