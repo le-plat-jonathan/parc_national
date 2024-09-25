@@ -31,6 +31,9 @@ let allCells;
 let firstDate;
 let secondDate;
 let numeroChalets = 0;
+let bungalow_id = 1;
+let user_id = 1;
+
 
 const dates = JSON.parse(localStorage.getItem('dates'));
 console.log(dates)
@@ -81,7 +84,7 @@ function initCalendar () {
     }
 
     allCells = document.querySelectorAll("#calendar td"); // Sélectionne toutes les cellules du calendrier
-    initReserve() // Vérifie les réservations existantes
+    initReserve(bungalow_id) // Vérifie les réservations existantes
 }
 
 
@@ -89,7 +92,9 @@ function initCalendar () {
 function handleClick (event) {
 
     if(firstDate === undefined){ // Si aucune première date n'est sélectionnée
+        console.log("first date")
         firstDate = this.id
+        console.log(firstDate)
         timeStampFirstDate = new Date(firstDate)
         document.getElementById(firstDate).className = "clicked" // Marque la première date sélectionnée
 
@@ -107,20 +112,57 @@ function handleClick (event) {
         });
 
     } else { // Si deux dates sont déjà sélectionnées, réinitialise la sélection
+        reserve(firstDate, secondDate)
         firstDate = undefined;
         secondDate = undefined;
-        initCalendar()
+        document.location.href
     }
 }
 
 // Réinitialise les réservations
-async function reserve () {
-    firstDate = undefined;
-    secondDate = undefined;
-    allCellsClicked = document.querySelectorAll("#calendar .clicked");
-    const check = await checkReserve(allCellsClicked);
-    if (check) {console.log(check)}
-    initCalendar();
+async function reserve (firstDate, secondDate) {
+    console.log('user_id : ' + user_id)
+    console.log('first date : ' + firstDate)
+    console.log('second date : ' + secondDate)
+    console.log('bungalow_id : ' + bungalow_id)
+
+    
+    let url = document.location.href; 
+    url = url.replace("/getAllBooking", "/createBooking");
+
+    const data = {
+        user_id: user_id,
+        start_date: firstDate,
+        end_date: secondDate,
+        bungalow_id: bungalow_id,
+    };
+
+    console.log(JSON.stringify(data))
+
+    // Effectuer la requête POST
+    fetch(url, {
+        method: 'POST', // Indique que c'est une requête POST
+        headers: {
+            'Content-Type': 'application/json' // Indique le type de contenu
+        },
+        body: JSON.stringify(data) // Convertit l'objet en JSON
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.text(); // Utiliser .text() pour obtenir la réponse brute
+    })
+    .then(text => {
+        console.log('Response Text:', text); // Afficher la réponse brute
+        return JSON.parse(text); // Tenter de parser le texte en JSON
+        })
+    .then(data => {
+        console.log('Success:', data); // Traitez les données renvoyées par le serveur
+    })
+    .catch((error) => {
+        console.error('Error:', error); // Gérer les erreurs
+    });
 }
 
 // Vérifie les dates réservées en consultant un fichier JSON
@@ -128,19 +170,23 @@ async function initReserve() {
     
     // Parcourt les réservations et marque les cellules réservées
         dates.forEach(dateChalet => {
+        if (dateChalet.bungalow_id===bungalow_id){
 
-        startDate = dateChalet.start_date
-        endDate = dateChalet.end_date
+            startDate = new Date(dateChalet.start_date)
+            endDate = new Date(dateChalet.end_date)
+            startDate.setHours(0, 0, 0, 0);
 
-        console.log('date de debut : ' + startDate)
+            allCells.forEach(cellule => {
+                verifyDate = new Date(cellule.id)
+    
+                if (verifyDate >= startDate && verifyDate <= endDate){
+                    cellule.className = "reserved" // Marque la date comme réservée
+                }
+            });
+            
+        }
+        
 
-        allCells.forEach(cellule => {
-            verifyDate = cellule.id
-            console.log(verifyDate)
-            if (verifyDate >= startDate && verifyDate <= endDate){
-                cellule.className = "reserved" // Marque la date comme réservée
-            }
-        });
     });
 }
 
@@ -185,15 +231,15 @@ btnLess.addEventListener('click', () => {
 })
 
 btnChaletOne.addEventListener('click', () => {
-    numeroChalets=0
+    bungalow_id=1
     initCalendar()
 })
 btnChaletTwo.addEventListener('click', () => {
-    numeroChalets=1
+    bungalow_id=2
     initCalendar()
 })
 btnChaletThree.addEventListener('click', () => {
-    numeroChalets=2
+    bungalow_id=3
     initCalendar()
 })
 

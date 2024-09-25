@@ -38,18 +38,29 @@ class BookingController {
         require __DIR__ . '/../views/getBooking.php';
         } 
     public function createBooking(){
-            
-            $startDate = isset($_POST['start-date']) ? $_POST['start-date'] : null;
-            $endDate = isset($_POST['end-date']) ? $_POST['end-date'] : null;
-            $status = isset($_POST['status']) ? $_POST['status'] : null;
-            $userId = isset($_POST['user_id']) ? $_POST['user_id'] : null;
-            $bungalowId = isset($_POST['bungalow_id']) ? $_POST['bungalow_id'] : null;
+
+            $data = json_decode(file_get_contents('php://input'), true);
+            if(isset($data))
+            {
+                $data = json_decode(file_get_contents('php://input'), true);
+                $startDate = isset($data['start_date']) ? $data['start_date'] : null;
+                $endDate = isset($data['end_date']) ? $data['end_date'] : null;
+                $status = isset($data['status']) ? $data['status'] : 'waiting';
+                $userId = isset($data['user_id']) ? $data['user_id'] : null;
+                $bungalowId = isset($data['bungalow_id']) ? $data['bungalow_id'] : null;
+            } else if (isset($_POST)) {
+                $startDate = isset($_POST['start-date']) ? $_POST['start-date'] : null;
+                $endDate = isset($_POST['end-date']) ? $_POST['end-date'] : null;
+                $status = isset($_POST['status']) ? $_POST['status'] : 'waiting';
+                $userId = isset($_POST['user_id']) ? $_POST['user_id'] : null;
+                $bungalowId = isset($_POST['bungalow_id']) ? $_POST['bungalow_id'] : null;
+            }
             
             if ($this->booking->createBooking($startDate, $endDate, $status, $userId, $bungalowId)){
-                echo 'Booking crée avec succés';
+                echo json_encode(['message' => 'Booking crée avec succès']);
             } else {
-                echo 'Erreur dans la creation du booking';
-            };
+                echo json_encode(['error' => 'Erreur dans la création du booking']);
+            }
         }
 
     public function updateBooking($id){
@@ -78,6 +89,4 @@ class BookingController {
         }
 }
 
-// LIGNE DEBUG
-// $booking = new BookingController();
 ?>
