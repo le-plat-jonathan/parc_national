@@ -56,11 +56,17 @@ if ($method==='GET'){
 
     switch($endPoint){
         case 'getAllPointOfInterest':
-        $pointOfInterest->getAllPointOfInterest();
+            $pointOfInterest->getAllPointOfInterest();
         break;
+
         case 'getPointOfInterestById':
-        $pointOfInterest->getPointOfInterestById($id);
+            $pointOfInterest->getPointOfInterestById($id);
         break;
+
+        case 'updatePointOfInterest':
+            $pointOfInterest->updatePointOfInterest($id);
+        break;
+
         default:
         echo "Problème avec le endpoint";
         exit;
