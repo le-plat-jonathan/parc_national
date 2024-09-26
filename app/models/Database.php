@@ -7,9 +7,9 @@ class Database {
     protected $pdo;
 
     function __construct(){
-        $dsn = "mysql:host=127.0.0.1;port=8889;dbname=parc_national";
+        $dsn = "mysql:host=localhost;dbname=parc_national";
         $dbuser = "root";
-        $dbpass = "root";
+        $dbpass = "";
 
         try {
             $this->pdo = new PDO($dsn, $dbuser, $dbpass);

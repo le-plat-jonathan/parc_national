@@ -41,7 +41,7 @@ class PointOfInterestController {
       $latitude = $_POST['latitude'] ?? null;
       $description = $_POST['description'] ?? null;
 
-        if ($name && $longitude && $latitude) {
+        if ($name && $description && $longitude && $latitude) {
             // Appeler la méthode du modèle pour créer le PointOfInterest
             $this->pointOfInterestModel->createPointOfInterest($name, $longitude, $latitude, $description);
             echo "PointOfInterest créé avec succès!";
