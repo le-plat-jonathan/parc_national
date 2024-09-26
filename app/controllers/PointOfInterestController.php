@@ -39,10 +39,11 @@ class PointOfInterestController {
       $name = $_POST['name'] ?? null;
       $longitude = $_POST['longitude'] ?? null;
       $latitude = $_POST['latitude'] ?? null;
+      $description = $_POST['description'] ?? null;
 
         if ($name && $longitude && $latitude) {
             // Appeler la méthode du modèle pour créer le PointOfInterest
-            $this->pointOfInterestModel->createPointOfInterest($name, $longitude, $latitude);
+            $this->pointOfInterestModel->createPointOfInterest($name, $longitude, $latitude, $description);
             echo "PointOfInterest créé avec succès!";
           } else {
             echo "Données invalides.";
@@ -55,9 +56,10 @@ class PointOfInterestController {
         $name = $_POST['name'] ?? null;
         $longitude = $_POST['longitude'] ?? null;
         $latitude = $_POST['latitude'] ?? null;
+        $description = $_POST['description'] ?? null;
 
         if ($name && $longitude && $latitude) {
-            $this->pointOfInterestModel->updatePointOfInterest($id,$name, $latitude, $longitude);
+            $this->pointOfInterestModel->updatePointOfInterest($id,$name, $latitude, $longitude, $description);
           } 
 
         require __DIR__ . '/../views/updatePointOfInterest.php';
