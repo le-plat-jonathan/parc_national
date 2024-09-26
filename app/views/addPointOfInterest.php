@@ -8,18 +8,18 @@
 </head>
 
 <body>
-    <form action="/routes/pointOfInterestRoutes.php/createPointOfInterest" method="post">
+    <form action="/parc_national/app/routes/pointOfInterestRoutes.php/createPointOfInterest" method="post">
         <label for="name">name</label>
         <input type="text" name="name" id="name">
 
         <label for="name">Description</label>
        <textarea  type="text" name="description" id="description"></textarea>
 
-        <label for="longitude">Longitude</label>
-        <input type="text" name="longitude" id="longitude">
-
         <label for="latitude">Latitude</label>
         <input type="latitude" name="latitude" id="latitude">
+        
+        <label for="longitude">Longitude</label>
+        <input type="text" name="longitude" id="longitude">
 
         <input type="submit" value="post">
     </form>

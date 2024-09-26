@@ -1,7 +1,5 @@
 <?php
 
-include '../cors.php';
-
 class Database {
     
     protected $pdo;
