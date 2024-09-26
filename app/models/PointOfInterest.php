@@ -31,11 +31,12 @@ class PointOfInterest extends Database {
         }
     }
     
-    public function createPointOfInterest($name, $longitude, $latitude) {
+    public function createPointOfInterest($name,$description, $longitude, $latitude) {
         try {
-            $req = $this->pdo->prepare("INSERT INTO `point_of_interest`(`name`, `longitude`, `latitude`) VALUES (:name, :longitude, :latitude)");
+            $req = $this->pdo->prepare("INSERT INTO `point_of_interest`(`name`,`description`, `longitude`, `latitude`) VALUES (:name, :description, :longitude, :latitude)");
 
             $req->bindValue(':name', $name, PDO::PARAM_STR);
+            $req->bindValue(':description', $description, PDO::PARAM_STR);
             $req->bindValue(':longitude', $longitude, PDO::PARAM_STR);
             $req->bindValue(':latitude', $latitude, PDO::PARAM_STR);
 
@@ -56,12 +57,13 @@ class PointOfInterest extends Database {
         }
     }
 
-    public function updatePointOfInterest($id, $name, $longitude, $latitude) {
+    public function updatePointOfInterest($id, $name,$description, $longitude, $latitude) {
         try {
-            $req = $this->pdo->prepare("UPDATE `point_of_interest` SET `id`=:id,`name`=:name, `longitude`=:longitude,`latitude`=:latitude WHERE `id`=:id");
+            $req = $this->pdo->prepare("UPDATE `point_of_interest` SET `id`=:id,`name`=:name,`description`=:description, `longitude`=:longitude,`latitude`=:latitude WHERE `id`=:id");
 
             $req->bindValue(':id', $id, PDO::PARAM_INT);
             $req->bindValue(':name', $name, PDO::PARAM_STR);
+            $req->bindValue(':description', $description, PDO::PARAM_STR);
             $req->bindValue(':longitude', $longitude, PDO::PARAM_STR);
             $req->bindValue(':latitude', $latitude, PDO::PARAM_STR);
 

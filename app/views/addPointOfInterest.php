@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>addBungalow</title>
+    <title>addPointOfInterest</title>
 </head>
 
 <body>
@@ -12,10 +12,13 @@
         <label for="name">name</label>
         <input type="text" name="name" id="name">
 
-        <label for="longitude">description</label>
+        <label for="name">Description</label>
+       <textarea  type="text" name="description" id="description"></textarea>
+
+        <label for="longitude">Longitude</label>
         <input type="text" name="longitude" id="longitude">
 
-        <label for="latitude">price</label>
+        <label for="latitude">Latitude</label>
         <input type="latitude" name="latitude" id="latitude">
 
         <input type="submit" value="post">
