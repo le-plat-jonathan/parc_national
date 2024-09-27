@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>addBungalow</title>
+    <title>addPointOfInterest</title>
 </head>
 <?php
 
@@ -22,7 +22,11 @@
         <input type="text" name="longitude" id="longitude">
 
         <label for="latitude">latitude</label>
+
         <input type="latitude" name="latitude" id="latitude">
+        
+        <label for="longitude">Longitude</label>
+        <input type="text" name="longitude" id="longitude">
 
         <input type="submit" value="post">
     </form>
