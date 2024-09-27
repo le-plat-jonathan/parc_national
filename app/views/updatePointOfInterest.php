@@ -6,8 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UpdatePointOfInterest</title>
 </head>
+    <?php
+        $uri = $_SERVER['REQUEST_URI'];
+        $urlForAction = str_replace('/views/addPointOfInterest.php', '/routes/pointOfInterestRoutes.php/createPointOfInterest', $uri);
+    ?>
+
 <body>
-    <form action="/parc_national/app/routes/pointOfInterestRoutes.php/updatePointOfInterest/<?=$data['id']?>" method="post">
+    <form action="<?=$urlForAction?>/<?=$data['id']?>" method="post">
         <label for="name">name</label>
         <input type="text" name="name" id="name" value=<?=$data['name']?>>
 
