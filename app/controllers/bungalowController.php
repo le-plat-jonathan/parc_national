@@ -27,7 +27,7 @@ class BungalowController {
 
     public function getBungalowById($id) {
         $data = $this->bungalowModel->getBungalowById($id);
-        require __DIR__ . '/../views/getBungalow.php';
+        require __DIR__ . '/../views/bungalow/getBungalow.php';
     }
 
     public function getAllBungalow() {
@@ -60,7 +60,7 @@ class BungalowController {
             $this->bungalowModel->updateBungalow($id,$name, $description, $price);
           } 
 
-        require __DIR__ . '/../views/updateBungalow.php';
+        require __DIR__ . '/../views/bungalow/updateBungalow.php';
 
         }
 

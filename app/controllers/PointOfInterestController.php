@@ -27,7 +27,7 @@ class PointOfInterestController {
 
     public function getPointOfInterestById($id) {
         $data = $this->pointOfInterestModel->getPointOfInterestById($id);
-        require __DIR__ . '/../views/getPointOfInterest.php';
+        require __DIR__ . '/../views/pointOfInterest/getPointOfInterest.php';
     }
 
     public function getAllPointOfInterest() {
@@ -62,7 +62,7 @@ class PointOfInterestController {
             $this->pointOfInterestModel->updatePointOfInterest($id,$name, $latitude, $longitude, $description);
           } 
 
-        require __DIR__ . '/../views/updatePointOfInterest.php';
+        require __DIR__ . '/../views/pointOfInterest/updatePointOfInterest.php';
 
         }
 
