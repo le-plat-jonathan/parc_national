@@ -10,8 +10,8 @@
         $uri = $_SERVER['REQUEST_URI'];
         $urlForAction = str_replace('/views/addPointOfInterest.php', '/routes/pointOfInterestRoutes.php/createPointOfInterest', $uri);
     ?>
-
 <body>
+    <?php if ($data) : ?>
     <form action="<?=$urlForAction?>/<?=$data['id']?>" method="post">
         <label for="name">name</label>
         <input type="text" name="name" id="name" value=<?=$data['name']?>>
@@ -27,5 +27,7 @@
 
         <input type="submit" value="post">
     </form>
+    <?php else: echo 'Data non disponible' ?>
+    <?php endif;?>
 </body>
 </html>

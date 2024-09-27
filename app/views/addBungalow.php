@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>addBungalow</title>
 </head>
-
+    <?php
+        $uri = $_SERVER['REQUEST_URI'];
+        $urlForAction = str_replace('/views/addPointOfInterest.php', '/routes/pointOfInterestRoutes.php/createPointOfInterest', $uri);
+    ?>
 <body>
-    <form action="/routes/bungalowRoutes.php/addBungalow" method="post">
+    <form action="<?=$urlForAction?>" method="post">
         <label for="name">name</label>
         <input type="text" name="name" id="nameBungalow">
         <label for="description">description</label>
