@@ -9,7 +9,7 @@
 <?php
 
  $uri = $_SERVER['REQUEST_URI'];
- $urlForAction = str_replace('/views/addPointOfInterest.php', '/routes/pointOfInterestRoutes.php/createPointOfInterest', $uri);
+ $urlForAction = str_replace('/views/pointOfInterest/addPointOfInterest.php', '/routes/pointOfInterestRoutes.php/createPointOfInterest', $uri);
 
 ?>
 <body>
@@ -22,9 +22,9 @@
 
         <label for="latitude">latitude</label>
         <input type="latitude" name="latitude" id="latitude">
-        
-        <label for="longitude">Longitude</label>
-        <input type="text" name="longitude" id="longitude">
+
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description">
 
         <input type="submit" value="post">
     </form>
