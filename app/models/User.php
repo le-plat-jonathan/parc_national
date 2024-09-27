@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/Database.php';
+
+require_once __DIR__ . "/../config/Database.php";
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -30,9 +31,26 @@ class User extends Database {
         ]);
 
         $userId = $this->pdo->lastInsertId();
-        $jwt = $this->generateJWT($userId, $username);
 
-        return ['message' => 'User created successfully', 'token' => $jwt];
+        return ['message' => 'User created successfully'];
+    }
+    
+    public function loginUser($email, $password) {
+        $sql = "SELECT * FROM user WHERE email = :email LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+    
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (password_verify($password, $row['password'])) {
+                $jwt = $this->generateJWT($row['id'], $row['username'], $row['role']);
+                return ["id" => $row['id'], "username" => $row['username'], "email" => $row['email'], "role" => $row['role'], "token" => $jwt];
+            } else {
+                return ['message' => 'Invalid password'];
+            }
+        }
+        return ['message' => 'Email not found'];
     }
 
     private function emailExists($email) {
@@ -63,12 +81,18 @@ class User extends Database {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getAllUsers() {
+        $sql = "SELECT * FROM user";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function updateUser($id, $email = null, $password = null, $username = null) {
         $user = $this->getUserById($id);
         if (!$user) {
             return ['message' => 'User not found'];
         }
-
         if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidArgumentException('Invalid email address');
         }
@@ -92,23 +116,4 @@ class User extends Database {
         $stmt->execute([$id]);
         return ['message' => 'User deleted successfully'];
     }
-
-    public function loginUser($email, $password) {
-        $sql = "SELECT id, username, password FROM user WHERE email = :email LIMIT 1";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if (password_verify($password, $row['password'])) {
-                $jwt = $this->generateJWT($row['id'], $row['username']);
-                return ["id" => $row['id'], "username" => $row['username'], "token" => $jwt];
-            }
-        }
-        return false;
-    }
 }
-
-$user = new User();
-var_dump($user->getUserById(4));

@@ -1,6 +1,6 @@
 <?php 
 
-require_once __DIR__ . "/Database.php";
+require_once __DIR__ . "/../config/Database.php";
 
 /*
 searchBungalow(id :int) : array -> renvoie un bungalow spécifique par son id
