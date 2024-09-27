@@ -44,7 +44,7 @@ class User extends Database {
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($password, $row['password'])) {
-                $jwt = $this->generateJWT($row['id'], $row['username']);
+                $jwt = $this->generateJWT($row['id'], $row['username'], $row['role']);
                 return ["id" => $row['id'], "username" => $row['username'], "email" => $row['email'], "role" => $row['role'], "token" => $jwt];
             } else {
                 return ['message' => 'Invalid password'];
@@ -52,7 +52,6 @@ class User extends Database {
         }
         return ['message' => 'Email not found'];
     }
-    
 
     private function emailExists($email) {
         $sql = "SELECT COUNT(*) FROM user WHERE email = :email";

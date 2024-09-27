@@ -1,9 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($data['email'], $data['token'])) {
-        $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
-        $token = $data['token'];
-        setcookie('auth_token', $data['token'], time() + (60 * 60), "/", "", false, true);
+    if (isset($data['message']) && $data['message'] === 'Login successful.') {
+        echo "<p>Connexion réussie. Votre session est active.</p>";
     } else {
         echo "<p>Une erreur est survenue lors de la connexion.</p>";
     }
@@ -14,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
+            <title>Connexion</title>
         </head>
         <body>
             <form action='/routes/userRoutes.php/login' method="post">

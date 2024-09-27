@@ -79,15 +79,18 @@ function handleLoginRequest($email, $password) {
     }
 
     $result = $user->login($email, $password);
-    if ($result) {
+    if (isset($result['token'])) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
         $_SESSION['user_id'] = $result['id'];
         $_SESSION['username'] = $result['username'];
-        
+
+        setcookie('auth_token', $result['token'], time() + (60 * 60), "/", "", false, true);
+
         return [
             'message' => 'Login successful.',
+            'token' => $result['token']
         ];
     } else {
         return ['message' => 'Login failed.'];

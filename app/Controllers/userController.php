@@ -41,7 +41,7 @@ class UserController {
         } else {
             $response = $this->user->loginUser($email, $password);
         }
-        return($response);
+        return $response;
     }
 
     public function update(int $id, string $email, string $password, string $username): void {
