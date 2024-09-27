@@ -7,18 +7,18 @@
     <title>UpdatePointOfInterest</title>
 </head>
     <?php
+
         $uri = $_SERVER['REQUEST_URI'];
-        $urlForAction = str_replace('/views/addPointOfInterest.php', '/routes/pointOfInterestRoutes.php/createPointOfInterest', $uri);
+        $urlForAction = str_replace('/views/pointOfInterest/addPointOfInterest.php', '/routes/pointOfInterestRoutes.php/updatePointOfInterest', $uri);
     ?>
 <body>
     <?php if ($data) : ?>
-    <form action="<?=$urlForAction?>/<?=$data['id']?>" method="post">
+        <form action="<?=$urlForAction?>" method="post">
         <label for="name">name</label>
         <input type="text" name="name" id="name" value=<?=$data['name']?>>
 
         <label for="name">Description</label>
-        <textarea  type="text" name="description" id="description" value=<?$data['description']?>></textarea>
-
+        <input type="text" name="description" value="<?= htmlspecialchars($data['description'], ENT_QUOTES, 'UTF-8'); ?>">
         <label for="latitude">latitude</label>
         <input type="latitude" name="latitude" id="latitude" value=<?=$data['latitude']?>>
 

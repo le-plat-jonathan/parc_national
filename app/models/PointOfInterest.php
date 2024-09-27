@@ -58,6 +58,7 @@ class PointOfInterest extends Database {
     }
 
     public function updatePointOfInterest($id, $name,$description, $longitude, $latitude) {
+
         try {
             $req = $this->pdo->prepare("UPDATE `point_of_interest` SET `id`=:id,`name`=:name,`description`=:description, `longitude`=:longitude,`latitude`=:latitude WHERE `id`=:id");
 
@@ -84,4 +85,6 @@ class PointOfInterest extends Database {
     }
     
 }
+
+
 

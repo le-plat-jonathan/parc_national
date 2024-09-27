@@ -37,8 +37,8 @@ class PointOfInterestController {
 
     public function createPointOfInterest() {
       $name = $_POST['name'] ?? null;
-      $longitude = $_POST['longitude'] ?? null;
-      $latitude = $_POST['latitude'] ?? null;
+      $longitude = isset($_POST['longitude']) ? floatval($_POST['longitude']) : null;
+      $latitude = isset($_POST['latitude']) ? floatval ($_POST['latitude']) : null;
       $description = $_POST['description'] ?? null;
 
         if ($name && $description && $longitude && $latitude) {
@@ -54,12 +54,12 @@ class PointOfInterestController {
         $data = $this->pointOfInterestModel->getPointOfInterestById($id);
 
         $name = $_POST['name'] ?? null;
-        $longitude = $_POST['longitude'] ?? null;
-        $latitude = $_POST['latitude'] ?? null;
+        $longitude = isset($_POST['longitude']) ? floatval($_POST['longitude']) : null;
+        $latitude = isset($_POST['latitude']) ? floatval ($_POST['latitude']) : null;
         $description = $_POST['description'] ?? null;
 
-        if ($name && $longitude && $latitude) {
-            $this->pointOfInterestModel->updatePointOfInterest($id,$name, $latitude, $longitude, $description);
+        if ($name && $longitude && $latitude && $description) {
+            $this->pointOfInterestModel->updatePointOfInterest($id, $name,$description, $longitude, $latitude);
           } 
 
         require __DIR__ . '/../views/pointOfInterest/updatePointOfInterest.php';

@@ -8,7 +8,7 @@
 </head>
     <?php
         $uri = $_SERVER['REQUEST_URI'];
-        $urlForAction = str_replace('/views/addPointOfInterest.php', '/routes/pointOfInterestRoutes.php/createPointOfInterest', $uri);
+        $urlForAction = str_replace('/views/bungalow/addBungalow.php', '/routes/bungalowRoutes.php/addBungalow', $uri);
     ?>
 <body>
     <form action="<?=$urlForAction?>" method="post">
