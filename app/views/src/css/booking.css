@@ -1,0 +1,58 @@
+tr th {
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.section__booking {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn__nav__calendar {
+  background-color: var(--first-color);
+  color: white;
+  padding: 0.3rem;
+}
+
+.booking__calandars {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking__room {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.room {
+  padding: 0.5rem 3.5rem;
+  background-color: var(--first-color);
+  color: white;
+  cursor: pointer;
+}
+
+.container__booking {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reserved {
+  background-color: red;
+}
+
+.clicked {
+  background-color: rgba(143, 175, 187, 0.583);
+}

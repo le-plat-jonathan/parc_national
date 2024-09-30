@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"name": "save",
+		"path": "."
+	},
+	{
+		"name": "views",
+		"path": "../../../../../../Applications/MAMP/htdocs/parc_national/app/views"
+	}
+],
+  "settings": {}
+}
