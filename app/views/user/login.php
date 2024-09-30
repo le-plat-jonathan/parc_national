@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($data['message']) && $data['message'] === 'Login successful.') {
-        echo "<p>Connexion réussie. Votre session est active.</p>";
+    if (isset($_COOKIE['auth_token'])) {
+        echo "<p>Vous êtes connecté.e</p>";
     } else {
         echo "<p>Une erreur est survenue lors de la connexion.</p>";
     }
