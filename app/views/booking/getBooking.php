@@ -1,3 +1,28 @@
+<?php
+// Déterminer le chemin de base en fonction de l'environnement
+if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+    // Mac (localhost)
+    $basePath = '/views/';
+} else {
+    // WAMP
+    $basePath = '/parc_national/app/views/';
+}
+
+// Chemins des fichiers CSS et JS
+$fileStyleCss = $basePath . 'src/css/styles.css';
+$fileBookingCss = $basePath . 'src/css/booking.css';
+$fileSwipperCss = $basePath . 'src/css/swiper-bundle.min.css';
+$fileScriptJs = $basePath . 'src/js/script.js';
+?>
+
+<?php /*
+<?php $fileStyleCss = str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__ . '/../src/css/styles.css') ?>
+<?php $fileBookingCss = str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__ . '/../src/css/booking.css') ?>
+<?php $fileSwipperCss = str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__ . '/../src/css/booking.css') ?>
+<?php $fileScriptJs = str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__ . '/../src/js/script.js') ?>
+<?= $fileStyleCss ?>
+*/ ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -8,18 +33,17 @@
     <link rel="shortcut icon" href="./../src/img/favicon.png" type="image/png">
 
     <!--=============== REMIXICONS ===============-->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <!--=============== SWIPER CSS ===============-->
-    <link rel="stylesheet" href="./../src/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="<?= $fileSwipperCss ?>">
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="./../src/css/styles.css">
-    <link rel="stylesheet" href="./../src/css/booking.css">
+    <link rel="stylesheet" href="<?= $fileStyleCss ?>">
+    <link rel="stylesheet" href="<?= $fileBookingCss ?>">
 
     <title>Parc national des calanques</title>
 </head>
-
 <body>
     <header style="background-color: #15505B;" class="header" id="header">
         <nav class="nav container">
@@ -31,17 +55,17 @@
                         <a href="./index.html" class="nav__link active-link">Home</a>
                     </li>
                     <li class="nav__item">
-                        <a href="./trails.html" class="nav__link">Nos sentiers</a>
+                        <a href="../../routes/routeTrail.php/getAllTrail" class="nav__link">Nos sentiers</a>
                     </li>
                     <li class="nav__item">
-                        <a href="./booking.html" class="nav__link">Camping’s</a>
+                        <a href="../../routes/bookingRoutes.php/getAllBooking" class="nav__link">Camping’s</a>
                     </li>
                     <li class="nav__item">
-                        <a href="./nature.html" class="nav__link">Ressources naturelles</a>
+                        <a href="../../routes/routesNaturalRessources.php/getAllRessources" class="nav__link">Ressources naturelles</a>
                     </li>
 
                     <li class="nav__item">
-                        <a href="./connexion.html" class="nav__link">Connexion</a>
+                        <a href="../../routes/userRoutes.php/login" class="nav__link">Connexion</a>
                     </li>
                 </ul>
 
@@ -86,11 +110,11 @@
 
         </tbody>
     </table>
-                </div>
-           <div class="booking__room">
-           <div class="room" id="chalet-1">Chalet-1</div>
-    <div class="room" id="chalet-2">Chalet-2</div>
-    <div class="room" id="chalet-3">Chalet-3</div>
+            </div>
+            <div class="booking__room">
+                <div class="room" id="chalet-1">La Maison du Soleil</div>
+                <div class="room" id="chalet-2">Bungalow des Oliviers</div>
+                <div class="room" id="chalet-3">Le Refuge Méditerranéen</div>
            </div>
         </div>
         <button class="button button__booking" type="submit" id="reserve">Reserver</button>
@@ -183,19 +207,13 @@
         <i class="ri-arrow-up-line scrollup__icon"></i>
     </a>
 
-    <!--=============== SCROLL REVEAL===============-->
-    <script src="./../src/js/scrollreveal.min.js"></script>
-
-    <!--=============== SWIPER JS ===============-->
-    <script src="./../src/js/swiper-bundle.min.js"></script>
-
-    <!--=============== MAIN JS ===============-->
-    <script src="./../src/js/main.js"></script>
-    <script>
-    const reservedDays = <?php echo json_encode($data); ?>;
-    localStorage.setItem('dates', JSON.stringify(reservedDays));
-</script>
-<script src="./../src/js/script.js"></script>
+    <?php if (isset($data) && !empty($data)) : ?>
+        <script>
+            const reservedDays = <?php echo json_encode($data); ?>;
+            localStorage.setItem('dates', JSON.stringify(reservedDays));
+        </script>
+    <?php endif; ?>
+    <script src="<?= $fileScriptJs ?>"></script>
 </body>
 
 </html>

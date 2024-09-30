@@ -30,12 +30,12 @@ class BookingController {
 
     public function getAllBooking() {
         $data = $this->booking->getAllBooking();
-        require __DIR__ . '/../views/getBooking.php';
+        require __DIR__ . '/../views/booking/getBooking.php';
         }
 
     public function getBookingById($id) {
         $data = $this->booking->getBookingById($id);
-        require __DIR__ . '/../views/getBooking.php';
+        require __DIR__ . '/../views/booking/getBooking.php';
         } 
     public function createBooking(){
 
