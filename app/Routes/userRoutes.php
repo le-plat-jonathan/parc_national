@@ -97,25 +97,9 @@ function handleLoginRequest($email, $password) {
     }
 }
 
-// Gestion des requêtes GET avec validation JWT
+// Gestion des requêtes GET
 function handleGetRequest($endpoint, $id) {
     global $user;
-
-    // Vérification de l'authentification via JWT
-    if (isset($_COOKIE['auth_token'])) {
-        $token = $_COOKIE['auth_token'];
-        $validate = $user->validateJWT($token);
-
-        if (!$validate['valid']) {
-            echo json_encode(['message' => $validate['message']]);
-            return;
-        }
-    } else {
-        echo json_encode(['message' => 'Authentication required']);
-        return;
-    }
-
-    // Si le token est valide, continuer avec la requête
     switch ($endpoint) {
         case 'get_user':
             echo json_encode($user->getUserById($id));
@@ -128,7 +112,6 @@ function handleGetRequest($endpoint, $id) {
             break;
     }
 }
-
 
 // Gestion des requêtes PUT
 function handlePutRequest($endpoint, $id) {

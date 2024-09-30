@@ -10,7 +10,6 @@ class TrailController  {
 
 //récupérer un Trail par rapport à son id
     public function getTrailById($id) {
-  
       $trail = $this->trailModel->getTrailById($id);
 
       if (!$trail) {

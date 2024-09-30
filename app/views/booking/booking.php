@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon" href="src/img/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="./../src/img/favicon.png" type="image/png">
 
     <!--=============== REMIXICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <!--=============== SWIPER CSS ===============-->
-    <link rel="stylesheet" href="src/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./../src/css/swiper-bundle.min.css">
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="src/css/styles.css">
-    <link rel="stylesheet" href="src/css/booking.css">
-
+    <link rel="stylesheet" href="./../src/css/styles.css">
+    <link rel="stylesheet" href="./../src/css/booking.css">
 
     <title>Parc national des calanques</title>
 </head>
@@ -185,18 +184,18 @@
     </a>
 
     <!--=============== SCROLL REVEAL===============-->
-    <script src="src/js/scrollreveal.min.js"></script>
+    <script src="./../src/js/scrollreveal.min.js"></script>
 
     <!--=============== SWIPER JS ===============-->
-    <script src="src/js/swiper-bundle.min.js"></script>
+    <script src="./../src/js/swiper-bundle.min.js"></script>
 
     <!--=============== MAIN JS ===============-->
-    <script src="src/js/main.js"></script>
+    <script src="./../src/js/main.js"></script>
     <script>
     const reservedDays = <?php echo json_encode($data); ?>;
     localStorage.setItem('dates', JSON.stringify(reservedDays));
 </script>
-<script src="./src/js/script.js"></script>
+<script src="./../src/js/script.js"></script>
 </body>
 
 </html>
