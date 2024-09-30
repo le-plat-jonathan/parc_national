@@ -79,24 +79,43 @@ function handleLoginRequest($email, $password) {
     }
 
     $result = $user->login($email, $password);
-    if ($result) {
+    if (isset($result['token'])) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
         $_SESSION['user_id'] = $result['id'];
         $_SESSION['username'] = $result['username'];
-        
+
+        setcookie('auth_token', $result['token'], time() + (60 * 60), "/", "", false, true);
+
         return [
             'message' => 'Login successful.',
+            'token' => $result['token']
         ];
     } else {
         return ['message' => 'Login failed.'];
     }
 }
 
-// Gestion des requêtes GET
+// Gestion des requêtes GET avec validation JWT
 function handleGetRequest($endpoint, $id) {
     global $user;
+
+    // Vérification de l'authentification via JWT
+    if (isset($_COOKIE['auth_token'])) {
+        $token = $_COOKIE['auth_token'];
+        $validate = $user->validateJWT($token);
+
+        if (!$validate['valid']) {
+            echo json_encode(['message' => $validate['message']]);
+            return;
+        }
+    } else {
+        echo json_encode(['message' => 'Authentication required']);
+        return;
+    }
+
+    // Si le token est valide, continuer avec la requête
     switch ($endpoint) {
         case 'get_user':
             echo json_encode($user->getUserById($id));
@@ -109,6 +128,7 @@ function handleGetRequest($endpoint, $id) {
             break;
     }
 }
+
 
 // Gestion des requêtes PUT
 function handlePutRequest($endpoint, $id) {

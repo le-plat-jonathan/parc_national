@@ -11,6 +11,7 @@ class User extends Database {
 
     public function __construct() {
         parent::__construct();
+        $this->secretKey = $_ENV['JWT_SECRET_KEY'];
     }
 
     public function createUser($email, $password, $username) {
@@ -44,7 +45,7 @@ class User extends Database {
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($password, $row['password'])) {
-                $jwt = $this->generateJWT($row['id'], $row['username']);
+                $jwt = $this->generateJWT($row['id'], $row['username'], $row['role']);
                 return ["id" => $row['id'], "username" => $row['username'], "email" => $row['email'], "role" => $row['role'], "token" => $jwt];
             } else {
                 return ['message' => 'Invalid password'];
@@ -52,7 +53,6 @@ class User extends Database {
         }
         return ['message' => 'Email not found'];
     }
-    
 
     private function emailExists($email) {
         $sql = "SELECT COUNT(*) FROM user WHERE email = :email";
@@ -62,19 +62,43 @@ class User extends Database {
         return $stmt->fetchColumn() > 0;
     }
 
-    private function generateJWT($userId, $username) {
+    private function generateJWT($userId, $username, $role) {
+        $issuedAt = time();
+        $expirationTime = $issuedAt + (30 * 60);
+        
         $payload = [
             'iss' => 'localhost',
-            'aud' => 'localhost',
-            'iat' => time(),
-            'exp' => time() + (60 * 60),
+            'aud' => 'localhost', 
+            'iat' => $issuedAt,
+            'exp' => $expirationTime,
             'user_id' => $userId,
-            'username' => $username
+            'username' => $username,
+            'role' => $role
         ];
-
+    
         return JWT::encode($payload, $this->secretKey, 'HS256');
     }
 
+    public function validateJWT($token) {
+        try {
+            $decoded = JWT::decode($token, new Key($this->secretKey, 'HS256'));
+            $currentTime = time();
+    
+            if ($decoded->exp < $currentTime) {
+                return ['message' => 'Token has expired', 'valid' => false];
+            }
+    
+            if ($decoded->exp - $currentTime < 300) {
+                $newToken = $this->generateJWT($decoded->user_id, $decoded->username, $decoded->role);
+                setcookie('auth_token', $newToken, time() + (60 * 60), "/", "", false, true);
+            }
+    
+            return ['message' => 'Token is valid', 'valid' => true, 'data' => $decoded];
+        } catch (Exception $e) {
+            return ['message' => 'Invalid token: ' . $e->getMessage(), 'valid' => false];
+        }
+    }
+    
     public function getUserById($id) {
         $sql = "SELECT * FROM user WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
