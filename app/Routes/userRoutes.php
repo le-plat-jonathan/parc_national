@@ -88,14 +88,14 @@ function handleLoginRequest($email, $password) {
 
         setcookie('auth_token', $result['token'], time() + (60 * 60), "/", "", false, true);
 
-        return [
-            'message' => 'Login successful.',
-            'token' => $result['token']
-        ];
+        header('Location: /views/index.php');
+        exit();
+
     } else {
         return ['message' => 'Login failed.'];
     }
 }
+
 
 // Gestion des requêtes GET
 function handleGetRequest($endpoint, $id) {
