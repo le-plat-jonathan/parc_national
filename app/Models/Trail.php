@@ -9,10 +9,10 @@ class Trail extends Database {
     }
 
     // Créer un sentier
-    public function createTrail(string $name, string $length, string $difficulty, string $longitude_A, string $latitude_A, string $longitude_B, string $latitude_B): bool {
+    public function createTrail(string $name, string $length, string $difficulty, string $longitude_A, string $latitude_A, string $longitude_B, string $latitude_B, string $img): bool {
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO trail (name, length, difficulty, longitude_A, latitude_A, longitude_B, latitude_B)
-                    VALUES (:name, :length, :difficulty, :longitude_A, :latitude_A, :longitude_B, :latitude_B)");
+            $stmt = $this->pdo->prepare("INSERT INTO trail (name, length, difficulty, longitude_A, latitude_A, longitude_B, latitude_B, img)
+                    VALUES (:name, :length, :difficulty, :longitude_A, :latitude_A, :longitude_B, :latitude_B, :img)");
             $stmt->bindValue(':name', $name, PDO::PARAM_STR);
             $stmt->bindValue(':length', $length, PDO::PARAM_STR);
             $stmt->bindValue(':difficulty', $difficulty, PDO::PARAM_STR);
@@ -20,6 +20,7 @@ class Trail extends Database {
             $stmt->bindValue(':latitude_A', $latitude_A, PDO::PARAM_STR);
             $stmt->bindValue(':longitude_B', $longitude_B, PDO::PARAM_STR);
             $stmt->bindValue(':latitude_B', $latitude_B, PDO::PARAM_STR);
+            $stmt->bindValue(':img', $img, PDO::PARAM_STR);
             
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -55,10 +56,10 @@ class Trail extends Database {
     }
 
     // Mettre à jour un sentier
-    public function updateTrail( int $id, string $name, string $length, string $difficulty, string $longitude_A, string $latitude_A, string $longitude_B, string $latitude_B ): bool {
+    public function updateTrail( int $id, string $name, string $length, string $difficulty, string $longitude_A, string $latitude_A, string $longitude_B, string $latitude_B, string $img ): bool {
         try {
             $stmt = $this->pdo->prepare("UPDATE trail 
-                    SET name = :name, length = :length, difficulty = :difficulty, longitude_A = :longitude_A, latitude_A = :latitude_A, longitude_B = :longitude_B, latitude_B = :latitude_B 
+                    SET name = :name, length = :length, difficulty = :difficulty, longitude_A = :longitude_A, latitude_A = :latitude_A, longitude_B = :longitude_B, latitude_B = :latitude_B, img= :img 
                     WHERE id = :id");
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -68,6 +69,7 @@ class Trail extends Database {
             $stmt->bindValue(':latitude_A', $latitude_A, PDO::PARAM_STR);
             $stmt->bindValue(':longitude_B', $longitude_B, PDO::PARAM_STR);
             $stmt->bindValue(':latitude_B', $latitude_B, PDO::PARAM_STR);
+            $stmt->bindValue(':img', $img, PDO::PARAM_STR);
             
             return $stmt->execute();
         } catch (PDOException $e) {
