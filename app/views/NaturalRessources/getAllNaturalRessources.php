@@ -16,6 +16,7 @@
             Description: <?= htmlspecialchars($ressource['description']); ?> km <br>
             Population: <?= htmlspecialchars($ressource['population']); ?> <br>
             Environment_id: <?= htmlspecialchars($ressource['environment_id']); ?> <br>
+            <img src="<?= htmlspecialchars($ressource['img']); ?>" alt=""> Image:  <br>
           
         </h2>
         <hr>
