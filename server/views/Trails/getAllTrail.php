@@ -19,6 +19,7 @@
             Latitude A: <?= htmlspecialchars($trail['latitude_A']); ?> <br>
             Longitude B: <?= htmlspecialchars($trail['longitude_B']); ?> <br>
             Latitude B: <?= htmlspecialchars($trail['latitude_B']); ?>
+            <li><img src="<?= htmlspecialchars($trail['img']); ?>" alt=""><strong>image</strong></li>
         </h2>
         <hr>
     <?php endforeach; ?>

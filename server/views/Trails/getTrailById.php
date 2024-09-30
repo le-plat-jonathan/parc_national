@@ -18,6 +18,7 @@
     <li><strong>Latitude A :</strong> <?= htmlspecialchars($trail['latitude_A']); ?></li>
     <li><strong>Longitude B :</strong> <?= htmlspecialchars($trail['longitude_B']); ?></li>
     <li><strong>Latitude B :</strong> <?= htmlspecialchars($trail['latitude_B']); ?></li>
+    <li><img src="<?= htmlspecialchars($trail['img']); ?>" alt=""><strong>image</strong></li>
 </ul>
 <?php } else { ?>
     <p>Aucune donnée sur le sentier disponible.</p>
