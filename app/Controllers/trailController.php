@@ -38,6 +38,7 @@ class TrailController  {
       $latitude_A= $_POST['latitude_A'] ?? null;
       $longitude_B= $_POST['longitude_B'] ?? null;
       $latitude_B= $_POST['latitude_B'] ?? null;
+      $img=$_POST['img'] ?? null;
 
         $trails = $this->trailModel->createTrail($name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B, $img);
 
