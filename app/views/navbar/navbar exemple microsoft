@@ -1,0 +1,22 @@
+<ul class="navlist">
+            <li class="navitem">
+            <a href="../../views/index.php" class="navlink active-link">Home</a>
+            </li>
+            <li class="navitem">
+                <a href="../../Routes/routeTrail.php/getAllTrail" class="navlink">Nos sentiers</a>
+            </li>
+            <li class="navitem">
+                <a href="./../booking.php" class="navlink">Camping’s</a>
+            </li>
+            <li class="navitem">
+                <a href="./../nature.html" class="navlink">Ressources naturelles</a>
+            </li>
+            <li class="navitem">
+                <?php if (!isset($_COOKIE['auth_token'])) {
+                       echo '<a href="../../views/user/login.php" class="navlink">Connexion</a>';
+                } else {
+                    echo '<a href="./../routes/logout.php" class="navlink">Déconnexion</a>';
+                }
+                ?>
+            </li>
+        </ul>
