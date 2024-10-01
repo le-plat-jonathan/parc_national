@@ -1,5 +1,4 @@
-<?php var_dump($trails) ?>
-<?php var_dump($trails[0]['img']) ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -68,7 +67,7 @@
             <p class="section__subtitle">Découvrez les magnifiques sentiers des calanques de Marseille.</p>
             <div class="container container__trails">
                 <div class="discover__card swiper-slide">
-                    <img src="<?= htmlspecialchars($trail[img[1]]); ?>" alt="" class="discover__img">
+                    <img src="<?= htmlspecialchars($trail['img']); ?>" alt="" class="discover__img">
                     <div class="discover__data">
                         <h2 class="discover__title">Le tour de l’île de Ratonneau</h2>
                         <span class="discover__description">24 tours available</span>
