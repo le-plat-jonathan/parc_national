@@ -59,7 +59,9 @@ function handlePostRequest($endpoint) {
     
     switch ($endpoint) {
         case 'register':
-            echo json_encode($user->register($input['email'], $input['password'], $input['username']));
+            echo json_encode($user->register($input['email'], $input['password'], $input['confirmPassword'], $input['username']));
+            header('Location: /views/user/login.php');
+            exit();    
             break;  
         case 'login':
             echo json_encode(handleLoginRequest($input['email'], $input['password']));

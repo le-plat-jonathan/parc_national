@@ -27,8 +27,8 @@ class UserController {
         $this->render('./../views/user/getAllUsers.php', $response);
     }
     
-    public function register(string $email, string $password, string $username): void {
-        $response = $this->user->createUser($email, $password, $username);
+    public function register(string $email, string $password, string $confirmPassword, string $username): void {
+        $response = $this->user->createUser($email, $password, $confirmPassword, $username);
     }
 
     public function login(string $email, string $password) {

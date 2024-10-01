@@ -2,7 +2,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_COOKIE['auth_token'])) {
         ?>
-         <!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="fr">
 
     <head>

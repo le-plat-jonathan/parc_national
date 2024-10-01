@@ -16,11 +16,11 @@
                 <a href="./../nature.html" class="nav__link">Ressources naturelles</a>
             </li>
             <li class="nav__item">
-                <?php if(!isset($_COOKIE['auth_token'])) {
-                        echo '<a href="./../views/user/login.php" class="nav__link">Connexion</a>';
-                    } else {
-                        echo '<a href="" class="nav__link">Déconnexion</a>';
-                    }
+                <?php if (!isset($_COOKIE['auth_token'])) {
+                    echo '<a href="./../views/user/login.php" class="nav__link">Connexion</a>';
+                } else {
+                    echo '<a href="./../routes/logout.php" class="nav__link">Déconnexion</a>';
+                }
                 ?>
             </li>
         </ul>
