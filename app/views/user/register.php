@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input name="confirmPassword" id="confirmPassword" type="password">
                     </div>
                     <button style="width: 100%;" class="button">S'incrire</button>
+                    <p>Vous avez déjà un compte?<a href='./../user/login.php'> Connectez-vous!</a></p>
                 </form>
             </section>
         </main>

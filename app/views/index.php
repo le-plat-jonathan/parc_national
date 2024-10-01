@@ -145,17 +145,17 @@
         <div class="experience__content grid">
           <div class="experience__data">
             <h2 class="experience__number">20</h2>
-            <span class="experience__description">Année <br> Expérience</span>
+            <span class="experience__description">Années <br> d'Expérience</span>
           </div>
 
           <div class="experience__data">
             <h2 class="experience__number">75</h2>
-            <span class="experience__description">Complète <br> visites</span>
+            <span class="experience__description">Visites <br> Complètes</span>
           </div>
 
           <div class="experience__data">
             <h2 class="experience__number">650+</h2>
-            <span class="experience__description">Touristique <br> Destination</span>
+            <span class="experience__description">Destinations <br> Touristiques</span>
           </div>
         </div>
 
@@ -353,83 +353,7 @@
 
   <!--==================== FOOTER ====================-->
   <footer class="footer section">
-    <div class="footer__container container grid">
-      <div class="footer__content grid">
-        <div class="footer__data">
-          <h3 class="footer__title">Travel</h3>
-          <p class="footer__description">Travel you choose the <br> destination,
-            we offer you the <br> experience.
-          </p>
-          <div>
-            <a href="https://www.facebook.com/" target="_blank" class="footer__social">
-              <i class="ri-facebook-box-fill"></i>
-            </a>
-            <a href="https://twitter.com/" target="_blank" class="footer__social">
-              <i class="ri-twitter-fill"></i>
-            </a>
-            <a href="https://www.instagram.com/" target="_blank" class="footer__social">
-              <i class="ri-instagram-fill"></i>
-            </a>
-            <a href="https://www.youtube.com/" target="_blank" class="footer__social">
-              <i class="ri-youtube-fill"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="footer__data">
-          <h3 class="footer__subtitle">About</h3>
-          <ul>
-            <li class="footer__item">
-              <a href="" class="footer__link">About Us</a>
-            </li>
-            <li class="footer__item">
-              <a href="" class="footer__link">Features</a>
-            </li>
-            <li class="footer__item">
-              <a href="" class="footer__link">New & Blog</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer__data">
-          <h3 class="footer__subtitle">Company</h3>
-          <ul>
-            <li class="footer__item">
-              <a href="" class="footer__link">Team</a>
-            </li>
-            <li class="footer__item">
-              <a href="" class="footer__link">Plan y Pricing</a>
-            </li>
-            <li class="footer__item">
-              <a href="" class="footer__link">Become a member</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer__data">
-          <h3 class="footer__subtitle">Support</h3>
-          <ul>
-            <li class="footer__item">
-              <a href="" class="footer__link">FAQs</a>
-            </li>
-            <li class="footer__item">
-              <a href="" class="footer__link">Support Center</a>
-            </li>
-            <li class="footer__item">
-              <a href="" class="footer__link">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer__rights">
-        <p class="footer__copy">&#169; 2021 Bedimcode. All rigths reserved.</p>
-        <div class="footer__terms">
-          <a href="#" class="footer__terms-link">Terms & Agreements</a>
-          <a href="#" class="footer__terms-link">Privacy Policy</a>
-        </div>
-      </div>
-    </div>
+    <?php include "./footer/footer.php"; ?>
   </footer>
 
   <!--========== SCROLL UP ==========-->
