@@ -11,12 +11,12 @@ class Database {
         $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
         $dotenv->load();
 
-        $dsn = $_ENV['DB_DSN'];
+        $dns = $_ENV['DB_DNS'];
         $user = $_ENV['DB_USER'];
         $pass = $_ENV['DB_PASS'];
 
         try {
-            $this->pdo = new PDO($dsn, $user, $pass);
+            $this->pdo = new PDO($dns, $user, $pass);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
