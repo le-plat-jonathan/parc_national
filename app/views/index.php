@@ -21,42 +21,7 @@
 
 <body>
   <header class="header" id="header">
-    <nav class="nav container">
-      <a href="#" class="nav__logo">Parc National Des Calanques</a>
-
-      <div class="nav__menu" id="nav-menu">
-        <ul class="nav__list">
-          <li class="nav__item">
-            <a href="./index.html" class="nav__link active-link">Home</a>
-          </li>
-          <li class="nav__item">
-            <a href="./trails.html" class="nav__link">Nos sentiers</a>
-          </li>
-          <li class="nav__item">
-            <a href="./booking.html" class="nav__link">Camping’s</a>
-          </li>
-          <li class="nav__item">
-            <a href="./nature.html" class="nav__link">Ressources naturelles</a>
-          </li>
-
-          <li class="nav__item">
-            <a href="./connexion.html" class="nav__link">Connexion</a>
-          </li>
-        </ul>
-
-        <div class="nav__dark">
-          <!-- Theme change button -->
-          <span class="change-theme-name">Dark mode</span>
-          <i class="ri-moon-line change-theme" id="theme-button"></i>
-        </div>
-
-        <i class="ri-close-line nav__close" id="nav-close"></i>
-      </div>
-
-      <div class="nav__toggle" id="nav-toggle">
-        <i class="ri-function-line"></i>
-      </div>
-    </nav>
+    <?php include "./../views/navbar/navbarHome.php"; ?>
   </header>
 
   <main class="main">
