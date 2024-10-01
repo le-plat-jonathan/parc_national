@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <main class="main">
             <section class="section section__login">
                 <form action="/routes/userRoutes.php/register" class="form form__login" method='post'>
-                    <h2>Connexion</h2>
+                    <h2>Inscription</h2>
                     <div class="form__row">
                         <label>Pseudo</label>
                         <input name="username" id="username" type="text">
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label>Confirmer le mot de passe</label>
                         <input name="confirmPassword" id="confirmPassword" type="password">
                     </div>
-                    <button style="width: 100%;" class="button">S'incrire</button>
+                    <button style="width: 100%;" class="button">S'inscrire</button>
                     <p>Vous avez déjà un compte?<a href='./../user/login.php'> Connectez-vous!</a></p>
                 </form>
             </section>
