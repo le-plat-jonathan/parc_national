@@ -69,8 +69,8 @@
                 <div class="discover__card swiper-slide">
                     <img src="<?= htmlspecialchars($trail['img']); ?>" alt="" class="discover__img">
                     <div class="discover__data">
-                        <h2 class="discover__title" <?= htmlspecialchars($trail['name']); ?> ></h2>
-                        <span class="discover__description" <?= htmlspecialchars($trail['difficulty']); ?>></span>
+                        <h2 class="discover_title"  > <?= htmlspecialchars($trail['name']); ?></h2>
+                        <span class="discover__description" > Difficulty: <?= htmlspecialchars($trail['difficulty']); ?></span>
                     </div>
                 </div>
             </div>
