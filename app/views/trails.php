@@ -1,5 +1,3 @@
-<?php var_dump($trails) ?>
-<?php var_dump($trails[0]['img']) ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -13,10 +11,10 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <!--=============== SWIPER CSS ===============-->
-    <link rel="stylesheet" href="/parc_national/app/views/src/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="src/css/swiper-bundle.min.css">
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="/parc_national/app/views/src/css/styles.css">
+    <link rel="stylesheet" href="src/css/styles.css">
 
 
     <title>Parc national des calanques</title>
@@ -33,7 +31,7 @@
                         <a href="./index.html" class="nav__link active-link">Home</a>
                     </li>
                     <li class="nav__item">
-                        <a href="./trails.php" class="nav__link">Nos sentiers</a>
+                        <a href="./trails.html" class="nav__link">Nos sentiers</a>
                     </li>
                     <li class="nav__item">
                         <a href="./booking.html" class="nav__link">Camping’s</a>
@@ -68,7 +66,7 @@
             <p class="section__subtitle">Découvrez les magnifiques sentiers des calanques de Marseille.</p>
             <div class="container container__trails">
                 <div class="discover__card swiper-slide">
-                    <img src="<?= htmlspecialchars($trail[img[1]]); ?>" alt="" class="discover__img">
+                    <img src="src/img/discover1.jpg" alt="" class="discover__img">
                     <div class="discover__data">
                         <h2 class="discover__title">Le tour de l’île de Ratonneau</h2>
                         <span class="discover__description">24 tours available</span>
@@ -165,13 +163,13 @@
     </a>
 
     <!--=============== SCROLL REVEAL===============-->
-    <script src="/parc_national/app/views/src/js/scrollreveal.min.js"></script>
+    <script src="src/js/scrollreveal.min.js"></script>
 
     <!--=============== SWIPER JS ===============-->
-    <script src="/parc_national/app/views/src/js/swiper-bundle.min.js"></script>
+    <script src="src/js/swiper-bundle.min.js"></script>
 
     <!--=============== MAIN JS ===============-->
-    <script src="/parc_national/app/views/src/js/main.js"></script>
+    <script src="src/js/main.js"></script>
 </body>
 
 </html>
