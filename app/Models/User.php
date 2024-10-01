@@ -14,12 +14,18 @@ class User extends Database {
         $this->secretKey = $_ENV['JWT_SECRET_KEY'];
     }
 
-    public function createUser($email, $password, $username) {
+    public function createUser($email, $password, $confirmPassword, $username) {
+        
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidArgumentException('Invalid email address');
         }
+
         if ($this->emailExists($email)) {
             return ['message' => 'Email already exists'];
+        }
+        
+        if ($password !== $confirmPassword) {
+            return ['message' => 'Passwords do not match'];
         }
 
         $sql = "INSERT INTO user (email, password, username, role, created_at) 

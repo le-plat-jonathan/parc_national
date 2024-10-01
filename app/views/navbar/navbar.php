@@ -4,10 +4,10 @@
     <div class="nav__menu" id="nav-menu">
         <ul class="nav__list">
             <li class="nav__item">
-            <a href="./../index.php" class="nav__link active-link">Home</a>
+            <a href="../../views/index.php" class="nav__link active-link">Home</a>
             </li>
             <li class="nav__item">
-                <a href="./../Trails/getAllTrail.php" class="nav__link">Nos sentiers</a>
+                <a href="../../Routes/routeTrail.php/getAllTrail" class="nav__link">Nos sentiers</a>
             </li>
             <li class="nav__item">
                 <a href="./../booking.php" class="nav__link">Camping’s</a>
@@ -16,11 +16,11 @@
                 <a href="./../nature.html" class="nav__link">Ressources naturelles</a>
             </li>
             <li class="nav__item">
-                <?php if(!isset($_COOKIE['auth_token'])) {
-                        echo '<a href="./../views/user/login.php" class="nav__link">Connexion</a>';
-                    } else {
-                        echo '<a href="" class="nav__link">Déconnexion</a>';
-                    }
+                <?php if (!isset($_COOKIE['auth_token'])) {
+                       echo '<a href="../../views/user/login.php" class="nav__link">Connexion</a>';
+                } else {
+                    echo '<a href="./../routes/logout.php" class="nav__link">Déconnexion</a>';
+                }
                 ?>
             </li>
         </ul>

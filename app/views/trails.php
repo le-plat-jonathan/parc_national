@@ -15,7 +15,7 @@
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="src/css/styles.css">
-    <link rel="stylesheet" href="src/css/connexion.css">
+
 
     <title>Parc national des calanques</title>
 </head>
@@ -34,12 +34,12 @@
                         <a href="./trails.html" class="nav__link">Nos sentiers</a>
                     </li>
                     <li class="nav__item">
-                        <a href="./booking.php
-                        " class="nav__link">Camping’s</a>
+                        <a href="./booking.html" class="nav__link">Camping’s</a>
                     </li>
                     <li class="nav__item">
                         <a href="./nature.html" class="nav__link">Ressources naturelles</a>
                     </li>
+
                     <li class="nav__item">
                         <a href="./connexion.html" class="nav__link">Connexion</a>
                     </li>
@@ -61,19 +61,18 @@
     </header>
 
     <main class="main">
-        <section class="section section__login">
-            <form action="" class="form form__login">
-                <h2>Connexion</h2>
-                <div class="form__row">
-                    <label>Email</label>
-                    <input name="email" id="email" type="email">
+        <section class="section section__trails">
+            <h2 class="section__title">Nos Sentiers</h2>
+            <p class="section__subtitle">Découvrez les magnifiques sentiers des calanques de Marseille.</p>
+            <div class="container container__trails">
+                <div class="discover__card swiper-slide">
+                    <img src="src/img/discover1.jpg" alt="" class="discover__img">
+                    <div class="discover__data">
+                        <h2 class="discover__title">Le tour de l’île de Ratonneau</h2>
+                        <span class="discover__description">24 tours available</span>
+                    </div>
                 </div>
-                <div class="form__row">
-                    <label>Mot de passe</label>
-                    <input name="password" id="password" type="password">
-                </div>
-                <button style="width: 100%;" class="button">Connexion</button>
-            </form>
+            </div>
         </section>
     </main>
 
