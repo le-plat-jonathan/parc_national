@@ -13,11 +13,11 @@
                 <a href="./../booking.php" class="nav__link">Camping’s</a>
             </li>
             <li class="nav__item">
-                <a href="./../nature.html" class="nav__link">Ressources naturelles</a>
+                <a href="../../views/nature.html" class="nav__link">Ressources naturelles</a>
             </li>
             <li class="nav__item">
                 <?php if (!isset($_COOKIE['auth_token'])) {
-                    echo '<a href="./../views/user/login.php" class="nav__link">Connexion</a>';
+                    echo '<a href="../../app/views/user/login.php" class="nav__link">Connexion</a>';
                 } else {
                     echo '<a href="./../routes/logout.php" class="nav__link">Déconnexion</a>';
                 }

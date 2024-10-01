@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <main class="main">
             <section class="section section__login">
-                <form action="/routes/userRoutes.php/register" class="form form__login" method='post'>
+                <form action="../../Routes/userRoutes.php/register" class="form form__login" method='post'>
                     <h2>Inscription</h2>
                     <div class="form__row">
                         <label>Pseudo</label>

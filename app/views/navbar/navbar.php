@@ -7,7 +7,7 @@
             <a href="../../views/index.php" class="nav__link active-link">Home</a>
             </li>
             <li class="nav__item">
-                <a href="../../app/Routes/routeTrail.php/getAllTrail" class="nav__link">Nos sentiers</a>
+                <a href="../../Routes/routeTrail.php/getAllTrail" class="nav__link">Nos sentiers</a>
             </li>
             <li class="nav__item">
                 <a href="./../booking.php" class="nav__link">Camping’s</a>
@@ -17,7 +17,7 @@
             </li>
             <li class="nav__item">
                 <?php if (!isset($_COOKIE['auth_token'])) {
-                    echo '<a href="./../views/user/login.php" class="nav__link">Connexion</a>';
+                       echo '<a href="../../views/user/login.php" class="nav__link">Connexion</a>';
                 } else {
                     echo '<a href="./../routes/logout.php" class="nav__link">Déconnexion</a>';
                 }
