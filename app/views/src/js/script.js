@@ -239,15 +239,27 @@ btnLess.addEventListener('click', () => {
     initCalendar()
 })
 
+function removeActiveClass() {
+    btnChaletOne.classList.remove("active");
+    btnChaletTwo.classList.remove("active");
+    btnChaletThree.classList.remove("active");
+}
+
 btnChaletOne.addEventListener('click', () => {
+    removeActiveClass()
+    btnChaletOne.className += " active"
     bungalow_id=1
     initCalendar()
 })
 btnChaletTwo.addEventListener('click', () => {
+    removeActiveClass()
+    btnChaletTwo.className += " active"
     bungalow_id=2
     initCalendar()
 })
 btnChaletThree.addEventListener('click', () => {
+    removeActiveClass()
+    btnChaletThree.className += " active"
     bungalow_id=3
     initCalendar()
 })

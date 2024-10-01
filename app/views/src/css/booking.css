@@ -58,3 +58,7 @@ tr th {
 .clicked {
   background-color: rgba(143, 175, 187, 0.583);
 }
+
+.active {
+  background-color: rgb(0, 181, 178);
+}
