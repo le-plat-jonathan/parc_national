@@ -51,7 +51,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
         <p class="section__subtitle">Découvrez les magnifiques especes des calanques de Marseille.</p>
         <div class="container container__trails flex">
             <?php
-            foreach ($ressources as $ressource) {
+            foreach ($data as $ressource) {
             ?>
                 <div class="discover__card swiper-slide">
                     <img src="<?= htmlspecialchars($ressource['img']); ?>" alt="" class="discover__img">
