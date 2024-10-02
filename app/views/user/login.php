@@ -58,7 +58,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                         <label>Mot de passe</label>
                         <input name="password" id="password" type="password">
                     </div>
-                    <button style="width: 100%;" class="button">Connexion</button>
+                    <button style="width: 100%;" class="button">Se connecter</button>
                     <p>Vous n'avez pas encore de compte?<a href='./../user/register.php'> Créez-en un!</a></p>
                 </form>
             </section>
