@@ -169,7 +169,7 @@ input {
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .section {
-  padding: 4.5rem 0 2.5rem;
+  padding: 1.5rem 0 2.5rem;
 }
 
 .section__title {
@@ -870,7 +870,7 @@ input {
   }
 
   .section {
-    padding: 7rem 0 2rem;
+    padding: 1.5rem 0 10rem;
   }
 
   .home__container {
