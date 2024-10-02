@@ -189,7 +189,7 @@
           </p>
 
           <form action="" class="subscribe__form">
-            <input type="text" placeholder="Enter email" class="subscribe__input">
+            <input type="text" placeholder="Entrez votre email" class="subscribe__input">
 
             <button class="button">
               S'abonner
