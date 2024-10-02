@@ -13,7 +13,7 @@
                 <a href="./../booking.php" class="nav__link">Camping’s</a>
             </li>
             <li class="nav__item">
-                <a href="../../views/nature.html" class="nav__link">Ressources naturelles</a>
+                <a href="../../app/Routes/routesNaturalRessources.php/getAllRessources" class="nav__link">Ressources naturelles</a>
             </li>
             <li class="nav__item">
                 <?php if (!isset($_COOKIE['auth_token'])) {
