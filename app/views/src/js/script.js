@@ -115,17 +115,16 @@ function handleClick (event) {
             }
         });
 
-    } else { // Si deux dates sont déjà sélectionnées, réinitialise la sélection
-        allCellsClicked = document.getElementsByClassName("clicked")
-        console.log(allCellsClicked)
+    } else {
         firstDate = undefined;
         secondDate = undefined;
-        document.location.href
+        initCalendar()
     }
 }
 
 // Réinitialise les réservations
 async function reserve (firstDate, secondDate) {
+    console.log("reserve atteinte")
 
     let allCellsClicked = document.getElementsByClassName("clicked");
 
@@ -134,16 +133,6 @@ async function reserve (firstDate, secondDate) {
 
     // Attendre la réponse de checkReserve
     let check = await checkReserve(allCellsClicked);
-    console.log(check);
-
-    // Vérifier si check est true ou false
-    if (check) {
-        // Ajoute le code à exécuter si la réservation est possible
-        console.log("Réservation possible");
-    } else {
-        // Ajoute le code à exécuter si la réservation n'est pas possible
-        console.log("Réservation non possible");
-    }
 
     if (check) {
 
@@ -157,6 +146,7 @@ async function reserve (firstDate, secondDate) {
                 bungalow_id: bungalow_id,
             };
 
+            console.log(data)
             console.log(JSON.stringify(data))
 
             // Effectuer la requête POST
@@ -167,22 +157,12 @@ async function reserve (firstDate, secondDate) {
                 },
                 body: JSON.stringify(data) // Convertit l'objet en JSON
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.text(); // Utiliser .text() pour obtenir la réponse brute
-            })
-            .then(text => {
-                console.log('Response Text:', text); // Afficher la réponse brute
-                return JSON.parse(text); // Tenter de parser le texte en JSON
-                })
             .then(data => {
                 console.log('Success:', data); // Traitez les données renvoyées par le serveur
                 location.reload()
             })
             .catch((error) => {
-                console.error('Error:', error); // Gérer les erreurs
+                console.error('Error:', data); // Gérer les erreurs
             });
         } else {
 
@@ -259,15 +239,27 @@ btnLess.addEventListener('click', () => {
     initCalendar()
 })
 
+function removeActiveClass() {
+    btnChaletOne.classList.remove("active");
+    btnChaletTwo.classList.remove("active");
+    btnChaletThree.classList.remove("active");
+}
+
 btnChaletOne.addEventListener('click', () => {
+    removeActiveClass()
+    btnChaletOne.className += " active"
     bungalow_id=1
     initCalendar()
 })
 btnChaletTwo.addEventListener('click', () => {
+    removeActiveClass()
+    btnChaletTwo.className += " active"
     bungalow_id=2
     initCalendar()
 })
 btnChaletThree.addEventListener('click', () => {
+    removeActiveClass()
+    btnChaletThree.className += " active"
     bungalow_id=3
     initCalendar()
 })

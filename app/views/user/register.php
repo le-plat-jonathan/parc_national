@@ -1,4 +1,21 @@
 <?php
+// Déterminer le chemin de base en fonction de l'environnement
+if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
+    // Mac (localhost)
+    $basePath = '/app/views/';
+} else {
+    // WAMP
+    $basePath = '/parc_national/app/views/';
+}
+
+// Chemins des fichiers CSS et JS
+$fileStyleCss = $basePath . 'src/css/styles.css';
+$fileBookingCss = $basePath . 'src/css/booking.css';
+$fileStyleConnexion = $basePath . '/src/css/connexion.css';
+$fileSwipperCss = $basePath . 'src/css/swiper-bundle.min.css';
+$fileScriptJs = $basePath . 'src/js/script.js';
+$fileNavBar = __DIR__ . '/../navbar/navbar.php';
+$fileFooter = __DIR__ . '/../footer/footer.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -27,11 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
         <!--=============== SWIPER CSS ===============-->
-        <link rel="stylesheet" href="./../src/css/swiper-bundle.min.css">
+        <link rel="stylesheet" href="<?= $fileSwipperCss ?>">
 
         <!--=============== CSS ===============-->
-        <link rel="stylesheet" href="./../src/css/styles.css">
-        <link rel="stylesheet" href="./../src/css/connexion.css">
+        <link rel="stylesheet" href="<?= $fileStyleCss ?>">
+        <link rel="stylesheet" href="<?= $fileStyleConnexion ?>">
 
         <title>Parc national des calanques</title>
     </head>
