@@ -14,6 +14,7 @@ $fileBookingCss = $basePath . 'src/css/booking.css';
 $fileSwipperCss = $basePath . 'src/css/swiper-bundle.min.css';
 $fileScriptJs = $basePath . 'src/js/script.js';
 $fileNavBar = __DIR__ . '/../navbar/navbar.php';
+$fileFooter = __DIR__ . '/../footer/footer.php';
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +62,7 @@ $fileNavBar = __DIR__ . '/../navbar/navbar.php';
 
     <!--==================== FOOTER ====================-->
     <footer class="footer section">
-        <?php include "./../footer/footer.php"; ?>
+        <?php include $fileFooter ?>
     </footer>
 
     <!--========== SCROLL UP ==========-->

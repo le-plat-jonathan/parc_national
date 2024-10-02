@@ -196,6 +196,12 @@ input {
   gap: 1.5rem;
 }
 
+.flex {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
 /*=============== HEADER ===============*/
 .header {
   width: 100%;
