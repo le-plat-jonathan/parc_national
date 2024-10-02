@@ -1,6 +1,7 @@
 <?php
 
 include_once __DIR__ . '/../controllers/trailController.php';
+include_once __DIR__ . '/../controllers/PointOfInterestController.php';
 
 $trail = new TrailController();
 

@@ -7,7 +7,7 @@
   <p>Je suis dans la views getAll</p>
 
   <h1>Tous les sentiers</h1>
-
+<?php var_dump ($points); ?>
 <?php if (!empty($trails)) : ?>  
     <?php foreach ($trails as $trail) : ?>  
         <h2>
