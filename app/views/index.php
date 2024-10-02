@@ -64,14 +64,11 @@
     <section class="about section" id="about">
       <div class="about__container container grid">
         <div class="about__data">
-          <h2 class="section__title about__title">Plus d'informations <br> À propos des meilleures plages</h2>
-          <p class="about__description">Vous pouvez trouver les endroits les plus beaux et les plus agréables aux
-            meilleurs
-            prix avec des remises spéciales, vous choisissez l'endroit, nous vous guiderons tout au long du chemin pour
-            attendre, obtenez votre
-            place maintenant.
+          <h2 class="section__title about__title">Plus d'informations <br> À propos des plus belles plages <br> Et nos campings associés</h2>
+          <p class="about__description">Vous pouvez trouver les endroits les plus beaux et les plus agréables aux meilleurs prix avec des remises spéciales.<br>
+          Vous choisissez l'endroit, nous vous guiderons tout au long de votre séjour, réservez dès maintenant.
           </p>
-          <a href="#" class="button">Réserver une place</a>
+          <a href="../routes/bookingRoutes.php/getAllBooking" class="button">Réserver un séjour</a>
         </div>
 
         <div class="about__img">
@@ -88,8 +85,7 @@
 
     <!--==================== DISCOVER ====================-->
     <section class="discover section" id="discover">
-      <h2 class="section__title">Découvrez les endroits <br> les plus
-        attrayants</h2>
+      <h2 class="section__title">Découvrez le charme des Calanques <br> en radonnant sur nos sentiers dédiés</h2>
 
       <div class="discover__container container swiper-container">
         <div class="swiper-wrapper">
@@ -130,9 +126,12 @@
             </div>
           </div>
         </div>
-      </div>
+        <div class="discover_trail">
+          <a href="../routes/routeTrail.php/getAllTrail" class="button">Décrouvrez nos sentier</a>
+        </div>
+      </div> 
     </section>
-
+    
     <!--==================== EXPERIENCE ====================-->
     <section class="experience section">
       <h2 class="section__title">Avec notre expérience <br> Nous vous servirons</h2>
@@ -172,18 +171,10 @@
       <h2 class="section__title">Visite guidée en vidéo</h2>
 
       <div class="video__container container">
-        <p class="video__description">Découvrez avec notre vidéo les endroits les plus beaux et les plus agréables pour
-          vous et votre famille.
-        </p>
+        <p class="video__description">Découvrez en images, les plus beaux recoins des calanques grâce à notre survol en drône.</p>
 
         <div class="video__content">
-          <video id="video-file">
-            <source src="src/video/video.webm" type="video/mp4">
-          </video>
-
-          <button class="button button--flex video__button" id="video-button">
-            <i class="ri-play-line video__button-icon" id="video-icon"></i>
-          </button>
+        <iframe width="960" height="540" src="https://www.youtube.com/embed/tkcKRriq324?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </section>
