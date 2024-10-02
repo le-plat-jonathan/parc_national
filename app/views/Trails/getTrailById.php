@@ -48,19 +48,19 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
             <h2 class="section__title">Détails du sentier</h2>
             <p class="section__subtitle"></p>
             <div class="container container__trail">
-            <?php if (!empty($trail)) { ?>
+            <?php if (!empty($data)) { ?>
 
-                <img src="<?= htmlspecialchars($trail['img'] ?? ''); ?>" alt="" class="discover__img">
+                <img src="<?= htmlspecialchars($data['img'] ?? ''); ?>" alt="" class="discover__img">
 
    
    <ul>
-       <li><h2><?= htmlspecialchars($trail['name']); ?></h2></li>
-       <li><strong>Longueur :</strong> <?= htmlspecialchars($trail['length']); ?></li>
-       <li><strong>Difficulté :</strong> <?= htmlspecialchars($trail['difficulty']); ?></li>
-       <li><strong>Longitude A :</strong> <?= htmlspecialchars($trail['longitude_A']); ?></li>
-       <li><strong>Latitude A :</strong> <?= htmlspecialchars($trail['latitude_A']); ?></li>
-       <li><strong>Longitude B :</strong> <?= htmlspecialchars($trail['longitude_B']); ?></li>
-       <li><strong>Latitude B :</strong> <?= htmlspecialchars($trail['latitude_B']); ?></li>
+       <li><h2><?= htmlspecialchars($data['name']); ?></h2></li>
+       <li><strong>Longueur :</strong> <?= htmlspecialchars($data['length']); ?></li>
+       <li><strong>Difficulté :</strong> <?= htmlspecialchars($data['difficulty']); ?></li>
+       <li><strong>Longitude A :</strong> <?= htmlspecialchars($data['longitude_A']); ?></li>
+       <li><strong>Latitude A :</strong> <?= htmlspecialchars($data['latitude_A']); ?></li>
+       <li><strong>Longitude B :</strong> <?= htmlspecialchars($data['longitude_B']); ?></li>
+       <li><strong>Latitude B :</strong> <?= htmlspecialchars($data['latitude_B']); ?></li>
    </ul>
    <?php } else { ?>
        <p>Aucune donnée sur le sentier disponible.</p>

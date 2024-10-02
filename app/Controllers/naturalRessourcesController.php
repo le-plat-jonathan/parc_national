@@ -37,6 +37,7 @@ public function getNaturalRessourcesByEnvironmentId($id) {
 //récupérer toutes les ressources naturelles de la table dans la Bdd
 public function getAllNaturalRessources() {
   $ressources = $this->naturalRessourcesModel->getAllNaturalRessources();
+  $data = $ressources;
   
   require __DIR__ . '/../views/NaturalRessources/getAllNaturalRessources.php';
 }

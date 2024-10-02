@@ -43,15 +43,18 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <header style="background-color: #15505B;" class="header" id="header">
     <?php include $fileNavBar; ?>
     </header>
-
+<?php var_dump($points);?>
     <main class="main">
     <section class="section section__trails">
         <h2 class="section__title">Nos Sentiers</h2>
         <p class="section__subtitle">Découvrez les magnifiques sentiers des calanques de Marseille.</p>
+        <div id="map"></div>
         <div class="container container__trails flex">
+            
             <?php
             foreach ($trails as $trail) {
             ?>
+            <a href="getTrailById/<?=$trail['id']?>">
                 <div class="discover__card swiper-slide">
                     <img src="<?= htmlspecialchars($trail['img']); ?>" alt="" class="discover__img">
                     <div class="discover__data">
@@ -59,6 +62,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                         <span class="discover__description">Difficulty: <?= htmlspecialchars($trail['difficulty']); ?></span>
                     </div>
                 </div>
+            </a>
             <?php
             }
             ?>
@@ -77,7 +81,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <a href="#" class="scrollup" id="scroll-up">
         <i class="ri-arrow-up-line scrollup__icon"></i>
     </a>
-    <?php var_dump($point) ?>
+    <?php var_dump($points) ?>
     <!--=============== SCROLL REVEAL===============-->
     <script src="/parc_national/app/views/src/js/scrollreveal.min.js"></script>
 
@@ -86,6 +90,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
 
     <!--=============== MAIN JS ===============-->
     <script src="/parc_national/app/views/src/js/main.js"></script>
+    <script src="/parc_national/app/views/src/js/script-map.js"></script>
 </body>
 
 </html>

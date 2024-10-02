@@ -10,6 +10,7 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
 
 // Chemins des fichiers CSS et JS
 $fileStyleCss = $basePath . 'src/css/styles.css';
+$fileNaturelleCss = $basePath . 'src/css/naturelle.css';
 $fileBookingCss = $basePath . 'src/css/booking.css';
 $fileSwipperCss = $basePath . 'src/css/swiper-bundle.min.css';
 $fileScriptJs = $basePath . 'src/js/script.js';
@@ -34,6 +35,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
 
 <!--=============== CSS ===============-->
 <link rel="stylesheet" href="<?= $fileStyleCss ?>">
+<link rel="stylesheet" href="<?= $fileNaturelleCss ?>">
 
 
     <title>Parc national des calanques</title>
@@ -49,7 +51,20 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <section class="section section__trails">
         <h2 class="section__title">Ressources naturelles</h2>
         <p class="section__subtitle">Découvrez les magnifiques especes des calanques de Marseille.</p>
-        <div class="container container__trails flex">
+        <div class="container container__trails">
+            <div class="trails__filter">
+                <div class="filter__box">
+                    <p>Faune marine</p>
+                </div>
+                <div class="filter__box">
+                    <p>Faune terrestre</p>
+                </div>
+                <div class="filter__box">
+                    <p>Flore</p>
+                </div>
+            </div>
+            <div class="flex">
+
             <?php
             foreach ($data as $ressource) {
             ?>
@@ -62,6 +77,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
             <?php
             }
             ?>
+            </div>
 
         </div>
     </section>
