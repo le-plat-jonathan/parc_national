@@ -11,6 +11,7 @@ class NaturalRessources extends Database{
   }
 //Model pour créer une ressource naturelle
   public function createNaturalRessources( string $name, string $description, string $population, int $environment_id, string $img){
+  public function createNaturalRessources( string $name, string $description, string $population, int $environment_id, string $img){
 
     try {
       $stmt = $this->pdo->prepare("INSERT INTO natural_ressource (name, description, population, environment_id, img)
@@ -68,12 +69,14 @@ public function updateNaturalRessources( int $id, string $name, string $descript
   try {
       $stmt = $this->pdo->prepare("UPDATE natural_ressource 
               SET name = :name, description = :description, population = :population, environment_id = :environment_id, img= :img 
+              SET name = :name, description = :description, population = :population, environment_id = :environment_id, img= :img 
               WHERE id = :id");
       $stmt->bindValue(':id', $id, PDO::PARAM_INT);
       $stmt->bindValue(':name', $name, PDO::PARAM_STR);
       $stmt->bindValue(':description', $description, PDO::PARAM_STR);
       $stmt->bindValue(':population', $population, PDO::PARAM_STR);
       $stmt->bindValue(':environment_id', $environment_id, PDO::PARAM_STR);
+      $stmt->bindValue(':img', $img, PDO::PARAM_INT);
       $stmt->bindValue(':img', $img, PDO::PARAM_INT);
       
       return $stmt->execute();

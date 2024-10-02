@@ -63,6 +63,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
             }
             ?>
 
+<<<<<<< HEAD
         </div>
     </section>
 </main>
@@ -86,6 +87,26 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
 
     <!--=============== MAIN JS ===============-->
     <script src="/parc_national/app/views/src/js/main.js"></script>
+=======
+<?php if (!empty($trails)) : ?>  
+    <?php foreach ($trails as $trail) : ?>  
+        <h2>
+            ID: <?= htmlspecialchars($trail['id']); ?> <br>
+            Nom: <?= htmlspecialchars($trail['name']); ?> <br>
+            Longueur: <?= htmlspecialchars($trail['length']); ?> km <br>
+            Difficulté: <?= htmlspecialchars($trail['difficulty']); ?> <br>
+            Longitude A: <?= htmlspecialchars($trail['longitude_A']); ?> <br>
+            Latitude A: <?= htmlspecialchars($trail['latitude_A']); ?> <br>
+            Longitude B: <?= htmlspecialchars($trail['longitude_B']); ?> <br>
+            Latitude B: <?= htmlspecialchars($trail['latitude_B']); ?>
+            <img src="<?= htmlspecialchars($trail['img']); ?>" alt=""> Image:  <br>
+        </h2>
+        <hr>
+    <?php endforeach; ?>
+<?php else : ?>
+    <p>Aucun sentier trouvé.</p>
+<?php endif; ?>
+>>>>>>> 742a8148d439616402c90cfb68b192b384e32fa0
 </body>
 
 </html>

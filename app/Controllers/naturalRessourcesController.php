@@ -49,7 +49,9 @@ public function create() {
   $population= $_POST['population'] ?? null;
   $environment_id= $_POST['environment_id'] ?? null;
   $img= $_POST['img'] ?? null;
+  $img= $_POST['img'] ?? null;
  
+    $resources = $this->naturalRessourcesModel->createNaturalRessources($name, $description, $population, $environment_id, $img);
     $resources = $this->naturalRessourcesModel->createNaturalRessources($name, $description, $population, $environment_id, $img);
 
     require __DIR__ . '/../views/NaturalRessources/createNaturalRessources.php';
@@ -64,9 +66,11 @@ public function update() {
   $population= $_POST['population'] ?? null;
   $environment_id= $_POST['environment_id'] ?? null;
   $img= $_POST['img'] ?? null;
+  $img= $_POST['img'] ?? null;
  
   if ($id === null || empty($name) || empty($description) || empty($population) || empty($environment_id) || empty($img)) {
     ;} else {
+      $ressources = $this->naturalRessourcesModel->updateNaturalRessources($id, $name, $description, $population, $environment_id, $img);
       $ressources = $this->naturalRessourcesModel->updateNaturalRessources($id, $name, $description, $population, $environment_id, $img);
     }
   

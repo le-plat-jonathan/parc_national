@@ -39,7 +39,9 @@ class TrailController  {
       $longitude_B= $_POST['longitude_B'] ?? null;
       $latitude_B= $_POST['latitude_B'] ?? null;
       $img=$_POST['img'] ?? null;
+      $img=$_POST['img'] ?? null;
 
+        $trails = $this->trailModel->createTrail($name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B, $img);
         $trails = $this->trailModel->createTrail($name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B, $img);
 
         require __DIR__ . '/../views/Trails/createTrail.php';
@@ -57,9 +59,11 @@ class TrailController  {
       $longitude_B= $_POST['longitude_B'] ?? null;
       $latitude_B= $_POST['latitude_B'] ?? null;
       $img=$_POST['img'] ?? null;
+      $img=$_POST['img'] ?? null;
 
       if ($id === null || empty($name) || empty($length) || empty($difficulty) || empty($longitude_A) || empty($latitude_A) || empty($longitude_B) || empty($latitude_B)|| empty ($img)) {
         ;} else {
+          $trails = $this->trailModel->updateTrail($id, $name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B, $img);
           $trails = $this->trailModel->updateTrail($id, $name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B, $img);
         }
       
