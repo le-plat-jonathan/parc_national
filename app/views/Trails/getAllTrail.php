@@ -77,7 +77,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <a href="#" class="scrollup" id="scroll-up">
         <i class="ri-arrow-up-line scrollup__icon"></i>
     </a>
-
+    <?php var_dump($point) ?>
     <!--=============== SCROLL REVEAL===============-->
     <script src="/parc_national/app/views/src/js/scrollreveal.min.js"></script>
 
