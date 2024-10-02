@@ -20,13 +20,13 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     <div class="nav__menu" id="nav-menu">
         <ul class="nav__list">
             <li class="nav__item">
-                <a href="<?=$home?>" class="nav__link active-link">Home</a>
+                <a href="<?=$home?>" class="nav__link active-link">Acceuil</a>
             </li>
             <li class="nav__item">
-                <a href="<?= $trail ?>" class="nav__link">Nos sentiers</a>
+                <a href="<?= $trail ?>" class="nav__link">Les sentiers</a>
             </li>
             <li class="nav__item">
-                <a href="<?= $camping ?>" class="nav__link">Camping’s</a>
+                <a href="<?= $camping ?>" class="nav__link">Campings</a>
             </li>
             <li class="nav__item">
                 <a href="<?= $ressources ?>" class="nav__link">Ressources naturelles</a>
