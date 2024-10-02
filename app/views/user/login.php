@@ -54,13 +54,13 @@
         </a>
 
         <!--=============== SCROLL REVEAL===============-->
-        <script src="../src/js/scrollreveal.min.js"></script>
+        <!-- <script src="./../src/js/scrollreveal.min.js"></script> -->
 
         <!--=============== SWIPER JS ===============-->
-        <script src="../src/js/swiper-bundle.min.js"></script>
+        <!-- <script src="./../src/js/swiper-bundle.min.js"></script> -->
 
         <!--=============== MAIN JS ===============-->
-        <script src="../src/js/main.js"></script>
+        <!-- <script src="./../src/js/main.js"></script> -->
     </body>
 
     </html>

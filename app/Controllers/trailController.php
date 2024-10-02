@@ -1,12 +1,16 @@
 <?php
 require_once __DIR__ . '/../models/Trail.php';
+require_once __DIR__ . '/../models/PointOfInterest.php';
 
-class TrailController  {
+  class TrailController {
     private $trailModel;
+    private $pointOfInterestModel;
 
     public function __construct() {
         $this->trailModel = new Trail();
+        $this-> pointOfInterestModel = new PointOfInterest();
     }
+  
 
 //récupérer un Trail par rapport à son id
     public function getTrailById($id) {
@@ -24,6 +28,7 @@ class TrailController  {
     // Récupérer tous les sentiers
     public function getAllTrail() {
         $trails = $this->trailModel->getAllTrail();
+        $points = $this->pointOfInterestModel->getAllPointOfInterest();
         
         require __DIR__ . '/../views/Trails/getAllTrail.php';
     }
