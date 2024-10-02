@@ -43,12 +43,13 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <header style="background-color: #15505B;" class="header" id="header">
     <?php include $fileNavBar; ?>
     </header>
-<?php var_dump($points);?>
     <main class="main">
     <section class="section section__trails">
         <h2 class="section__title">Nos Sentiers</h2>
         <p class="section__subtitle">Découvrez les magnifiques sentiers des calanques de Marseille.</p>
-        <div id="map"></div>
+        <div id="map">
+            <p>MAP ICI</p>
+        </div>
         <div class="container container__trails flex">
             
             <?php
@@ -81,7 +82,6 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <a href="#" class="scrollup" id="scroll-up">
         <i class="ri-arrow-up-line scrollup__icon"></i>
     </a>
-    <?php var_dump($points) ?>
     <!--=============== SCROLL REVEAL===============-->
     <script src="/parc_national/app/views/src/js/scrollreveal.min.js"></script>
 
@@ -91,6 +91,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <!--=============== MAIN JS ===============-->
     <script src="/parc_national/app/views/src/js/main.js"></script>
     <script src="/parc_national/app/views/src/js/script-map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOdyNOj6bK5n7oM1WhKjU1kmfAilSuDEE&callback=initMap&v=weekly&libraries=marker" defer></script>
 </body>
 
 </html>
