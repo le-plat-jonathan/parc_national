@@ -10,9 +10,7 @@ class NaturalRessources extends Database{
      parent::__construct();
   }
 //Model pour créer une ressource naturelle
-  public function createNaturalRessources( string $name, string $description, string $population, int $environment_id, string $img){
-  public function createNaturalRessources( string $name, string $description, string $population, int $environment_id, string $img){
-
+  public function createNaturalRessources( string $name, string $description, string $population, int $environment_id, string $img) {
     try {
       $stmt = $this->pdo->prepare("INSERT INTO natural_ressource (name, description, population, environment_id, img)
               VALUES (:name, :description, :population, :environment_id, :img)");
