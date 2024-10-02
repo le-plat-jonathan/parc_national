@@ -1,4 +1,4 @@
-tr th {
+tr, th {
   padding: 0.4rem;
   cursor: pointer;
 }
@@ -52,7 +52,8 @@ tr th {
 }
 
 .reserved {
-  background-color: rgb(255, 132, 132);
+  background-color: rgb(0, 181, 178);
+  color: white;
 }
 
 .clicked {
@@ -61,4 +62,4 @@ tr th {
 
 .active {
   background-color: rgb(0, 181, 178);
-}
+ }
