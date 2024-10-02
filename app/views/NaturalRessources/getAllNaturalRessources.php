@@ -47,8 +47,8 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
 
     <main class="main">
     <section class="section section__trails">
-        <h2 class="section__title">Nos Sentiers</h2>
-        <p class="section__subtitle">Découvrez les magnifiques sentiers des calanques de Marseille.</p>
+        <h2 class="section__title">Ressources naturelles</h2>
+        <p class="section__subtitle">Découvrez les magnifiques especes des calanques de Marseille.</p>
         <div class="container container__trails flex">
             <?php
             foreach ($ressources as $ressource) {

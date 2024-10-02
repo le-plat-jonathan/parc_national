@@ -7,7 +7,7 @@
             <a href="./../index.php" class="nav__link active-link">Home</a>
             </li>
             <li class="nav__item">
-                <a href="./../Trails/getAllTrail.php" class="nav__link">Nos sentiers</a>
+                <a href="./../getAllTrail.php" class="nav__link">Nos sentiers</a>
             </li>
             <li class="nav__item">
                 <a href="./../routes/bookingRoutes.php" class="nav__link">Camping’s</a>
