@@ -1,6 +1,6 @@
 <?php
 
-require_once './../config/Database.php';
+require_once __DIR__ . "/../config/Database.php";
 
 class NaturalRessources extends Database{
 
@@ -14,13 +14,12 @@ class NaturalRessources extends Database{
 
     try {
       $stmt = $this->pdo->prepare("INSERT INTO natural_ressource (name, description, population, environment_id, img)
-              VALUES (:name, :description, :population, :environment_id)");
+              VALUES (:name, :description, :population, :environment_id, :img)");
       $stmt->bindValue(':name', $name, PDO::PARAM_STR);
       $stmt->bindValue(':description', $description, PDO::PARAM_STR);
       $stmt->bindValue(':population', $population, PDO::PARAM_STR);
       $stmt->bindValue(':environment_id', $environment_id, PDO::PARAM_INT);
       $stmt->bindValue(':img', $img, PDO::PARAM_INT);
-      
       
       return $stmt->execute();
   } catch (PDOException $e) {
@@ -65,7 +64,7 @@ public function getAllNaturalRessources(): array {
   }
 }
 //Model pour update une ressource naturelle
-public function updateNaturalRessources( int $id, string $name, string $description, string $population, int $environment_id, $img): bool {
+public function updateNaturalRessources( int $id, string $name, string $description, string $population, int $environment_id, string $img ): bool {
   try {
       $stmt = $this->pdo->prepare("UPDATE natural_ressource 
               SET name = :name, description = :description, population = :population, environment_id = :environment_id, img= :img 

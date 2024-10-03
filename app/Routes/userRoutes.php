@@ -59,7 +59,9 @@ function handlePostRequest($endpoint) {
     
     switch ($endpoint) {
         case 'register':
-            echo json_encode($user->register($input['email'], $input['password'], $input['username']));
+            echo json_encode($user->register($input['email'], $input['password'], $input['confirmPassword'], $input['username']));
+            header('Location: ../../views/user/login.php');
+            exit();    
             break;  
         case 'login':
             echo json_encode(handleLoginRequest($input['email'], $input['password']));
@@ -79,20 +81,23 @@ function handleLoginRequest($email, $password) {
     }
 
     $result = $user->login($email, $password);
-    if ($result) {
+    if (isset($result['token'])) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
         $_SESSION['user_id'] = $result['id'];
         $_SESSION['username'] = $result['username'];
-        
-        return [
-            'message' => 'Login successful.',
-        ];
+
+        setcookie('auth_token', $result['token'], time() + (60 * 60), "/", "", false, true);
+
+        header('Location: ../../views/index.php');
+        exit();
+
     } else {
         return ['message' => 'Login failed.'];
     }
 }
+
 
 // Gestion des requêtes GET
 function handleGetRequest($endpoint, $id) {

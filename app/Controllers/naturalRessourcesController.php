@@ -65,7 +65,7 @@ public function update() {
   $environment_id= $_POST['environment_id'] ?? null;
   $img= $_POST['img'] ?? null;
  
-  if ($id === null || empty($name) || empty($description) || empty($population) || empty($environment_id) || empty ($img)) {
+  if ($id === null || empty($name) || empty($description) || empty($population) || empty($environment_id) || empty($img)) {
     ;} else {
       $ressources = $this->naturalRessourcesModel->updateNaturalRessources($id, $name, $description, $population, $environment_id, $img);
     }

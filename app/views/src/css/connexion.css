@@ -1,0 +1,15 @@
+.form__login {
+  margin: 0 auto;
+  width: fit-content;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  align-items: center;
+}
+
+.form__row {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+}
