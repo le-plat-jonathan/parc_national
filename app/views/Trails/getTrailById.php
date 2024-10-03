@@ -47,7 +47,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
             <div class="container container__trail">
             <?php if (!empty($data)) { ?>
 
-                <img src="<?= htmlspecialchars($data['img'] ?? ''); ?>" alt="" class="discover__img">
+                <img src="<?= htmlspecialchars($data['img'] ?? ''); ?>" alt="" class="trail__img">
 
    
    <ul>
