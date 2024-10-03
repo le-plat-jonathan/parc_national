@@ -1,0 +1,1 @@
+{"version":1,"defects":{"BungalowTest::testGetBungalowById":8,"BungalowTest::testCreateBungalow":7,"BungalowTest::testUpdateBungalow":7,"BungalowTest::testDeleteBungalow":7},"times":{"BungalowTest::testCreateBungalow":0.009,"BungalowTest::testGetAllBungalows":0.001,"BungalowTest::testUpdateBungalow":0.002,"BungalowTest::testDeleteBungalow":0}}
