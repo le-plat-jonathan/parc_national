@@ -1,6 +1,6 @@
 <?php
 // Déterminer le chemin de base en fonction de l'environnement
-if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
     $basePath = '/app/views/';
 } else {
@@ -57,17 +57,20 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
         <div class="container container__trails">
             <div class="trails__filter">
                 <div class="filter__box">
+                    <img src="app/views/src/img/dauphin-bleu-blanc-risso-f-larrey-regard-du-vivant-parc-national-ca.jpg" alt="">
                     <p>Faune marine</p>
                 </div>
                 <div class="filter__box">
+                    <img src="#" alt="">
                     <p>Faune terrestre</p>
                 </div>
                 <div class="filter__box">
+                    <img src="/app/views/src/img/flore.jpg" alt="" class="discover__img">
                     <p>Flore</p>
                 </div>
             </div>
             <div class="flex">
-
+            
             <?php
             foreach ($data as $ressource) {
             ?>
