@@ -20,20 +20,20 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     <div class="nav__menu" id="nav-menu">
         <ul class="nav__list">
             <li class="nav__item">
-                <a href="<?=$home?>" class="nav__link active-link">Home</a>
+                <a href="<?=$home?>" class="nav__link active-link">Acceuil</a>
             </li>
             <li class="nav__item">
-                <a href="<?= $trail ?>" class="nav__link">Nos sentiers</a>
+                <a href="<?= $trail ?>" class="nav__link">Les sentiers</a>
             </li>
             <li class="nav__item">
-                <a href="<?= $camping ?>" class="nav__link">Camping’s</a>
+                <a href="<?= $camping ?>" class="nav__link">Campings</a>
             </li>
             <li class="nav__item">
                 <a href="<?= $ressources ?>" class="nav__link">Ressources naturelles</a>
             </li>
             <li class="nav__item">
                 <?php if (!isset($_COOKIE['auth_token'])) {
-                       echo '<a href="../../views/user/login.php" class="nav__link">Connexion</a>';
+                       echo '<a href="../views/user/login.php" class="nav__link">Connexion</a>';
                 } else {
                     echo '<a href="./../routes/logout.php" class="nav__link">Déconnexion</a>';
                 }

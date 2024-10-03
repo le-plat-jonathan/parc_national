@@ -21,6 +21,8 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
 <!DOCTYPE html>
 <html lang="fr">
 
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +42,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
 
     <title>Parc national des calanques</title>
 </head>
+
 
 <body>
     <header style="background-color: #15505B;" class="header" id="header">
@@ -102,6 +105,12 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
 
     <!--=============== MAIN JS ===============-->
     <script src="/parc_national/app/views/src/js/main.js"></script>
+    <!--=============== SWIPER JS ===============-->
+    <script src="/parc_national/app/views/src/js/swiper-bundle.min.js"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="/parc_national/app/views/src/js/main.js"></script>
 </body>
+
 
 </html>
