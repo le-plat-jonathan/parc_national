@@ -39,7 +39,7 @@ class Bungalow extends Database {
             $req->bindValue(':description', $description, PDO::PARAM_STR);
             $req->bindValue(':price', $price, PDO::PARAM_INT);
 
-            $req->execute();
+            return $req->execute();
             
         } catch (PDOException $e) {
             echo "Erreur : " . $e->getMessage();
@@ -63,7 +63,7 @@ class Bungalow extends Database {
             $req->bindValue(':name', $name, PDO::PARAM_STR);
             $req->bindValue(':description', $description, PDO::PARAM_STR);
             $req->bindValue(':price', $price, PDO::PARAM_STR);
-            $req->execute();
+            return $req->execute();
         } catch (PDOException $e) {
             echo "Erreur : " . $e->getMessage();
         }
@@ -73,7 +73,7 @@ class Bungalow extends Database {
         try {
             $req = $this->pdo->prepare("DELETE FROM `bungalow` WHERE `id`=:id");
             $req->bindValue(':id', $id);
-            $req->execute();
+            return $req->execute();
         } catch (PDOException $e) {
             echo "Erreur : " . $e->getMessage();
         }

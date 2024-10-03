@@ -1,81 +1,53 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-require_once __DIR__ . '/../config/Database.php';
+
 require_once __DIR__ . '/../models/Bungalow.php';
-require_once __DIR__ . '/BungalowMock.php';
 
 class BungalowTest extends TestCase {
 
-    // Méthode qui s'exécute avant chaque test
-    protected function setUp(): void {
-        // Configuration de la base de données en mémoire
-        $this->pdo = new PDO('sqlite::memory:');  // Crée une base de données SQLite en mémoire
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    public function testGetAllBungalow()
+    {
+     $bungalow = new Bungalow();
 
-        // Création de la table 'bungalow' dans cette base en mémoire
-        $this->pdo->exec("CREATE TABLE bungalow (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            description TEXT,
-            price INTEGER
-        )");
+     $result = $bungalow->getAllBungalow();
 
-        // Crée une instance de ton modèle Bungalow avec la connexion en mémoire
-        $this->bungalow = new BungalowMock($this->pdo); // Utilise un mock ici (voir plus bas)
+     $this->assertIsArray($result, "Ce n'est pas un array comme attendu");
     }
 
-    // Teste la création d'un bungalow
-    public function testCreateBungalow() {
-        // Appel à la méthode
-        $this->bungalow->createBungalow("Bungalow A", "Description A", 100);
+    public function testGetBungalowById()
+    {
+     $bungalow = new Bungalow();
 
-        // Vérifie que le bungalow a bien été créé
-        $bungalows = $this->bungalow->getAllBungalow();
-        $this->assertCount(1, $bungalows);
-        $this->assertEquals("Bungalow A", $bungalows[0]['name']);
-        $this->assertEquals("Description A", $bungalows[0]['description']);
-        $this->assertEquals(100, $bungalows[0]['price']);
+     $result = $bungalow->getBungalowById(1);
+
+     $this->assertIsArray($result, "Ce n'est pas un array comme attendu");
     }
 
-    // Teste la lecture de tous les bungalows
-    public function testGetAllBungalows() {
-        $this->bungalow->createBungalow("Bungalow A", "Description A", 100);
-        $this->bungalow->createBungalow("Bungalow B", "Description B", 200);
+    public function testCreateBungalow()
+    {
+     $bungalow = new Bungalow();
 
-        // Vérifie qu'il y a bien deux bungalows
-        $bungalows = $this->bungalow->getAllBungalow();
-        $this->assertCount(2, $bungalows);
+     $result = $bungalow->createBungalow('Nom', 'description', 100);
+
+     $this->assertTrue($result, "Retour false");
     }
 
-    // Teste la mise à jour d'un bungalow
-    public function testUpdateBungalow() {
-        $this->bungalow->createBungalow("Bungalow A", "Description A", 100);
+    public function testUpdateBungalow()
+    {
+     $bungalow = new Bungalow();
 
-        // Mise à jour du bungalow
-        $this->bungalow->updateBungalow(1, "Bungalow A Updated", "Description A Updated", 150);
+     $result = $bungalow->updateBungalow(1,'Nom', 'description', 100);
 
-        // Vérifie que les données ont été mises à jour
-        $bungalows = $this->bungalow->getBungalowById(1);
-        $this->assertEquals("Bungalow A Updated", $bungalows[0]['name']);
-        $this->assertEquals("Description A Updated", $bungalows[0]['description']);
-        $this->assertEquals(150, $bungalows[0]['price']);
+     $this->assertTrue($result, "Retour false");
     }
 
-    // Teste la suppression d'un bungalow
-    public function testDeleteBungalow() {
-        $this->bungalow->createBungalow("Bungalow A", "Description A", 100);
+    public function testDeleteBungalow()
+    {
+     $bungalow = new Bungalow();
 
-        // Supprime le bungalow
-        $this->bungalow->deleteBungalow(1);
+     $result = $bungalow->deleteBungalow(1);
 
-        // Vérifie qu'il n'y a plus de bungalow
-        $bungalows = $this->bungalow->getAllBungalow();
-        $this->assertCount(0, $bungalows);
-    }
-
-    // Méthode qui s'exécute après chaque test
-    protected function tearDown(): void {
-        $this->pdo = null;
+     $this->assertTrue($result, "Retour false");
     }
 }

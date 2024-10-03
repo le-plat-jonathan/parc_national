@@ -45,6 +45,7 @@ class Booking extends Database {
             
         } catch (PDOException $e) {
             echo "Erreur : " . $e->getMessage();
+            return false;
         }
     }
     public function getAllBooking() {

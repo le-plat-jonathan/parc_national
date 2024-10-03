@@ -1,6 +1,6 @@
 <?php
 
-require_once './../vendor/autoload.php';
+require_once __DIR__ . './../vendor/autoload.php';
 
 class Database {
 
@@ -8,7 +8,8 @@ class Database {
 
     function __construct(){
         
-        $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
+         
         $dotenv->load();
 
         $dns = $_ENV['DB_DNS'];
