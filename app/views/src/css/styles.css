@@ -499,6 +499,13 @@ input {
   font-size: var(--smaller-font-size);
 }
 
+.trail__img {
+  min-height: 15rem;
+  height: 20rem;
+  object-fit:cover;
+  transition: var(--img-transition);
+}
+
 .discover__img {
   min-height: 15rem;
   height: 15rem;

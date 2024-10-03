@@ -55,3 +55,4 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
         <i class="ri-function-line"></i>
     </div>
 </nav>
+<script src="/parc_national/app/views/src/js/activeLink.js"></script>

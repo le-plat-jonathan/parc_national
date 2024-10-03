@@ -60,7 +60,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                     <img src="<?= htmlspecialchars($trail['img']); ?>" alt="" class="discover__img">
                     <div class="discover__data">
                         <h2 class="discover_title"><?= htmlspecialchars($trail['name']); ?></h2>
-                        <span class="discover__description">Difficulty: <?= htmlspecialchars($trail['difficulty']); ?></span>
+                        <span class="discover__description">Difficulté: <?= htmlspecialchars($trail['difficulty']); ?></span>
                     </div>
                 </div>
             </a>
@@ -72,24 +72,12 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     </section>
 </main>
 
-
     <!--==================== FOOTER ====================-->
     <footer class="footer section">
     <?php include $fileFooter; ?>
     </footer>
 
-    <!--========== SCROLL UP ==========-->
-    <a href="#" class="scrollup" id="scroll-up">
-        <i class="ri-arrow-up-line scrollup__icon"></i>
-    </a>
-    <!--=============== SCROLL REVEAL===============-->
-    <script src="/parc_national/app/views/src/js/scrollreveal.min.js"></script>
-
-    <!--=============== SWIPER JS ===============-->
-    <script src="/parc_national/app/views/src/js/swiper-bundle.min.js"></script>
-
     <!--=============== MAIN JS ===============-->
-    <script src="/parc_national/app/views/src/js/main.js"></script>
     <script src="/parc_national/app/views/src/js/script-map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOdyNOj6bK5n7oM1WhKjU1kmfAilSuDEE&callback=initMap&v=weekly&libraries=marker" defer></script>
 </body>
