@@ -1,6 +1,6 @@
 <?php
 // Déterminer le chemin de base en fonction de l'environnement
-if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
     $basePath = '/app/views/';
 } else {

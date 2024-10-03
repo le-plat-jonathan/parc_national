@@ -1,4 +1,21 @@
 <?php
+// Déterminer le chemin de base en fonction de l'environnement
+if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
+    // Mac (localhost)
+    $basePath = '/app/views/';
+} else {
+    // WAMP
+    $basePath = '/parc_national/app/views/';
+}
+
+// Chemins des fichiers CSS et JS
+$fileStyleCss = $basePath . 'src/css/styles.css';
+$fileBookingCss = $basePath . 'src/css/booking.css';
+$fileStyleConnexion = $basePath . '/src/css/connexion.css';
+$fileSwipperCss = $basePath . 'src/css/swiper-bundle.min.css';
+$fileScriptJs = $basePath . 'src/js/script.js';
+$fileNavBar = __DIR__ . '/../navbar/navbar.php';
+$fileFooter = __DIR__ . '/../footer/footer.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -27,11 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
         <!--=============== SWIPER CSS ===============-->
-        <link rel="stylesheet" href="./../src/css/swiper-bundle.min.css">
+        <link rel="stylesheet" href="<?= $fileSwipperCss ?>">
 
         <!--=============== CSS ===============-->
-        <link rel="stylesheet" href="./../src/css/styles.css">
-        <link rel="stylesheet" href="./../src/css/connexion.css">
+        <link rel="stylesheet" href="<?= $fileStyleCss ?>">
+        <link rel="stylesheet" href="<?= $fileStyleConnexion ?>">
 
         <title>Parc national des calanques</title>
     </head>
@@ -45,23 +62,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <section class="section section__login">
                 <form action="../../Routes/userRoutes.php/register" class="form form__login" method='post'>
                     <h2>Inscription</h2>
-                    <div class="form__row">
-                        <label>Pseudo</label>
-                        <input name="username" id="username" type="text">
+
+                    <div class="register_form">
+
+                        <div class="column_register_form">
+                            <div class="form__row">
+                                <label>Pseudo</label>
+                                <input name="username" id="username" type="text">
+                            </div>
+                            <div class="form__row">
+                                <label>Email</label>
+                                <input name="email" id="email" type="email">
+                            </div>
+                        </div>
+
+                        <div class="column_register_form">
+                            <div class="form__row">
+                                <label>Mot de passe</label>
+                                <input name="password" id="password" type="password">
+                            </div>
+                            <div class="form__row">
+                                <label>Confirmer le mot de passe</label>
+                                <input name="confirmPassword" id="confirmPassword" type="password">
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="form__row">
-                        <label>Email</label>
-                        <input name="email" id="email" type="email">
-                    </div>
-                    <div class="form__row">
-                        <label>Mot de passe</label>
-                        <input name="password" id="password" type="password">
-                    </div>
-                    <div class="form__row">
-                        <label>Confirmer le mot de passe</label>
-                        <input name="confirmPassword" id="confirmPassword" type="password">
-                    </div>
-                    <button style="width: 100%;" class="button">S'inscrire</button>
+
+
+
+                    <button style="width: 40%;" class="button">S'inscrire</button>
                     <p>Vous avez déjà un compte?<a href='./../user/login.php'> Connectez-vous!</a></p>
                 </form>
             </section>

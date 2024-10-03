@@ -33,7 +33,6 @@
         <div class="home__data">
           <span class="home__data-subtitle">Découvrez</span>
           <h1 class="home__data-title">Explorer <br> les plus belles <b>calanques <br> de Marseille.</b></h1>
-          <a href="#" class="button">Explorer</a>
 
         </div>
 
@@ -51,10 +50,7 @@
 
         <div class="home__info">
           <div>
-            <span class="home__info-title">5 meilleurs endroits à visiter</span>
-            <a href="" class="button button--flex button--link home__info-button">
-              More <i class="ri-arrow-right-line"></i>
-            </a>
+            <span class="home__info-title">Ces magnifiques destinations n'attendent que vous!</span>
           </div>
 
           <div class="home__info-overlay">
@@ -68,14 +64,11 @@
     <section class="about section" id="about">
       <div class="about__container container grid">
         <div class="about__data">
-          <h2 class="section__title about__title">Plus d'informations <br> À propos des meilleures plages</h2>
-          <p class="about__description">Vous pouvez trouver les endroits les plus beaux et les plus agréables aux
-            meilleurs
-            prix avec des remises spéciales, vous choisissez l'endroit, nous vous guiderons tout au long du chemin pour
-            attendre, obtenez votre
-            place maintenant.
+          <h2 class="section__title about__title">Plus d'informations <br> À propos des plus belles plages <br> Et nos campings associés</h2>
+          <p class="about__description">Vous pouvez trouver les endroits les plus beaux et les plus agréables aux meilleurs prix avec des remises spéciales.<br>
+          Vous choisissez l'endroit, nous vous guiderons tout au long de votre séjour, réservez dès maintenant.
           </p>
-          <a href="#" class="button">Réserver une place</a>
+          <a href="../routes/bookingRoutes.php/getAllBooking" class="button">Réserver un séjour</a>
         </div>
 
         <div class="about__img">
@@ -92,8 +85,7 @@
 
     <!--==================== DISCOVER ====================-->
     <section class="discover section" id="discover">
-      <h2 class="section__title">Découvrez les endroits <br> les plus
-        attrayants</h2>
+      <h2 class="section__title">Découvrez le charme des Calanques <br> en radonnant sur nos sentiers dédiés</h2>
 
       <div class="discover__container container swiper-container">
         <div class="swiper-wrapper">
@@ -134,9 +126,12 @@
             </div>
           </div>
         </div>
-      </div>
+        <div class="discover_trail">
+          <a href="../routes/routeTrail.php/getAllTrail" class="button">Décrouvrez nos sentier</a>
+        </div>
+      </div> 
     </section>
-
+    
     <!--==================== EXPERIENCE ====================-->
     <section class="experience section">
       <h2 class="section__title">Avec notre expérience <br> Nous vous servirons</h2>
@@ -176,138 +171,13 @@
       <h2 class="section__title">Visite guidée en vidéo</h2>
 
       <div class="video__container container">
-        <p class="video__description">Découvrez avec notre vidéo les endroits les plus beaux et les plus agréables pour
-          vous et votre famille.
-        </p>
+        <p class="video__description">Découvrez en images, les plus beaux recoins des calanques grâce à notre survol en drône.</p>
 
         <div class="video__content">
-          <video id="video-file">
-            <source src="src/video/video.webm" type="video/mp4">
-          </video>
-
-          <button class="button button--flex video__button" id="video-button">
-            <i class="ri-play-line video__button-icon" id="video-icon"></i>
-          </button>
+        <iframe width="960" height="540" src="https://www.youtube.com/embed/tkcKRriq324?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </section>
-
-    <!--==================== PLACES ====================-->
-    <!-- <section class="place section" id="place">
-      <h2 class="section__title">Choisissez votre place</h2>
-
-      <div class="place__container container grid">
-      
-        <div class="place__card">
-          <img src="src/img/place1.jpg" alt="" class="place__img">
-
-          <div class="place__content">
-            <span class="place__rating">
-              <i class="ri-star-line place__rating-icon"></i>
-              <span class="place__rating-number">4,8</span>
-            </span>
-
-            <div class="place__data">
-              <h3 class="place__title">Bali</h3>
-              <span class="place__subtitle">Indonesia</span>
-              <span class="place__price">$2499</span>
-            </div>
-          </div>
-
-          <button class="button button--flex place__button">
-            <i class="ri-arrow-right-line"></i>
-          </button>
-        </div>
-
-        
-        <div class="place__card">
-          <img src="src/img/place2.jpg" alt="" class="place__img">
-
-          <div class="place__content">
-            <span class="place__rating">
-              <i class="ri-star-line place__rating-icon"></i>
-              <span class="place__rating-number">5,0</span>
-            </span>
-
-            <div class="place__data">
-              <h3 class="place__title">Bora Bora</h3>
-              <span class="place__subtitle">Polinesia</span>
-              <span class="place__price">$1599</span>
-            </div>
-          </div>
-
-          <button class="button button--flex place__button">
-            <i class="ri-arrow-right-line"></i>
-          </button>
-        </div>
-
-        
-        <div class="place__card">
-          <img src="src/img/place3.jpg" alt="" class="place__img">
-
-          <div class="place__content">
-            <span class="place__rating">
-              <i class="ri-star-line place__rating-icon"></i>
-              <span class="place__rating-number">4,9</span>
-            </span>
-
-            <div class="place__data">
-              <h3 class="place__title">Hawaii</h3>
-              <span class="place__subtitle">EE.UU</span>
-              <span class="place__price">$3499</span>
-            </div>
-          </div>
-
-          <button class="button button--flex place__button">
-            <i class="ri-arrow-right-line"></i>
-          </button>
-        </div>
-
-      
-        <div class="place__card">
-          <img src="src/img/place4.jpg" alt="" class="place__img">
-
-          <div class="place__content">
-            <span class="place__rating">
-              <i class="ri-star-line place__rating-icon"></i>
-              <span class="place__rating-number">4,8</span>
-            </span>
-
-            <div class="place__data">
-              <h3 class="place__title">Whitehaven</h3>
-              <span class="place__subtitle">Australia</span>
-              <span class="place__price">$2499</span>
-            </div>
-          </div>
-
-          <button class="button button--flex place__button">
-            <i class="ri-arrow-right-line"></i>
-          </button>
-        </div>
-
-       
-        <div class="place__card">
-          <img src="src/img/place5.jpg" alt="" class="place__img">
-
-          <div class="place__content">
-            <span class="place__rating">
-              <i class="ri-star-line place__rating-icon"></i>
-              <span class="place__rating-number">4,8</span>
-            </span>
-
-            <div class="place__data">
-              <h3 class="place__title">Hvar</h3>
-              <span class="place__subtitle">Croacia</span>
-              <span class="place__price">$1999</span>
-            </div>
-          </div>
-
-          <button class="button button--flex place__button">
-            <i class="ri-arrow-right-line"></i>
-          </button>
-        </div>
-      </div>
-    </section> -->
 
     <!--==================== SUBSCRIBE ====================-->
     <section class="subscribe section">
@@ -319,7 +189,7 @@
           </p>
 
           <form action="" class="subscribe__form">
-            <input type="text" placeholder="Enter email" class="subscribe__input">
+            <input type="text" placeholder="Entrez votre email" class="subscribe__input">
 
             <button class="button">
               S'abonner
@@ -341,12 +211,6 @@
         <div class="sponsor__content">
           <img src="src/img/sponsors3.png" alt="" class="sponsor__img">
         </div>
-        <!-- <div class="sponsor__content">
-          <img src="src/img/sponsors4.png" alt="" class="sponsor__img">
-        </div>
-        <div class="sponsor__content">
-          <img src="src/img/sponsors5.png" alt="" class="sponsor__img">
-        </div> -->
       </div>
     </section>
   </main>
