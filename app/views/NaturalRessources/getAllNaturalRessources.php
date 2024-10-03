@@ -51,43 +51,34 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     </header>
 
     <main class="main">
-    <section class="section section__trails">
-        <h2 class="section__title">Ressources naturelles</h2>
-        <p class="section__subtitle">Découvrez les magnifiques especes des calanques de Marseille.</p>
-        <div class="container container__trails">
-            <div class="trails__filter">
-                <div class="filter__box">
-                    <img src="app/views/src/img/dauphin-bleu-blanc-risso-f-larrey-regard-du-vivant-parc-national-ca.jpg" alt="">
-                    <p>Faune marine</p>
-                </div>
-                <div class="filter__box">
-                    <img src="#" alt="">
-                    <p>Faune terrestre</p>
-                </div>
-                <div class="filter__box">
-                    <img src="/app/views/src/img/flore.jpg" alt="" class="discover__img">
-                    <p>Flore</p>
-                </div>
-            </div>
-            <div class="flex">
-            
-            <?php
-            foreach ($data as $ressource) {
-            ?>
-                <div class="discover__card swiper-slide">
-                    <img src="<?= htmlspecialchars($ressource['img']); ?>" alt="" class="discover__img">
-                    <div class="discover__data">
-                        <h2 class="discover_title"><?= htmlspecialchars($ressource['name']); ?></h2>
+        <section class="section section__trails">
+            <h2 class="section__title">Ressources naturelles</h2>
+            <p class="section__subtitle">Découvrez les magnifiques espèces des calanques de Marseille.</p>
+            <div class="container container__trails">
+                <div class="trails__filter gap">
+                    <div>
+                    <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/2">
+                            <img src='/parc_national/app/views/src/img/Dauphin_bleu.jpg' alt="faune marine">
+                            <p>Faune marine</p>
+                        </a>
+                    </div>
+                    <div>
+                    <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/1">
+                            <img src='/parc_national/app/views/src/img/aigle-faune.jpg' alt="faune terrestre">
+                            <p>Faune terrestre</p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/3">
+                            <img src='/parc_national/app/views/src/img/ciste.jpg' alt="Flore terrestre">
+                            <p>Flore terrestre</p>
+                        </a>
                     </div>
                 </div>
-            <?php
-            }
-            ?>
             </div>
+        </section>
 
-        </div>
-    </section>
-</main>
+    </main>
 
 
     <!--==================== FOOTER ====================-->
