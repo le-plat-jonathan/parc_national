@@ -62,23 +62,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <section class="section section__login">
                 <form action="../../Routes/userRoutes.php/register" class="form form__login" method='post'>
                     <h2>Inscription</h2>
-                    <div class="form__row">
-                        <label>Pseudo</label>
-                        <input name="username" id="username" type="text">
+
+                    <div class="register_form">
+
+                        <div class="column_register_form">
+                            <div class="form__row">
+                                <label>Pseudo</label>
+                                <input name="username" id="username" type="text">
+                            </div>
+                            <div class="form__row">
+                                <label>Email</label>
+                                <input name="email" id="email" type="email">
+                            </div>
+                        </div>
+
+                        <div class="column_register_form">
+                            <div class="form__row">
+                                <label>Mot de passe</label>
+                                <input name="password" id="password" type="password">
+                            </div>
+                            <div class="form__row">
+                                <label>Confirmer le mot de passe</label>
+                                <input name="confirmPassword" id="confirmPassword" type="password">
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="form__row">
-                        <label>Email</label>
-                        <input name="email" id="email" type="email">
-                    </div>
-                    <div class="form__row">
-                        <label>Mot de passe</label>
-                        <input name="password" id="password" type="password">
-                    </div>
-                    <div class="form__row">
-                        <label>Confirmer le mot de passe</label>
-                        <input name="confirmPassword" id="confirmPassword" type="password">
-                    </div>
-                    <button style="width: 100%;" class="button">S'inscrire</button>
+
+
+
+                    <button style="width: 40%;" class="button">S'inscrire</button>
                     <p>Vous avez déjà un compte?<a href='./../user/login.php'> Connectez-vous!</a></p>
                 </form>
             </section>
