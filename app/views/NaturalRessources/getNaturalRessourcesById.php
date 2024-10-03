@@ -10,10 +10,7 @@
 <h1>Détails des ressources naturelles</h1>
 <?php if (!empty($ressource)) { ?>
 <ul>
-    <li><strong>Nom :</strong> <?= htmlspecialchars($ressource['name']); ?></li>
-    <li><strong>Description :</strong> <?= htmlspecialchars($ressource['description']); ?></li>
-    <li><strong>Population :</strong> <?= htmlspecialchars($ressource['population']); ?></li>
-    <li><strong>Environment_id:</strong> <?= htmlspecialchars($ressource['environment_id']); ?></li>
+  <!-- code sup -->
 </ul>
 <?php } else { ?>
     <p>Aucune donnée sur les ressources naturelles disponible.</p>

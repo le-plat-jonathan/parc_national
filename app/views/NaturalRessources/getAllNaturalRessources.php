@@ -1,5 +1,26 @@
+<?php
+// Déterminer le chemin de base en fonction de l'environnement
+if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+    // Mac (localhost)
+    $basePath = '/app/views/';
+} else {
+    // WAMP
+    $basePath = '/parc_national/app/views/';
+}
+
+// Chemins des fichiers CSS et JS
+$fileStyleCss = $basePath . 'src/css/styles.css';
+$fileNaturelleCss = $basePath . 'src/css/naturelle.css';
+$fileBookingCss = $basePath . 'src/css/booking.css';
+$fileSwipperCss = $basePath . 'src/css/swiper-bundle.min.css';
+$fileScriptJs = $basePath . 'src/js/script.js';
+$fileNavBar = __DIR__ . '/../navbar/navbar.php';
+$fileFooter = __DIR__ . '/../footer/footer.php';
+?>
 
 <!DOCTYPE html>
+<html lang="fr">
+
 <html lang="fr">
 
 <head>
@@ -12,28 +33,43 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
     <!--=============== SWIPER CSS ===============-->
-    <link rel="stylesheet" href="/parc_national/app/views/src/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="<?= $fileSwipperCss ?>">
 
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="/parc_national/app/views/src/css/styles.css">
+<!--=============== CSS ===============-->
+<link rel="stylesheet" href="<?= $fileStyleCss ?>">
+<link rel="stylesheet" href="<?= $fileNaturelleCss ?>">
 
 
     <title>Parc national des calanques</title>
 </head>
 
+
 <body>
     <header style="background-color: #15505B;" class="header" id="header">
-        <?php include '../../app/views/navbar/navbar.php'; ?>
+    <?php include $fileNavBar; ?>
     
     </header>
 
     <main class="main">
     <section class="section section__trails">
-        <h2 class="section__title">Nos Sentiers</h2>
-        <p class="section__subtitle">Découvrez les magnifiques sentiers des calanques de Marseille.</p>
-        <div class="container container__trails flex">
+        <h2 class="section__title">Ressources naturelles</h2>
+        <p class="section__subtitle">Découvrez les magnifiques especes des calanques de Marseille.</p>
+        <div class="container container__trails">
+            <div class="trails__filter">
+                <div class="filter__box">
+                    <p>Faune marine</p>
+                </div>
+                <div class="filter__box">
+                    <p>Faune terrestre</p>
+                </div>
+                <div class="filter__box">
+                    <p>Flore</p>
+                </div>
+            </div>
+            <div class="flex">
+
             <?php
-            foreach ($ressources as $ressource) {
+            foreach ($data as $ressource) {
             ?>
                 <div class="discover__card swiper-slide">
                     <img src="<?= htmlspecialchars($ressource['img']); ?>" alt="" class="discover__img">
@@ -44,6 +80,7 @@
             <?php
             }
             ?>
+            </div>
 
         </div>
     </section>
@@ -52,83 +89,7 @@
 
     <!--==================== FOOTER ====================-->
     <footer class="footer section">
-        <div class="footer__container container grid">
-            <div class="footer__content grid">
-                <div class="footer__data">
-                    <h3 class="footer__title">Travel</h3>
-                    <p class="footer__description">Travel you choose the <br> destination,
-                        we offer you the <br> experience.
-                    </p>
-                    <div>
-                        <a href="https://www.facebook.com/" target="_blank" class="footer__social">
-                            <i class="ri-facebook-box-fill"></i>
-                        </a>
-                        <a href="https://twitter.com/" target="_blank" class="footer__social">
-                            <i class="ri-twitter-fill"></i>
-                        </a>
-                        <a href="https://www.instagram.com/" target="_blank" class="footer__social">
-                            <i class="ri-instagram-fill"></i>
-                        </a>
-                        <a href="https://www.youtube.com/" target="_blank" class="footer__social">
-                            <i class="ri-youtube-fill"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer__data">
-                    <h3 class="footer__subtitle">About</h3>
-                    <ul>
-                        <li class="footer__item">
-                            <a href="" class="footer__link">About Us</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="" class="footer__link">Features</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="" class="footer__link">New & Blog</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer__data">
-                    <h3 class="footer__subtitle">Company</h3>
-                    <ul>
-                        <li class="footer__item">
-                            <a href="" class="footer__link">Team</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="" class="footer__link">Plan y Pricing</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="" class="footer__link">Become a member</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="footer__data">
-                    <h3 class="footer__subtitle">Support</h3>
-                    <ul>
-                        <li class="footer__item">
-                            <a href="" class="footer__link">FAQs</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="" class="footer__link">Support Center</a>
-                        </li>
-                        <li class="footer__item">
-                            <a href="" class="footer__link">Contact Us</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer__rights">
-                <p class="footer__copy">&#169; 2021 Bedimcode. All rigths reserved.</p>
-                <div class="footer__terms">
-                    <a href="#" class="footer__terms-link">Terms & Agreements</a>
-                    <a href="#" class="footer__terms-link">Privacy Policy</a>
-                </div>
-            </div>
-        </div>
+    <?php include $fileFooter ?>
     </footer>
 
     <!--========== SCROLL UP ==========-->
@@ -144,6 +105,12 @@
 
     <!--=============== MAIN JS ===============-->
     <script src="/parc_national/app/views/src/js/main.js"></script>
+    <!--=============== SWIPER JS ===============-->
+    <script src="/parc_national/app/views/src/js/swiper-bundle.min.js"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="/parc_national/app/views/src/js/main.js"></script>
 </body>
+
 
 </html>

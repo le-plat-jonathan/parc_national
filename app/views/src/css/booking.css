@@ -1,4 +1,4 @@
-tr th {
+tr, th {
   padding: 0.4rem;
   cursor: pointer;
 }
@@ -32,11 +32,13 @@ tr th {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: right;
   gap: 1rem;
 }
 
 .room {
+  display: flex;
+  justify-content: center;
   padding: 0.5rem 3.5rem;
   background-color: var(--first-color);
   color: white;
@@ -50,9 +52,14 @@ tr th {
 }
 
 .reserved {
-  background-color: red;
+  background-color: rgb(0, 181, 178);
+  color: white;
 }
 
 .clicked {
   background-color: rgba(143, 175, 187, 0.583);
 }
+
+.active {
+  background-color: rgb(0, 181, 178);
+ }
