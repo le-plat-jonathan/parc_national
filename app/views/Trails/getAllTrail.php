@@ -75,10 +75,15 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <footer class="footer section">
     <?php include $fileFooter; ?>
     </footer>
-
     <!--=============== MAIN JS ===============-->
     <script src="/parc_national/app/views/src/js/script-map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOdyNOj6bK5n7oM1WhKjU1kmfAilSuDEE&callback=initMap&v=weekly&libraries=marker" defer></script>
 </body>
+
+    <?php if (isset($points) && !empty($points)) : ?>
+        <script>
+            const pointsOfInterest = <?php echo json_encode($points); ?>;
+            localStorage.setItem('pointsOfInterest', JSON.stringify(pointsOfInterest));
+        </script>
+    <?php endif; ?>
 
 </html>

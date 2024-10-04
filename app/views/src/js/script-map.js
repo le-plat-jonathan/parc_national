@@ -54,6 +54,33 @@ async function initMap() {
     }}
   )
 
+  const infoWindow = new google.maps.InfoWindow();
+  const points = JSON.parse(localStorage.getItem('pointsOfInterest'));
+
+  points.forEach(point => {
+
+    const latitude = parseFloat(point['latitude']);
+    const longitude = parseFloat(point['longitude']);  
+
+    const objPoint = {
+      lat: latitude,
+      lng: longitude
+  };
+
+  const marker = new google.maps.Marker({
+          map: map,
+          position: objPoint,
+          title: point['name'],
+          icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'  // Exemple pour un marqueur bleu
+
+      });
+
+      marker.addListener('click', () => {
+        infoWindow.setContent(`<h3>${point['name']}</h3><p>${point['description']}</p>`);
+        infoWindow.open(map, marker);
+    });
+  });
+
 }
 
 function calcRoute({start, end}) {
@@ -74,6 +101,9 @@ function calcRoute({start, end}) {
 }
 
 initMap()
+
+const points = JSON.parse(localStorage.getItem('pointsOfInterest'));
+console.log(points)
 
 /* 
 Pour ajouter des points d'intérêt sur la carte :
