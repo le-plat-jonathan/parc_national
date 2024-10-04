@@ -9,6 +9,7 @@ use Firebase\JWT\Key;
 if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
     $basePath = '/app/routes/';
+    $basePathConnexion = '/app/views';
 } else {
     // WAMP
     $basePath = '/parc_national/app/routes/';
@@ -75,9 +76,9 @@ $endpoint = isset($urlParsed[0]) ? $urlParsed[0] : '';
             }?>
             <li class="nav__item">
                 <?php if (!isset($_COOKIE['auth_token'])) {
-                    echo '<a href="../../views/user/login.php" class="nav__link">Connexion</a>';
+                    echo '<a href= "' . $basePathConnexion . '/user/login.php" class="nav__link">Connexion</a>';
                 } else {
-                    echo '<a href="../../routes/logout.php" class="nav__link">Déconnexion</a>';
+                    echo '<a href= "' . $basePathConnexion . '/user/logout.php" class="nav__link">Deconnexion</a>';
                 }
                 ?>
             </li>
