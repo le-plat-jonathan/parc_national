@@ -5,16 +5,19 @@ require_once './../vendor/autoload.php';
 class Database {
 
     protected $pdo;
+    public string $secretKey;
 
     function __construct(){
-        
         $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
         $dotenv->load();
+        
+        $this->secretKey = $_ENV['JWT_SECRET_KEY'];
 
         $dns = $_ENV['DB_DNS'];
         $user = $_ENV['DB_USER'];
         $pass = $_ENV['DB_PASS'];
-
+       
+        
         try {
             $this->pdo = new PDO($dns, $user, $pass);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

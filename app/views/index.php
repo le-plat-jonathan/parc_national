@@ -1,3 +1,7 @@
+<?php
+require_once './../config/dotEnvLoader.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

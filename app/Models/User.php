@@ -7,13 +7,17 @@ use Firebase\JWT\Key;
 
 class User extends Database {
 
-    private $secretKey = 'your-secret-key';
+    public string $secretKey;
 
     public function __construct() {
         parent::__construct();
         $this->secretKey = $_ENV['JWT_SECRET_KEY'];
+        error_log('JWT Secret Key: ' . $this->secretKey);
+        if (!$this->secretKey) {
+            throw new InvalidArgumentException('JWT secret key not found');
+        }
     }
-
+    
     public function createUser($email, $password, $confirmPassword, $username) {
         
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
