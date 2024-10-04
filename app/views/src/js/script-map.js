@@ -17,22 +17,19 @@ Variables globales :
 let map;
 let directionsService;
 let directionsRenderer;
+let coordinates = [];
+let arrayCoordinates = {};
 
 /* Div */
-let divBtn = document.getElementById("btnCalanques");
+let data = document.querySelectorAll(".data");
+data.forEach(d => coordinates.push(d.textContent))
 
-function convertCoordinates(coord) {
-  return {
-    lat: coord.latitude,
-    lng: coord.longitude,
-  };
-}
-
-async function loadRoad() {
-  const response = await fetch("db.json");
-  let data = await response.json();
-  return data;
-}
+coordinates.forEach(c => {
+  let splitData = c.split(":");
+  key = splitData[0].trim()
+  data = splitData[1].trim()
+  arrayCoordinates[key] = data; 
+});
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
@@ -46,20 +43,29 @@ async function initMap() {
   directionsRenderer = new google.maps.DirectionsRenderer();
   directionsRenderer.setMap(map);
 
-  const routes = await loadRoad();
+  calcRoute({
+    start: {
+      lat: parseFloat(arrayCoordinates['Latitude A']),
+      lng: parseFloat(arrayCoordinates['Longitude A'])
+    },
+    end: {
+      lat: parseFloat(arrayCoordinates['Latitude B']),
+      lng: parseFloat(arrayCoordinates['Longitude B'])
+    }}
+  )
 
-  createButton(routes.randonnées);
 }
 
-function calcRoute({ start, end }) {
+function calcRoute({start, end}) {
+
   const request = {
     origin: start,
     destination: end,
-    travelMode: "WALKING",
+    travelMode: 'WALKING'
   };
 
-  directionsService.route(request, function (result, status) {
-    if (status === "OK") {
+  directionsService.route(request, function(result, status) {
+    if (status === 'OK') {
       directionsRenderer.setDirections(result);
     } else {
       console.error("Directions request failed due to " + status);
@@ -67,20 +73,7 @@ function calcRoute({ start, end }) {
   });
 }
 
-function createButton(routes) {
-  routes.forEach((route) => {
-    let divBtn = document.getElementById(route.difficulté);
-    var btn = document.createElement("BUTTON");
-    btn.textContent = route.nom;
-    divBtn.appendChild(btn);
-    btn.addEventListener("click", () =>
-      calcRoute({
-        start: convertCoordinates(route.départ),
-        end: convertCoordinates(route.arrivée),
-      })
-    );
-  });
-}
+initMap()
 
 /* 
 Pour ajouter des points d'intérêt sur la carte :

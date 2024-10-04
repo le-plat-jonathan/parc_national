@@ -17,6 +17,7 @@ $urlParsed = explode('/', $url );
 
 $endPoint = isset($urlParsed[0]) ? $urlParsed[0] : "";
 $id = isset($urlParsed[1]) ? $urlParsed[1] : "";
+$id = intval($id);
 
 //Méthode get avec switch selon endpoint( getById, updateById, getAll)
 if($request_method=== 'GET'){

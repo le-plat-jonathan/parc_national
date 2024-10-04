@@ -40,7 +40,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
 </head>
 
 <body>
-<header style="background-color: #15505B;" class="header" id="header">
+    <header style="background-color: #15505B;" class="header" id="header">
     <?php include $fileNavBar; ?>
     </header>
     <main class="main">

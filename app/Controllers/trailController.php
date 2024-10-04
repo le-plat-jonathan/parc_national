@@ -18,10 +18,10 @@ require_once __DIR__ . '/../models/PointOfInterest.php';
 
       if (!$trail) {
           $error = "Sentier introuvable.";
-          require __DIR__ . '/../views/Trails/getTrailById.php';
+          require __DIR__ . '/../views/Trails/mapView.php';
       } else {
           $data = $trail;
-          require __DIR__ . '/../views/Trails/getTrailById.php';
+          require __DIR__ . '/../views/Trails/mapView.php';
       }
   }
 
