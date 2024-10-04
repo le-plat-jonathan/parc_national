@@ -1,6 +1,6 @@
 <?php
 // Déterminer le chemin de base en fonction de l'environnement
-if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
     $basePath = '/app/views/';
 } else {
@@ -28,9 +28,6 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <!--=============== REMIXICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
-    <!--=============== SWIPER CSS ===============-->
-    <link rel="stylesheet" href="<?= $fileSwipperCss ?>">
-
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="<?= $fileStyleCss ?>">
     <link rel="stylesheet" href="<?= $fileTrailsCss ?>">
@@ -50,15 +47,19 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
             <div class="container container__trail">
             <?php if (!empty($data)) { ?>
 
-                <img src="<?= htmlspecialchars($data['img'] ?? ''); ?>" alt="" class="discover__img">
+                <img src="<?= htmlspecialchars($data['img'] ?? ''); ?>" alt="" class="trail__img">
 
    
    <ul>
        <li><h2><?= htmlspecialchars($data['name']); ?></h2></li>
-       <li><strong>Longueur :</strong> <?= htmlspecialchars($data['length']); ?></li>
+       <li><strong>Longueur :</strong> <?= htmlspecialchars($data['length']); ?> km</li>
        <li><strong>Difficulté :</strong> <?= htmlspecialchars($data['difficulty']); ?></li>
+       <br>
+       <h4>Coordonnées de départ:</h4>
        <li><strong>Longitude A :</strong> <?= htmlspecialchars($data['longitude_A']); ?></li>
        <li><strong>Latitude A :</strong> <?= htmlspecialchars($data['latitude_A']); ?></li>
+       <br>
+       <h4>Coordonnées d'arrivée:</h4>
        <li><strong>Longitude B :</strong> <?= htmlspecialchars($data['longitude_B']); ?></li>
        <li><strong>Latitude B :</strong> <?= htmlspecialchars($data['latitude_B']); ?></li>
    </ul>

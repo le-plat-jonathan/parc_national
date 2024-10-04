@@ -1,6 +1,6 @@
 <?php
 // Déterminer le chemin de base en fonction de l'environnement
-if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
     $basePath = '/app/views/';
 } else {
@@ -51,40 +51,34 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     </header>
 
     <main class="main">
-    <section class="section section__trails">
-        <h2 class="section__title">Ressources naturelles</h2>
-        <p class="section__subtitle">Découvrez les magnifiques especes des calanques de Marseille.</p>
-        <div class="container container__trails">
-            <div class="trails__filter">
-                <div class="filter__box">
-                    <p>Faune marine</p>
-                </div>
-                <div class="filter__box">
-                    <p>Faune terrestre</p>
-                </div>
-                <div class="filter__box">
-                    <p>Flore</p>
-                </div>
-            </div>
-            <div class="flex">
-
-            <?php
-            foreach ($data as $ressource) {
-            ?>
-                <div class="discover__card swiper-slide">
-                    <img src="<?= htmlspecialchars($ressource['img']); ?>" alt="" class="discover__img">
-                    <div class="discover__data">
-                        <h2 class="discover_title"><?= htmlspecialchars($ressource['name']); ?></h2>
+        <section class="section section__trails">
+            <h2 class="section__title">Ressources naturelles</h2>
+            <p class="section__subtitle">Découvrez les magnifiques espèces des calanques de Marseille.</p>
+            <div class="container container__trails">
+                <div class="trails__filter gap">
+                    <div>
+                        <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/2" class="display_env">
+                            <img src='/parc_national/app/views/src/img/dauphin.jpg' alt="faune marine" class="env_selector">
+                            <p class='env_selector_text'>Faune marine</p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/1" class="display_env">
+                            <img src='/parc_national/app/views/src/img/aigle-faune.jpg' alt="faune terrestre"class="env_selector">
+                            <p class='env_selector_text'>Faune terrestre</p>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/3" class="display_env">
+                            <img src='/parc_national/app/views/src/img/ciste.jpg' alt="Flore terrestre"class="env_selector">
+                            <p class='env_selector_text'>Flore terrestre</p>
+                        </a>
                     </div>
                 </div>
-            <?php
-            }
-            ?>
             </div>
+        </section>
 
-        </div>
-    </section>
-</main>
+    </main>
 
 
     <!--==================== FOOTER ====================-->

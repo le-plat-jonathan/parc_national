@@ -104,10 +104,10 @@ function handleGetRequest($endpoint, $id) {
     global $user;
     switch ($endpoint) {
         case 'get_user':
-            echo json_encode($user->getUserById($id));
+            $user->getUserById($id);
             break;
         case 'get_all_users':
-            echo json_encode($user->getAllUsers());
+            $user->getAllUsers();
             break;
         default:
             echo json_encode(['message' => 'Invalid GET action.']);
