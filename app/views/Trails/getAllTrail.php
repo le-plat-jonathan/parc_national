@@ -48,8 +48,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
         <h2 class="section__title">Nos Sentiers</h2>
         <p class="section__subtitle">Découvrez les magnifiques sentiers des calanques de Marseille.</p>
         <div id="map">
-            <p>MAP ICI</p>
-        </div>
+         </div>
         <div class="container container__trails flex">
             
             <?php
