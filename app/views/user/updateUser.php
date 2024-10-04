@@ -55,27 +55,29 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     </header>
 
     <main class="main">
-        <form action="" method="PUT">
-            <div>
-                <label for="username">Nom d'utilisateur :</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                <label for="email">Email :</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div>
-                <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div>
-                <label for="confirmPassword">Confirmez le mot de passe :</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-            </div>
-            <div>
-                <button type="submit">S'inscrire</button>
-            </div>
-        </form>
+        <div class="user-info updateProfil">
+            <form action="" method="PUT">
+                <div>
+                    <label for="username">Nom d'utilisateur :</label><br>
+                    <input type="text" id="username" name="username" class="input_update" required>
+                </div>
+                <div>
+                    <label for="email">Email :</label><br>
+                    <input type="email" id="email" name="email" class="input_update" required>
+                </div>
+                <div>
+                    <label for="password">Mot de passe :</label><br>
+                    <input type="password" id="password" name="password" class="input_update" required>
+                </div>
+                <div>
+                    <label for="confirmPassword">Confirmez le mot de passe :</label><br>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="input_update" required>
+                </div>
+                <div>
+                    <button class="button" type="submit">Enregistrer</button>
+                </div>
+            </form>
+        </div>
     </main>
 
     <!--==================== FOOTER ====================-->
