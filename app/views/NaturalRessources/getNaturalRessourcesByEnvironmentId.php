@@ -59,19 +59,19 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                 <div class="trails__filter gap">
                     <div>
                     <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/2">
-                            <img src='/parc_national/app/views/src/img/Dauphin_bleu.jpg' alt="faune marine">
+                            <img src='/parc_national/app/views/src/img/dauphin.jpg' alt="faune marine"class="env_selector">
                             <p>Faune marine</p>
                         </a>
                     </div>
                     <div>
                     <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/1">
-                            <img src='/parc_national/app/views/src/img/aigle-faune.jpg' alt="faune terrestre">
+                            <img src='/parc_national/app/views/src/img/aigle-faune.jpg' alt="faune terrestre"class="env_selector">
                             <p>Faune terrestre</p>
                         </a>
                     </div>
                     <div>
                         <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/3">
-                            <img src='/parc_national/app/views/src/img/ciste.jpg' alt="Flore terrestre">
+                            <img src='/parc_national/app/views/src/img/ciste.jpg' alt="Flore terrestre"class="env_selector">
                             <p>Flore terrestre</p>
                         </a>
                     </div>

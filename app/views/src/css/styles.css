@@ -484,6 +484,9 @@ input {
   color: var(--white-color);
 }
 
+.env_selector{
+  height: 356px;
+}
 .discover__title {
   margin-bottom: var(--mb-0-25);
 }
