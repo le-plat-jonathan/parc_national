@@ -43,22 +43,27 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <header style="background-color: #15505B;" class="header" id="header">
     <?php include $fileNavBar; ?>
     </header>
-
     <main class="main">
     <section class="section section__trails">
         <h2 class="section__title">Nos Sentiers</h2>
         <p class="section__subtitle">Découvrez les magnifiques sentiers des calanques de Marseille.</p>
+        <div id="map">
+            <p>MAP ICI</p>
+        </div>
         <div class="container container__trails flex">
+            
             <?php
             foreach ($trails as $trail) {
             ?>
+            <a href="getTrailById/<?=$trail['id']?>">
                 <div class="discover__card swiper-slide">
                     <img src="<?= htmlspecialchars($trail['img']); ?>" alt="" class="discover__img">
                     <div class="discover__data">
                         <h2 class="discover_title"><?= htmlspecialchars($trail['name']); ?></h2>
-                        <span class="discover__description">Difficulty: <?= htmlspecialchars($trail['difficulty']); ?></span>
+                        <span class="discover__description">Difficulté: <?= htmlspecialchars($trail['difficulty']); ?></span>
                     </div>
                 </div>
+            </a>
             <?php
             }
             ?>
@@ -68,45 +73,14 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     </section>
 </main>
 
-
     <!--==================== FOOTER ====================-->
     <footer class="footer section">
     <?php include $fileFooter; ?>
     </footer>
 
-    <!--========== SCROLL UP ==========-->
-    <a href="#" class="scrollup" id="scroll-up">
-        <i class="ri-arrow-up-line scrollup__icon"></i>
-    </a>
-
-    <!--=============== SCROLL REVEAL===============-->
-    <script src="/parc_national/app/views/src/js/scrollreveal.min.js"></script>
-
-    <!--=============== SWIPER JS ===============-->
-    <script src="/parc_national/app/views/src/js/swiper-bundle.min.js"></script>
-
     <!--=============== MAIN JS ===============-->
-    <script src="/parc_national/app/views/src/js/main.js"></script>
-=======
-<?php if (!empty($trails)) : ?>  
-    <?php foreach ($trails as $trail) : ?>  
-        <h2>
-            ID: <?= htmlspecialchars($trail['id']); ?> <br>
-            Nom: <?= htmlspecialchars($trail['name']); ?> <br>
-            Longueur: <?= htmlspecialchars($trail['length']); ?> km <br>
-            Difficulté: <?= htmlspecialchars($trail['difficulty']); ?> <br>
-            Longitude A: <?= htmlspecialchars($trail['longitude_A']); ?> <br>
-            Latitude A: <?= htmlspecialchars($trail['latitude_A']); ?> <br>
-            Longitude B: <?= htmlspecialchars($trail['longitude_B']); ?> <br>
-            Latitude B: <?= htmlspecialchars($trail['latitude_B']); ?>
-            <img src="<?= htmlspecialchars($trail['img']); ?>" alt=""> Image:  <br>
-        </h2>
-        <hr>
-    <?php endforeach; ?>
-<?php else : ?>
-    <p>Aucun sentier trouvé.</p>
-<?php endif; ?>
->>>>>>> 742a8148d439616402c90cfb68b192b384e32fa0
+    <script src="/parc_national/app/views/src/js/script-map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOdyNOj6bK5n7oM1WhKjU1kmfAilSuDEE&callback=initMap&v=weekly&libraries=marker" defer></script>
 </body>
 
 </html>

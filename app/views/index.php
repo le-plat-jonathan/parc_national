@@ -33,19 +33,6 @@
         <div class="home__data">
           <span class="home__data-subtitle">Découvrez</span>
           <h1 class="home__data-title">Explorer <br> les plus belles <b>calanques <br> de Marseille.</b></h1>
-
-        </div>
-
-        <div class="home__social">
-          <a href="https://www.facebook.com/" target="_blank" class="home__social-link">
-            <i class="ri-facebook-box-fill"></i>
-          </a>
-          <a href="https://www.instagram.com/" target="_blank" class="home__social-link">
-            <i class="ri-instagram-fill"></i>
-          </a>
-          <a href="https://twitter.com/" target="_blank" class="home__social-link">
-            <i class="ri-twitter-fill"></i>
-          </a>
         </div>
 
         <div class="home__info">
@@ -233,6 +220,7 @@
 
   <!--=============== MAIN JS ===============-->
   <script src="src/js/main.js"></script>
+  <script src="scr/js/videoPlayer.js"></script>
 </body>
 
 </html>
