@@ -484,9 +484,29 @@ input {
   color: var(--white-color);
 }
 
+.display_env {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
 .env_selector{
   height: 356px;
 }
+
+.env_selector_text {
+  text-decoration: none;
+  color: black;
+  font-family: var(--title-font);
+}
+
+.env_selector_text:visited {
+  text-decoration: none;
+  color: black;
+  font-family: var(--title-font);
+}
+
 .discover__title {
   margin-bottom: var(--mb-0-25);
 }
@@ -1028,6 +1048,21 @@ input {
   .discover__data {
     left: 1.5rem;
     bottom: 2rem;
+  }
+ 
+  .container_natural_ressources {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .section__natural_ressources {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .discover__natural_ressources:hover {
+    cursor: pointer;
   }
 
   .experience__content {

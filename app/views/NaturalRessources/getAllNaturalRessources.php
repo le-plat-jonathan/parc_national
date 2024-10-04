@@ -1,4 +1,4 @@
-<?php
+ class='env_selector_text'<?php
 // Déterminer le chemin de base en fonction de l'environnement
 if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
@@ -57,21 +57,21 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
             <div class="container container__trails">
                 <div class="trails__filter gap">
                     <div>
-                    <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/2">
+                        <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/2" class="display_env">
                             <img src='/parc_national/app/views/src/img/dauphin.jpg' alt="faune marine" class="env_selector">
-                            <p>Faune marine</p>
+                            <p class='env_selector_text'>Faune marine</p>
                         </a>
                     </div>
                     <div>
-                    <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/1">
+                        <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/1" class="display_env">
                             <img src='/parc_national/app/views/src/img/aigle-faune.jpg' alt="faune terrestre"class="env_selector">
-                            <p>Faune terrestre</p>
+                            <p class='env_selector_text'>Faune terrestre</p>
                         </a>
                     </div>
                     <div>
-                        <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/3">
+                        <a href="/parc_national/app/Routes/routesNaturalRessources.php/getRessourcesByEnvironmentId/3" class="display_env">
                             <img src='/parc_national/app/views/src/img/ciste.jpg' alt="Flore terrestre"class="env_selector">
-                            <p>Flore terrestre</p>
+                            <p class='env_selector_text'>Flore terrestre</p>
                         </a>
                     </div>
                 </div>
