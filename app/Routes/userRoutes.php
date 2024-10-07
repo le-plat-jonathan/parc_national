@@ -1,8 +1,8 @@
 <?php
 
-require_once './../vendor/autoload.php';
-require_once  './../Helpers/cors.php';
-require_once  './../Controllers/UserController.php';
+require_once __DIR__ . './../vendor/autoload.php';
+require_once  __DIR__ . './../Helpers/cors.php';
+require_once  __DIR__ . './../Controllers/UserController.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
