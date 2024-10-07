@@ -73,7 +73,7 @@ class Trail extends Database {
             $stmt->bindValue(':img', $img, PDO::PARAM_STR);
             
             return $stmt->execute();
-        } catch (PDOException $e) {
+        }   catch (PDOException $e) {
             error_log("Erreur lors de la mise à jour du sentier : " . $e->getMessage());
             return false;
         }
