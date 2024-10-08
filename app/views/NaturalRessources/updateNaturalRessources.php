@@ -23,6 +23,8 @@
 
     <label for="environment_id">Environment_id:</label>
     <input type="text" id="environment_id" name="environment_id" value="<?= htmlspecialchars($data['data']['environment_id'] ?? ''); ?>" required>
+    <label for="population">img:</label>
+    <input type="text" id="img" name="img" value="<?= htmlspecialchars($data['data']['img'] ?? ''); ?>" required>
 
     <button type="submit">Mettre à jour la ressource</button>
 </form>

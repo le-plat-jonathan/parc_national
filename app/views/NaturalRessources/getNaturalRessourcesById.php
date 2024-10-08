@@ -12,6 +12,7 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
 $fileStyleCss = $basePath . 'src/css/styles.css';
 $fileTrailsCss = $basePath . 'src/css/trails.css';
 $fileScriptJs = $basePath . 'src/js/script.js';
+$fileScriptJsRessource = $basePath . 'src/js/update-ressources.js';
 $fileNavBar = __DIR__ . '/../navbar/navbar.php';
 $fileFooter = __DIR__ . '/../footer/footer.php';
 ?>
@@ -51,16 +52,68 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                       <li><strong>Population :</strong> <?= htmlspecialchars($ressource['population']); ?></li><br> 
                       <li><strong>Description :</strong><br><br> <?= htmlspecialchars($ressource['description']); ?></li>
                       <br>
+                      <br>
+                      <button class="button" id="modify-btn"> Modifier la fiche
+                      </button>
                   </ul>
+                 <!-- Modal -->
+<div id="updateModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h1>Mise à jour des infos d'une ressource:</h1>
+    <form id="updateForm" action='/parc_national/app/routes/routesNaturalRessources.php/update_ressources' method="post">
+      <label for="id">Id:</label>
+      <input type="int" id="id" name="id" value="<?= htmlspecialchars($ressource['id'] ?? ''); ?>" required>
+
+      <label for="name">Nom:</label>
+      <input type="text" id="name" name="name" value="<?= htmlspecialchars($ressource['name'] ?? ''); ?>" required>
+
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" required><?= htmlspecialchars($ressource['description'] ?? ''); ?></textarea>
+
+      <label for="population">Population:</label>
+      <input type="text" id="population" name="population" value="<?= htmlspecialchars($ressource['population'] ?? ''); ?>" required>
+
+      <label for="environment_id">Environment_id:</label>
+      <input type="text" id="environment_id" name="environment_id" value="<?= htmlspecialchars($ressource['environment_id'] ?? ''); ?>" required>
+
+      <input type="hidden" id="img" name="image" value="<?= htmlspecialchars($ressource['img'] ?? ''); ?>" required>
+
+      <button type="submit">Mettre à jour la ressource</button>
+    </form>
+  </div>
+</div>
                   <?php } else { ?>
                       <p>Aucune donnée sur cette ressource disponible.</p>
                   <?php } ?>
-            </div>
+        </div>
+    </div>
         </section>
     </main>
     <footer>
       <?php include $fileFooter; ?>
     </footer>
-</body>
+    <script>
+  var modal = document.getElementById("updateModal");
+ var btn = document.getElementById("modify-btn");
+ var span = document.getElementsByClassName("close")[0];
 
+ btn.onclick = function() {
+   modal.style.display = "block";
+ }
+
+ span.onclick = function() {
+   modal.style.display = "none";
+ }
+
+ window.onclick = function(event) {
+   if (event.target == modal) {
+     modal.style.display = "none";
+   }
+ }
+
+
+</script>
+</body>
+<script src="<?= $fileScriptJsRessource ?>" ></script>
 </html>
