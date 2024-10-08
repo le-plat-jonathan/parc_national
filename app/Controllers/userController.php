@@ -51,7 +51,6 @@ class UserController {
 
     public function delete(int $id): void {
         $response = $this->user->deleteUser($id);
-        require __DIR__ . '../../views/admin.php';
     }
 
     public function render(string $view, array $data): void {
