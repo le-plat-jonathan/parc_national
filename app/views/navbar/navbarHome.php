@@ -13,7 +13,7 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // WAMP
     $basePath = '/parc_national/app/routes/';
 }
-
+    $admin = $basePath . '../../app/views/admin.php';
     $trail = $basePath . 'routeTrail.php/getAllTrail';
     $camping = $basePath . 'bookingRoutes.php/getAllBooking';
     $ressources = $basePath . 'routesNaturalRessources.php/getAllRessources';
@@ -51,8 +51,13 @@ if (isset($_COOKIE['auth_token'])) {
             </li>
             <?php if (isset($_COOKIE['auth_token'])) {
                     echo '<li class="nav__item">';
-                    echo '<a href="./../routes/userRoutes.php/get_user/' . $userId . '" class="nav__link">Mon Profil</a>';
+                    echo '<a href="./../routes/userRoutes.php/get_user/' . $userId . '" class="nav__link">Mon compte</a>';
                     echo '</li>';
+                    if($role === 'admin') {
+                        echo '<li class="nav__item">';
+                        echo '<a href="../views/admin.php" class="nav__link">Administration</a>';
+                        echo '</li>';
+                    }
             }?>
             <li class="nav__item">
                 <?php if (!isset($_COOKIE['auth_token'])) {

@@ -21,21 +21,14 @@ $id = isset($urlParsed[1]) ? $urlParsed[1] : '';
 
 $user = new UserController();
 
-// Vérifier si la requête concerne les routes utilisateurs
 if (in_array($endpoint, ['register', 'login', 'get_user', 'update_user', 'delete_user', 'get_all_users'])) {
-    // Gestion des requêtes en fonction de la méthode
+
     switch ($request_method) {
         case 'POST':
             handlePostRequest($endpoint);
             break;
         case 'GET':
             handleGetRequest($endpoint, $id);
-            break;
-        case 'PUT':
-            handlePutRequest($endpoint, $id);
-            break;
-        case 'DELETE':
-            handleDeleteRequest($endpoint, $id);
             break;
         default:
             echo json_encode(['message' => 'Invalid request method.']);
@@ -49,7 +42,7 @@ if (in_array($endpoint, ['register', 'login', 'get_user', 'update_user', 'delete
 
 // Gestion des requêtes POST
 function handlePostRequest($endpoint) {
-    global $user;
+    global $user, $id;
     
     if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
         $input = json_decode(file_get_contents('php://input'), true);
@@ -61,10 +54,30 @@ function handlePostRequest($endpoint) {
         case 'register':
             echo json_encode($user->register($input['email'], $input['password'], $input['confirmPassword'], $input['username']));
             header('Location: ../../views/user/login.php');
-            exit();    
+            exit();
             break;  
         case 'login':
             echo json_encode(handleLoginRequest($input['email'], $input['password']));
+            break;
+        case 'update_user':
+            $id = isset($_POST['id']) ? $_POST['id'] : null;
+            $username = isset($_POST['username']) ? $_POST['username'] : null;
+            $email = isset($_POST['email']) ? $_POST['email'] : null;
+            $password = isset($_POST['password']) ? $_POST['password'] : null;
+            $confirmPassword = isset($_POST['confirmPassword']) ? $_POST['confirmPassword'] : null;
+            if (!empty($id)) {
+                $user->update($id, $username, $email, $password, $confirmPassword);
+            } else {
+                echo json_encode(['message' => 'User ID missing.']);
+            }
+            break;
+        case 'delete_user':
+            $id = isset($_POST['id']) ? $_POST['id'] : null;
+            if (!empty($id)) {
+                $user->delete($id);
+            } else {
+                echo json_encode(['message' => 'User ID missing.']);
+            }
             break;
         default:
             echo json_encode(['message' => 'Invalid POST action.']);
@@ -94,10 +107,9 @@ function handleLoginRequest($email, $password) {
         exit();
 
     } else {
-        return ['message' => 'Login failed.'];
+        header('Location: ../../views/user/login.php');
     }
 }
-
 
 // Gestion des requêtes GET
 function handleGetRequest($endpoint, $id) {
@@ -111,45 +123,6 @@ function handleGetRequest($endpoint, $id) {
             break;
         default:
             echo json_encode(['message' => 'Invalid GET action.']);
-            break;
-    }
-}
-
-// Gestion des requêtes PUT
-function handlePutRequest($endpoint, $id) {
-    global $user;
-
-    if ($_SERVER['CONTENT_TYPE'] === 'application/json') {
-        $input = json_decode(file_get_contents('php://input'), true);
-    } else {
-        $input = $_PUT;
-    }
-
-    switch ($endpoint) {
-        case 'update_user':
-            echo json_encode($user->update(
-                $id, 
-                $input['email'] ?? null, 
-                $input['password'] ?? null, 
-                $input['username'] ?? null
-            ));
-            break;
-        default:
-            echo json_encode(['message' => 'Invalid PUT action.']);
-            break;
-    }
-}
-
-// Gestion des requêtes DELETE
-function handleDeleteRequest($endpoint, $id) {
-    global $user;
-
-    switch ($endpoint) {
-        case 'delete_user':
-            echo json_encode($user->delete($id));
-            break;
-        default:
-            echo json_encode(['message' => 'Invalid DELETE action.']);
             break;
     }
 }

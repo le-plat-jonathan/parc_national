@@ -123,32 +123,46 @@ class User extends Database {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    public function updateUser($id, $email = null, $password = null, $username = null) {
+    public function updateUser($id, $username = null, $email = null, $password = null, $confirmPassword = null ) {
         $user = $this->getUserById($id);
+        
         if (!$user) {
             return ['message' => 'User not found'];
         }
+    
+        // Validation de l'email
         if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidArgumentException('Invalid email address');
         }
-        if ($this->emailExists($email) && $email !== $user['email']) {
+    
+        if ($email && $this->emailExists($email) && $email !== $user['email']) {
             return ['message' => 'Email already exists'];
         }
-
-        $password = $password ? password_hash($password, PASSWORD_DEFAULT) : $user['password'];
+    
+        // On garde les anciennes valeurs si les nouvelles sont vides
         $username = $username ? htmlspecialchars($username, ENT_QUOTES, 'UTF-8') : $user['username'];
-
+        $email = $email ?: $user['email'];
+    
+        // Vérification et hashage du nouveau mot de passe
+        $hashedPassword = $user['password']; // On garde le mot de passe actuel par défaut
+        if ($password) {
+            if ($password !== $confirmPassword) {
+                return ['message' => 'Passwords do not match'];
+            }
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        }
+    
+        // Mise à jour de l'utilisateur dans la base de données
         $sql = "UPDATE user SET email = ?, password = ?, username = ? WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$email, $password, $username, $id]);
-
+        $stmt->execute([$email, $hashedPassword, $username, $id]);
+    
         return ['message' => 'User updated successfully'];
-    }
-
+    }    
+    
     public function deleteUser($id) {
         $sql = "DELETE FROM user WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
-        return ['message' => 'User deleted successfully'];
     }
 }

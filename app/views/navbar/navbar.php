@@ -61,15 +61,20 @@ $endpoint = isset($urlParsed[0]) ? $urlParsed[0] : '';
             <?php if (isset($_COOKIE['auth_token'])) {
                 if ($endpoint === 'get_user') {
                     echo '<li class="nav__item">';
-                    echo '<a href="" class="nav__link">Mon Profil</a>';
+                    echo '<a href="" class="nav__link">Mon compte</a>';
                     echo '</li>';
                 } elseif ($endpoint === '') {
                     echo '<li class="nav__item">';
-                    echo '<a href="../../routes/userRoutes.php/get_user/' . $userId . '" class="nav__link">Mon Profil</a>';
+                    echo '<a href="../../routes/userRoutes.php/get_user/' . $userId . '" class="nav__link">Mon compte</a>';
                     echo '</li>';
                 } else {
                     echo '<li class="nav__item">';
-                    echo '<a href="./../userRoutes.php/get_user/' . $userId . '" class="nav__link">Mon Profil</a>';
+                    echo '<a href="./../userRoutes.php/get_user/' . $userId . '" class="nav__link">Mon compte</a>';
+                    echo '</li>';
+                }
+                if($role === 'admin') {
+                    echo '<li class="nav__item">';
+                    echo '<a href="../../../app/views/admin.php" class="nav__link">Administration</a>';
                     echo '</li>';
                 }
             }?>

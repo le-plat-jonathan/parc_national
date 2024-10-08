@@ -24,7 +24,7 @@ class UserController {
         } else {
             $response = ['users' => $response];
         }
-        $this->render('./../views/user/getAllUsers.php', $response);
+        return $response;
     }
     
     public function register(string $email, string $password, string $confirmPassword, string $username): void {
@@ -44,19 +44,19 @@ class UserController {
         return $response;
     }
 
-    public function update(int $id, string $email, string $password, string $username): void {
-        $response = $this->user->updateUser($id, $email, $password, $username);
+    public function update(int $id, string $username, string $email, string $password, string $confirmPassword): void {
+        $response = $this->user->updateUser($id, $username, $email, $password, $confirmPassword);
         $this->render('./../views/user/updateUser.php', $response);
     }
 
     public function delete(int $id): void {
         $response = $this->user->deleteUser($id);
-        $this->render('./../views/user/deleteUser.php', $response);
+        require __DIR__ . '../../views/admin.php';
     }
 
     public function render(string $view, array $data): void {
         extract($data);
         include $view;
     }
-    
+
 }
