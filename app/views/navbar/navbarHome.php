@@ -12,6 +12,7 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
 } else {
     // WAMP
     $basePath = '/parc_national/app/routes/';
+    $basePathView = '/parc_national/app/views/';
 }
     $admin = $basePath . '../../app/views/admin.php';
     $trail = $basePath . 'routeTrail.php/getAllTrail';
@@ -51,19 +52,19 @@ if (isset($_COOKIE['auth_token'])) {
             </li>
             <?php if (isset($_COOKIE['auth_token'])) {
                     echo '<li class="nav__item">';
-                    echo '<a href="./../routes/userRoutes.php/get_user/' . $userId . '" class="nav__link">Mon compte</a>';
+                    echo '<a href=" ' . $basePath . 'userRoutes.php/get_user/' . $userId . '" class="nav__link">Mon compte</a>';
                     echo '</li>';
                     if($role === 'admin') {
                         echo '<li class="nav__item">';
-                        echo '<a href="../views/admin.php" class="nav__link">Administration</a>';
+                        echo '<a href=" ' . $basePathView . 'admin.php" class="nav__link">Administration</a>';
                         echo '</li>';
                     }
             }?>
             <li class="nav__item">
                 <?php if (!isset($_COOKIE['auth_token'])) {
-                       echo '<a href="../views/user/login.php" class="nav__link">Connexion</a>';
+                       echo '<a href=" ' . $basePathView . 'user/login.php" class="nav__link">Connexion</a>';
                 } else {
-                    echo '<a href="./../routes/logout.php" class="nav__link">Déconnexion</a>';
+                    echo '<a href=" ' . $basePath . 'logout.php" class="nav__link">Déconnexion</a>';
                 }
                 ?>
             </li>

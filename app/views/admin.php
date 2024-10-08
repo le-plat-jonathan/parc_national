@@ -62,7 +62,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                     <div class="user-info profil">
                         <div class="admin_info">
                             <div class='user_infos'>
-                                <p><strong>Username:</strong> <?= htmlspecialchars($user['username']); ?></p>
+                                <p><strong>Pseudo:</strong> <?= htmlspecialchars($user['username']); ?></p>
                                 <p><strong>Email:</strong> <?= htmlspecialchars($user['email']); ?></p>
                                 <p><strong>Role:</strong> <?= htmlspecialchars($user['role']); ?></p>
                             </div>
