@@ -6,6 +6,7 @@ require_once __DIR__ . '/../../config/dotEnvLoader.php';
 if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
     $basePath = '/app/views/';
+    $basePathRoute = '/app/routes/';
 } else {
     // WAMP
     $basePath = '/parc_national/app/views/';
@@ -55,7 +56,6 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
         <div class="user-info">
             <form action= <?= $basePathRoute . 'userRoutes.php/update_user' ?> method="POST">
                 <input type="hidden" name="id" value="<?= $_POST['id'] ?>">
-                <?= var_dump($_POST['id']); ?>
                 <div>
                     <label for="username">Nom d'utilisateur :</label><br>
                     <input type="text" id="username" name="username" class="input_update">
