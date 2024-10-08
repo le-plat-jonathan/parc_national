@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../config/Database.php";
+require_once __DIR__ . "/../models/User.php";
 
 class NaturalRessources extends Database{
 
@@ -94,3 +95,6 @@ public function deleteNaturalRessource(int $id): bool {
   }
 }
 }
+
+// $ressource = new NaturalRessources();
+// $ressource->updateNaturalRessources(29, 'Nom de la ressource', 'Description de la ressource', 'Population de la ressource', 1, 'Image de la ressource');
