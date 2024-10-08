@@ -71,10 +71,23 @@ function handlePostRequest($endpoint) {
                 echo json_encode(['message' => 'User ID missing.']);
             }
             break;
+        case 'update_user_by_admin':
+            $id = isset($_POST['id']) ? $_POST['id'] : null;
+            $username = isset($_POST['username']) ? $_POST['username'] : null;
+            $email = isset($_POST['email']) ? $_POST['email'] : null;
+            $password = isset($_POST['password']) ? $_POST['password'] : null;
+            $confirmPassword = isset($_POST['confirmPassword']) ? $_POST['confirmPassword'] : null;
+            if (!empty($id)) {
+                $user->update($id, $username, $email, $password, $confirmPassword);
+            } else {
+                echo json_encode(['message' => 'User ID missing.']);
+            }
+            break;
         case 'delete_user':
             $id = isset($_POST['id']) ? $_POST['id'] : null;
             if (!empty($id)) {
                 $user->delete($id);
+                header('Location: ../../views/admin.php');
             } else {
                 echo json_encode(['message' => 'User ID missing.']);
             }

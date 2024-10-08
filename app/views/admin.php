@@ -62,7 +62,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                     <div class="user-info profil">
                         <div class="admin_info">
                             <div class='user_infos'>
-                                <p><strong>Username:</strong> <?= htmlspecialchars($user['username']); ?></p>
+                                <p><strong>Pseudo:</strong> <?= htmlspecialchars($user['username']); ?></p>
                                 <p><strong>Email:</strong> <?= htmlspecialchars($user['email']); ?></p>
                                 <p><strong>Role:</strong> <?= htmlspecialchars($user['role']); ?></p>
                             </div>
@@ -75,13 +75,13 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                                 </form>
 
                                 <!-- Update User Button -->
-                                <form method="GET" action="../routes/userRoutes.php/update_user"  onsubmit="return confirm('Voulez-vous vraiment modifier ce compte utilisateur ?');">
+                                <form method='POST' action="../views/user/updateUserByAdmin.php/<?= $user['id']; ?>"  onsubmit="return confirm('Voulez-vous vraiment modifier ce compte utilisateur ?');">
                                     <input type="hidden" name="id" value="<?= $user['id']; ?>">
                                     <button type="submit" class="button">Modifier</button>
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div>  
                 </main>
             <?php endforeach; ?>
         <?php else: ?>
