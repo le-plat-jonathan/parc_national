@@ -6,11 +6,12 @@ session_start();
 if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
     $basePath = '/app/views/';
+    $basePathRoute = '/app/routes/';
 } else {
     // WAMP
     $basePath = '/parc_national/app/views/';
+    $basePathRoute = '/parc_national/app/route/';
 }
-
 // Chemins des fichiers CSS et JS
 $fileStyleCss = $basePath . 'src/css/styles.css';
 $fileBookingCss = $basePath . 'src/css/booking.css';
@@ -57,7 +58,7 @@ if (isset($_SESSION['alert'])) {
 
         <main class="main">
             <section class="section section__login">
-                <form action="../../Routes/userRoutes.php/login" class="form form__login" method='post'>
+                <form action="<?= $basePathRoute ?>userRoutes.php/login" class="form form__login" method='post'>
                     <h2>Connexion</h2>
                     <div class="form__row">
                         <label>Email</label>

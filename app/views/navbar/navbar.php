@@ -10,6 +10,8 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
     $basePath = '/app/routes/';
     $basePathConnexion = '/app/views';
+    $basePathView = '/app/views/';
+
 } else {
     // WAMP
     $basePath = '/parc_national/app/routes/';
