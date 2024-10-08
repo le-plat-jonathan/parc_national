@@ -9,6 +9,8 @@
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+    justify-content: center;
+    width: 50rem;
 }
 .button {
     width: 15rem;
@@ -29,9 +31,46 @@
 }
 
 .updateProfil {
-    height: 22rem;
+    height: 25rem;
+    display: flex;
+    justify-content: center;
 }
 
 .input_update {
     width: 20rem;
+}
+
+.user_main {
+    display: flex;
+    justify-content: center;
+}
+
+.admin_info {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+.admin_title {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.main_admin {
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.user_infos {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.admin_btn {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }

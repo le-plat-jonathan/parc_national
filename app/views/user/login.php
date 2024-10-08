@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 // Déterminer le chemin de base en fonction de l'environnement
 if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
@@ -17,6 +20,12 @@ $fileScriptJs = $basePath . 'src/js/script.js';
 $fileNavBar = __DIR__ . '/../navbar/navbar.php';
 $fileFooter = __DIR__ . '/../footer/footer.php';
 
+// Afficher le message d'alerte s'il existe
+if (isset($_SESSION['alert'])) {
+    echo "<script>alert('{$_SESSION['alert']}');</script>";
+    // Effacer le message de la session après l'avoir affiché
+    unset($_SESSION['alert']);
+}
 ?>
 
 <!DOCTYPE html>

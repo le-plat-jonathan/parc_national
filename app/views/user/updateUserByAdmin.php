@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . '/../../config/dotEnvLoader.php';
+
 // Déterminer le chemin de base en fonction de l'environnement
 if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
@@ -6,6 +9,7 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
 } else {
     // WAMP
     $basePath = '/parc_national/app/views/';
+    $basePathRoute = '/parc_national/app/routes/';
 }
 
 // Chemins des fichiers CSS et JS
@@ -39,10 +43,6 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <link rel="stylesheet" href="<?= $fileProfilCss ?>">
     <link rel="stylesheet" href="<?= $fileStyleConnexion ?>">
 
-    <style>
-      
-    </style>
-
     <title>Parc national des calanques</title>
 </head>
 
@@ -51,17 +51,31 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
         <?php include $fileNavBar; ?>
     </header>
 
-    <main class="main user_main">
-        <div class="user-info profil">
-            <?php if (!empty($data)) { ?>
-                <h2>Informations de l'utilisateur</h2>
-                <p><strong>Nom d'utilisateur :</strong> <?php echo htmlspecialchars($data['username']); ?></p>
-                <p><strong>Email :</strong> <?php echo htmlspecialchars($data['email']); ?></p>
-                <p><strong>Compte créé le :</strong> <?php echo htmlspecialchars($data['created_at']); ?></p>
-                <a href="../../../views/user/updateUser.php" class="button">Modifier mon profil</a>
-            <?php } else { ?>
-                <p>Aucune donnée utilisateur disponible.</p>
-            <?php } ?>
+    <main class="main updateProfil">
+        <div class="user-info">
+            <form action= <?= $basePathRoute . 'userRoutes.php/update_user' ?> method="POST">
+                <input type="hidden" name="id" value="<?= $_POST['id'] ?>">
+                <?= var_dump($_POST['id']); ?>
+                <div>
+                    <label for="username">Nom d'utilisateur :</label><br>
+                    <input type="text" id="username" name="username" class="input_update">
+                </div>
+                <div>
+                    <label for="email">Email :</label><br>
+                    <input type="email" id="email" name="email" class="input_update">
+                </div>
+                <div>
+                    <label for="password">Mot de passe :</label><br>
+                    <input type="password" id="password" name="password" class="input_update">
+                </div>
+                <div>
+                    <label for="confirmPassword">Confirmez le mot de passe :</label><br>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="input_update">
+                </div>
+                <div>
+                    <button class="button" type="submit">Enregistrer</button>
+                </div>
+            </form>
         </div>
     </main>
 
