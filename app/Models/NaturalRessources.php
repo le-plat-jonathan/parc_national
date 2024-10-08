@@ -74,7 +74,7 @@ public function updateNaturalRessources( int $id, string $name, string $descript
       $stmt->bindValue(':description', $description, PDO::PARAM_STR);
       $stmt->bindValue(':population', $population, PDO::PARAM_STR);
       $stmt->bindValue(':environment_id', $environment_id, PDO::PARAM_STR);
-      $stmt->bindValue(':img', $img, PDO::PARAM_INT);
+      $stmt->bindValue(':img', $img, PDO::PARAM_STR);
       
       return $stmt->execute();
   } catch (PDOException $e) {
