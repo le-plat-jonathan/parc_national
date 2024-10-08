@@ -51,7 +51,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
         <?php include $fileNavBar; ?>
     </header>
 
-    <main class="main">
+    <main class="main user_main">
         <div class="user-info profil">
             <?php if (!empty($data)) { ?>
                 <h2>Informations de l'utilisateur</h2>
