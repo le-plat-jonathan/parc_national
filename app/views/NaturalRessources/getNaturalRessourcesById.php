@@ -70,9 +70,16 @@ if (isset($_COOKIE['auth_token'])) {
                       <li><strong>Description :</strong><br><br> <?= htmlspecialchars($ressource['description']); ?></li>
                       <br>
                       <br>
-                      <?php if (isset($decoded) && $decoded->role === 'admin'): ?>
-                      <button class="button" id="modify-btn"> Modifier la fiche
-                      </button>
+                      
+<div>
+    <button class="button" id="modify-btn">Modifier la fiche</button> 
+    <form action="/parc_national/app/routes/routesNaturalRessources.php/delete_ressources" method="POST" style="display: inline;">
+        <input type="hidden" name="id" value="<?= htmlspecialchars($ressource['id']); ?>">
+        <button type="submit" class="button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette ressource ?');">Supprimer la fiche</button>
+    </form>
+</div> 
+
+
                   </ul>
                  <!-- Modal -->
 <div id="updateModal" class="modal">
@@ -99,6 +106,7 @@ if (isset($_COOKIE['auth_token'])) {
       <input type="hidden" id="img" name="img" value="<?= htmlspecialchars($ressource['img'] ?? ''); ?>" required>
 
       <button type="submit">Mettre à jour la ressource</button>
+     
     </form>
   </div>
 </div>

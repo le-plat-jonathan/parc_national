@@ -58,39 +58,24 @@ public function create() {
 
 //Mettre à jour une ressource naturelle en fonction de l'id donné
 public function update() {
-echo "Hello";
-$data= json_decode(file_get_contents("php://input"), true);
-echo "<script> console.log($data);</script>";
-
-if(isset($data)){
-
-  $id = $data['id'];
-    $name = $data['name'];
-    $description = $data['description'];
-    $population = $data['population'];
-    $environment_id = $data['environment_id'];
-    $img = $data['img'];
-} else {
 
   $id=$_POST['id'] ?? null;
   $name= $_POST['name'] ?? null;
   $description= $_POST['description'] ?? null;
   $population= $_POST['population'] ?? null;
   $environment_id= $_POST['environment_id'] ?? null;
-  $img= $_POST['img'] ?? null;
-}
-  if ($id === null || empty($name) || empty($description) || empty($population) || empty($environment_id) || empty($img)) {
-    echo json_encode("Les champs ne peuvent pas être vides.");
-    ;} else {
-      $ressources = $this->naturalRessourcesModel->updateNaturalRessources($id, $name, $description, $population, $environment_id, $img);
-    }
-  
- // require __DIR__ . '/../views/NaturalRessources/updateNaturalRessources.php';
+  $img= $_POST['image'] ?? null;
+
+  $ressources = $this->naturalRessourcesModel->updateNaturalRessources($id, $name, $description, $population, $environment_id, $img);
+
+  require './../views/NaturalRessources/updateSuccess.php';  
 }
 
 //Supprimer une ressource naturelle de la Bdd par rapport à son id
 public function delete(int $id) {
   $resource = $this->naturalRessourcesModel->deleteNaturalRessource($id);
+  header('Location: /parc_national/app/routes/routesNaturalRessources.php/getAllRessources');
+  exit();
  
 }
 }

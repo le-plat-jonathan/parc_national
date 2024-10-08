@@ -46,7 +46,7 @@ if($request_method=== 'GET'){
               $ressource->update((int)$id);
               break;
           case 'delete_ressources':
-              $ressource->delete($id);
+              $ressource->delete($_POST['id']);;
               break;
               defaut: 
               echo 'Erreur de endpoint dans POST';
