@@ -10,9 +10,11 @@ if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
 
 // Chemins des fichiers CSS et JS
 $fileStyleCss = $basePath . 'src/css/styles.css';
+$fileStyleMapCss = $basePath . 'src/css/map.css';
 $fileBookingCss = $basePath . 'src/css/booking.css';
 $fileSwipperCss = $basePath . 'src/css/swiper-bundle.min.css';
 $fileScriptJs = $basePath . 'src/js/script.js';
+$fileScriptMapJs = $basePath . 'src/js/script-map.js';
 $fileNavBar = __DIR__ . '/../navbar/navbar.php';
 $fileFooter = __DIR__ . '/../footer/footer.php';
 ?>
@@ -24,7 +26,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/app/views/src/css/map.css">
+    <link rel="stylesheet" href="<?= $fileStyleMapCss ?>">
     <link rel="stylesheet" href="<?= $fileStyleCss ?>">
 </head>
 <body>
@@ -50,6 +52,13 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                 <?php } else { ?>
                     <p>Aucune donnée sur le sentier disponible.</p>
                 <?php } ?>
+                <div>
+                <button class="button" id="modify-btn">Modifier la fiche</button> 
+                <form action="/parc_national/app/routes/routesNaturalRessources.php/delete_ressources" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($ressource['id']); ?>">
+                    <button type="submit" class="button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette ressource ?');">Supprimer la fiche</button>
+                </form>
+            </div> 
         </main>
         <?php include $fileFooter; ?>
 
@@ -60,6 +69,6 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
     v: "weekly",
   });
 </script>
-<script src="/app/views/src/js/script-map.js"></script>
+<script src="<?= $fileScriptMapJs ?>"></script>
 
 </html>
