@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <div class="column_register_form">
                             <div class="form__row">
-                                <label>Pseudo</label>
+                                <label>Nom d'utilisateur</label>
                                 <input name="username" id="username" type="text">
                             </div>
                             <div class="form__row">

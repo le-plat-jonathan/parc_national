@@ -34,6 +34,24 @@ if (isset($_COOKIE['auth_token'])) {
 }
   ?>
 
+require_once __DIR__ . '/../../config/dotEnvLoader.php';
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+$secretKey = "0aee078e548a963e3d8f234bb0c891dc425df7794279d985a5566bd70720565f";
+if (isset($_COOKIE['auth_token'])) {
+  try {
+      // Décodage du token JWT
+      $decoded = JWT::decode($_COOKIE['auth_token'], new Key($secretKey, 'HS256'));
+  } catch (Exception $e) {
+      // Gestion des erreurs liées au décodage du JWT
+      error_log("Erreur lors du décodage du JWT : " . $e->getMessage());
+      // Vous pouvez également rediriger ou afficher un message d'erreur si nécessaire
+  }
+}
+  ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -70,6 +88,10 @@ if (isset($_COOKIE['auth_token'])) {
                       <li><strong>Description :</strong><br><br> <?= htmlspecialchars($ressource['description']); ?></li>
                       <br>
                       <br>
+                      <?php if (isset($decoded) && $decoded->role === 'admin'): ?>
+                      <button class="button" id="modify-btn"> Modifier la fiche
+                      </button>
+                      <form action="/parc_national/app/routes/routesNaturalRessources.php/delete_ressources" method="POST" style="display: inline;">
 <?php if(isset($decoded) && $decoded->role === 'admin'): ?>
 <div>
     <button class="button" id="modify-btn">Modifier la fiche</button> 
@@ -77,31 +99,38 @@ if (isset($_COOKIE['auth_token'])) {
         <input type="hidden" name="id" value="<?= htmlspecialchars($ressource['id']); ?>">
         <button type="submit" class="button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette ressource ?');">Supprimer la fiche</button>
     </form>
-</div> 
-
-
                   </ul>
                  <!-- Modal -->
 <div id="updateModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h1>Mise à jour des infos d'une ressource :</h1>
+    <h1>Mise à jour des infos d'une ressource :</h1>
     <form id="updateForm" action='/parc_national/app/routes/routesNaturalRessources.php/update_ressources' method="post">
+      <label for="id">Id :</label>
       <label for="id">Id :</label>
       <input type="int" id="id" name="id" value="<?= htmlspecialchars($ressource['id'] ?? ''); ?>" required>
 
       <label for="name">Nom :</label>
+      <label for="name">Nom :</label>
       <input type="text" id="name" name="name" value="<?= htmlspecialchars($ressource['name'] ?? ''); ?>" required>
 
+      <label for="description">Description :</label>
       <label for="description">Description :</label>
       <textarea name="description" id="description" required><?= htmlspecialchars($ressource['description'] ?? ''); ?></textarea>
 
       <label for="population">Population :</label>
+      <label for="population">Population :</label>
       <input type="text" id="population" name="population" value="<?= htmlspecialchars($ressource['population'] ?? ''); ?>" required>
 
       <label for="environment_id">Environment_id :</label>
+      <label for="environment_id">Environment_id :</label>
       <input type="text" id="environment_id" name="environment_id" value="<?= htmlspecialchars($ressource['environment_id'] ?? ''); ?>" required>
 
+      <!-- Correction ici : l'image devrait utiliser 'img' si c'est cohérent avec la base de données -->
+      <input type="hidden" id="img" name="img" value="<?= htmlspecialchars($ressource['img'] ?? ''); ?>" required>
+
+      <button class="button"type="submit">Mettre à jour la ressource</button>
       <!-- Correction ici : l'image devrait utiliser 'img' si c'est cohérent avec la base de données -->
       <input type="hidden" id="img" name="img" value="<?= htmlspecialchars($ressource['img'] ?? ''); ?>" required>
 
@@ -110,6 +139,7 @@ if (isset($_COOKIE['auth_token'])) {
     </form>
   </div>
 </div>
+<?php endif; ?>
 <?php endif; ?>
                   <?php } else { ?>
                       <p>Aucune donnée sur cette ressource disponible.</p>
