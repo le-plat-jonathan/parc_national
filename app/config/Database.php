@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . './../vendor/autoload.php';
+require_once './../vendor/autoload.php';
 
 class Database {
 
@@ -8,9 +8,7 @@ class Database {
     public string $secretKey;
 
     function __construct(){
-        
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
-         
+        $dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
         $dotenv->load();
         
         $this->secretKey = $_ENV['JWT_SECRET_KEY'];
