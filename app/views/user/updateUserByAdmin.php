@@ -55,7 +55,6 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
         <div class="user-info">
             <form action= <?= $basePathRoute . 'userRoutes.php/update_user' ?> method="POST">
                 <input type="hidden" name="id" value="<?= $_POST['id'] ?>">
-                <?= var_dump($_POST['id']); ?>
                 <div>
                     <label for="username">Nom d'utilisateur :</label><br>
                     <input type="text" id="username" name="username" class="input_update">

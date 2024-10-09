@@ -165,10 +165,11 @@ require_once './../config/dotEnvLoader.php';
         <p class="video__description">Découvrez en images, les plus beaux recoins des calanques grâce à notre survol en drône.</p>
 
         <div class="video__content">
-        <iframe width="960" height="540" src="https://www.youtube.com/embed/tkcKRriq324?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe width="960" height="540" src="https://www.youtube.com/embed/tkcKRriq324?autoplay=1&mute=1&loop=1&playlist=tkcKRriq324" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </section>
+
 
     <!--==================== SUBSCRIBE ====================-->
     <section class="subscribe section">
