@@ -59,7 +59,7 @@ require_once './../config/dotEnvLoader.php';
           <p class="about__description">Vous pouvez trouver les endroits les plus beaux et les plus agréables aux meilleurs prix avec des remises spéciales.<br>
           Vous choisissez l'endroit, nous vous guiderons tout au long de votre séjour, réservez dès maintenant.
           </p>
-          <a href="../routes/bookingRoutes.php/getAllBooking" class="button">Réserver un séjour</a>
+          <a href="<?=$basePath?>bookingRoutes.php/getAllBooking" class="button">Réserver un séjour</a>
         </div>
 
         <div class="about__img">
@@ -118,7 +118,7 @@ require_once './../config/dotEnvLoader.php';
           </div>
         </div>
         <div class="discover_trail">
-          <a href="../routes/routeTrail.php/getAllTrail" class="button">Décrouvrez nos sentier</a>
+          <a href="<?=$basePath?>routeTrail.php/getAllTrail" class="button">Décrouvrez nos sentier</a>
         </div>
       </div> 
     </section>
@@ -172,7 +172,7 @@ require_once './../config/dotEnvLoader.php';
 
 
     <!--==================== SUBSCRIBE ====================-->
-    <section class="subscribe section">
+    <!-- <section class="subscribe section">
       <div class="subscribe__bg">
         <div class="subscribe__container container">
           <h2 class="section__title subscribe__title">Abonnez-vous à notre <br> Newsletter</h2>
@@ -189,7 +189,7 @@ require_once './../config/dotEnvLoader.php';
           </form>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!--==================== SPONSORS ====================-->
     <section class="sponsor section">
