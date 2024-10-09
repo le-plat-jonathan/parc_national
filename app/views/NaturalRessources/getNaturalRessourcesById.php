@@ -70,7 +70,7 @@ if (isset($_COOKIE['auth_token'])) {
                       <li><strong>Description :</strong><br><br> <?= htmlspecialchars($ressource['description']); ?></li>
                       <br>
                       <br>
-                      
+<?php if(isset($decoded) && $decoded->role === 'admin'): ?>
 <div>
     <button class="button" id="modify-btn">Modifier la fiche</button> 
     <form action="/parc_national/app/routes/routesNaturalRessources.php/delete_ressources" method="POST" style="display: inline;">

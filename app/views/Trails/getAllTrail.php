@@ -67,6 +67,14 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
             }
             ?>
 
+            <div>
+                <button class="button" id="modify-btn">Modifier la fiche</button> 
+                <form action="/parc_national/app/routes/routesNaturalRessources.php/delete_ressources" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($ressource['id']); ?>">
+                    <button type="submit" class="button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette ressource ?');">Supprimer la fiche</button>
+                </form>
+            </div> 
+
         </div>
     </section>
 </main>
