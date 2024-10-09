@@ -57,11 +57,10 @@ class Trail extends Database {
     }
 
     // Mettre à jour un sentier
-    public function updateTrail( int $id, string $name, string $length, string $difficulty, string $longitude_A, string $latitude_A, string $longitude_B, string $latitude_B, string $img ): bool {
+    public function updateTrail($id, $name, $length, $difficulty, $longitude_A, $latitude_A, $longitude_B, $latitude_B, $img) {
         try {
-            $stmt = $this->pdo->prepare("UPDATE trail 
-                    SET name = :name, length = :length, difficulty = :difficulty, longitude_A = :longitude_A, latitude_A = :latitude_A, longitude_B = :longitude_B, latitude_B = :latitude_B, img= :img 
-                    WHERE id = :id");
+            $stmt = $this->pdo->prepare("UPDATE trail SET name = :name, length = :length, difficulty = :difficulty, longitude_A = :longitude_A, latitude_A = :latitude_A, longitude_B = :longitude_B, latitude_B = :latitude_B, img = :img WHERE id = :id");
+            
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->bindValue(':name', $name, PDO::PARAM_STR);
             $stmt->bindValue(':length', $length, PDO::PARAM_STR);
@@ -72,8 +71,14 @@ class Trail extends Database {
             $stmt->bindValue(':latitude_B', $latitude_B, PDO::PARAM_STR);
             $stmt->bindValue(':img', $img, PDO::PARAM_STR);
             
-            return $stmt->execute();
-        }   catch (PDOException $e) {
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                // Si la requête échoue, affichez les informations d'erreur
+                print_r($stmt->errorInfo());
+                return false;
+            }
+        } catch (PDOException $e) {
             error_log("Erreur lors de la mise à jour du sentier : " . $e->getMessage());
             return false;
         }

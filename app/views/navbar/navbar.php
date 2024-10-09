@@ -46,7 +46,7 @@ $endpoint = isset($urlParsed[0]) ? $urlParsed[0] : '';
 ?>
 
 <nav class="nav container">
-    <a href="../../views/index.php" class="nav__logo">Parc National Des Calanques</a>
+    <a href= "<?=$basePathView?>/index.php" class="nav__logo">Parc National Des Calanques</a>
 
     <div class="nav__menu" id="nav-menu">
         <ul class="nav__list">

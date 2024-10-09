@@ -1157,3 +1157,10 @@ input {
     height: 640px;
   }
 }
+
+.div_message_result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25em;
+}

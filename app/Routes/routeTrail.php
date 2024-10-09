@@ -19,6 +19,7 @@ $endPoint = isset($urlParsed[0]) ? $urlParsed[0] : "";
 $id = isset($urlParsed[1]) ? $urlParsed[1] : "";
 $id = intval($id);
 
+
 //Méthode get avec switch selon endpoint( getById, updateById, getAll)
 if($request_method=== 'GET'){
 switch ($endPoint){
@@ -37,6 +38,7 @@ switch ($endPoint){
 }
 //Méthode post avec switch selon endpoint(creer, update, delete)
 }else if($request_method==='POST'){
+    
     switch($endPoint){
         case 'create_trail':
             $trail->create();
