@@ -88,12 +88,6 @@ $endpoint = isset($urlParsed[0]) ? $urlParsed[0] : '';
             </li>
         </ul>
 
-        <div class="nav__dark">
-            <!-- Theme change button -->
-            <span class="change-theme-name">Dark mode</span>
-            <i class="ri-moon-line change-theme" id="theme-button"></i>
-        </div>
-
         <i class="ri-close-line nav__close" id="nav-close"></i>
     </div>
 
