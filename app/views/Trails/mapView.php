@@ -24,11 +24,6 @@ $pathUpdate = $basePathRoute . "routeTrail.php/update_trail/" . $data['id'];
 $fileNavBar = __DIR__ . '/../navbar/navbar.php';
 $fileFooter = __DIR__ . '/../footer/footer.php';
 
-require_once __DIR__ . '/../../config/dotEnvLoader.php';
-
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
-
 ?>
 
 <!DOCTYPE html>
