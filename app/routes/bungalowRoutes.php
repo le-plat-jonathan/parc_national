@@ -1,6 +1,7 @@
 <?php 
 
 require_once "../controllers/bungalowController.php";
+require_once __DIR__ . '/../Helpers/verify_token.php';
 
 /*
 Routeur Bungalow - Gère les requêtes HTTP pour les opérations CRUD sur les bungalows.
@@ -27,7 +28,7 @@ Contrôleur utilisé :
 Messages d'erreur :
 - Affiche une erreur si l'endpoint est invalide ou si la méthode HTTP n'est pas prise en charge.
 */
-
+$is_token_true = verify_token();
 $request_method = $_SERVER['REQUEST_METHOD'];
 $request_uri = $_SERVER['REQUEST_URI'];
 $script_name = $_SERVER['SCRIPT_NAME'];
@@ -57,14 +58,15 @@ if ($request_method==='GET'){
         break;
 
         case 'updateBungalow':
-            $bungalow->updateBungalow($id);
+            if($is_token_true){
+            $bungalow->updateBungalow($id);}
         break;
 
         default:
         echo "Erreur de endpoint";
         exit;
     }
-} else if ($request_method==='POST'){
+} else if ($request_method==='POST' && $is_token_true){
     switch($endpoint){
 
         case 'addBungalow':

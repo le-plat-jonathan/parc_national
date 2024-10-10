@@ -1,6 +1,9 @@
 <?php 
 
 require_once __DIR__ . '/../controllers/BookingController.php';
+require_once __DIR__ . '/../Helpers/verify_token.php';
+
+$is_token_true = verify_token();
 
 /*
     Booking routes handler: gère les requêtes HTTP pour les bookings et les dirige vers le bon contrôleur.
@@ -66,7 +69,7 @@ if ($method==='GET'){
         exit;
     }
 
-} else if ($method==='POST'){
+} else if ($method==='POST' && $is_token_true){
 
     switch($endPoint){
         case 'createBooking':

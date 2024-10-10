@@ -1,6 +1,7 @@
 <?php 
 
 require_once __DIR__ . '/../controllers/PointOfInterestController.php';
+require_once __DIR__ . '/../Helpers/verify_token.php';
 
 /*
     PointOfInterest routes handler: gère les requêtes HTTP pour les PointOfInterests et les dirige vers le bon contrôleur.
@@ -24,6 +25,7 @@ require_once __DIR__ . '/../controllers/PointOfInterestController.php';
     - updatePointOfInterest/{id} : pour mettre à jour une réservation existante
     - deletePointOfInterest/{id} : pour supprimer une réservation spécifique
 */
+$is_token_true = verify_token();
 
 $pointOfInterest = new PointOfInterestController();
 
@@ -39,19 +41,6 @@ $urlParsed = explode('/', $url );
 $endPoint = isset($urlParsed[0]) ? $urlParsed[0] : "";
 $id = isset($urlParsed[1]) ? $urlParsed[1] : "";
 
-
-//DEBUG
-
-    // echo '<pre>';
-    // echo 'l\'uri : ' . $uri . '</br>';
-    // echo 'method : ' . $scriptName . '</br>';
-    // echo 'l\'url : ' . $url . '</br>';
-    // echo 'l\'urlParsed : </br>';
-    // var_dump($urlParsed);
-    // echo 'le endpoint : ' . $endPoint . '</br>';
-    // echo 'l\'id : ' . $id . '</br>';
-    // echo '</pre>';
-
 if ($method==='GET'){
 
     switch($endPoint){
@@ -64,7 +53,8 @@ if ($method==='GET'){
         break;
 
         case 'updatePointOfInterest':
-            $pointOfInterest->updatePointOfInterest($id);
+            if ($is_token_true){
+            $pointOfInterest->updatePointOfInterest($id);}
         break;
 
         default:
@@ -72,7 +62,7 @@ if ($method==='GET'){
         exit;
     }
 
-} else if ($method==='POST'){
+} else if ($method==='POST' && $is_token_true){
 
     switch($endPoint){
         case 'createPointOfInterest':

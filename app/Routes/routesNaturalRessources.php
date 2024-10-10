@@ -1,8 +1,11 @@
 <?php
 
 include_once __DIR__ . '/../controllers/naturalRessourcesController.php';
+require_once __DIR__ . '/../Helpers/verify_token.php';
 
 $ressource = new NaturalRessourcesController();
+
+$is_token_true = verify_token();
 
 //Methode pour parser mon url 
 $request_method = $_SERVER['REQUEST_METHOD'];
@@ -27,7 +30,8 @@ if($request_method=== 'GET'){
         $ressource->getNaturalRessourcesByEnvironmentId($id);
         break;
       case 'update_ressources':
-          $ressource->update();
+        if($is_token_true){
+          $ressource->update();}
           break;
       case 'getAllRessources':
           $ressource->getAllNaturalRessources();
@@ -37,7 +41,7 @@ if($request_method=== 'GET'){
           exit;
   }
   // Création de routes avec une méthode POST et un switch comme pour le GET(create, update, delete)
-  }else if($request_method==='POST'){
+  }else if($request_method==='POST' && $is_token_true){
       switch($endPoint){
           case 'create_ressources':
               $ressource->create();

@@ -5,13 +5,14 @@ include_once __DIR__ . '/../controllers/PointOfInterestController.php';
 
 $trail = new TrailController();
 
+$is_token_true = verify_token();
+
 //Parse de mon url
 $request_method = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 $scriptName = $_SERVER['SCRIPT_NAME'];
 
 $url = str_replace($scriptName, "", $uri);
-$url = trim($url, "/");
 
 $urlParsed = explode('/', $url );
 
@@ -21,13 +22,14 @@ $id = intval($id);
 
 
 //Méthode get avec switch selon endpoint( getById, updateById, getAll)
-if($request_method=== 'GET'){
+if($request_method==='GET'){
 switch ($endPoint){
     case 'getTrailById':
     $trail->getTrailById($id);
     break;
     case 'update_trail':
-        $trail->update();
+        if ($is_token_true){
+        $trail->update();}
         break;
     case 'getAllTrail':
         $trail->getAllTrail();
@@ -37,7 +39,7 @@ switch ($endPoint){
         exit;
 }
 //Méthode post avec switch selon endpoint(creer, update, delete)
-}else if($request_method==='POST'){
+}else if($request_method==='POST' && $is_token_true){
     
     switch($endPoint){
         case 'create_trail':
