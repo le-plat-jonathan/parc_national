@@ -74,7 +74,7 @@ $endpoint = isset($urlParsed[0]) ? $urlParsed[0] : '';
                 }
                 if($role === 'admin') {
                     echo '<li class="nav__item">';
-                    echo '<a href=" ' . $basePathView . 'admin.php" class="nav__link">Administration</a>';
+                    echo '<a href=" ' . $basePathView . 'admin/admin_user.php" class="nav__link">Administration</a>';
                     echo '</li>';
                 }
             }?>

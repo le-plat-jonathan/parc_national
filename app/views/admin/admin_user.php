@@ -1,7 +1,7 @@
 <?php 
 
-require_once './../Controllers/UserController.php';
-require_once './../config/dotEnvLoader.php';
+require_once __DIR__ . '/../../Controllers/UserController.php';
+require_once __DIR__ . '/../../config/dotEnvLoader.php';
 
 $user = new UserController();
 $users = $user->getAllUsers();
@@ -10,6 +10,7 @@ $users = $user->getAllUsers();
 if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
     $basePath = '/app/views/';
+    $basePathView = '/app/views/';
 } else {
     // WAMP
     $basePath = '/parc_national/app/views/';
@@ -50,7 +51,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
 </head>
 <body>
   <header style="background-color: #15505B;" class="header" id="header">
-    <?php include "./navbar/navbar.php"; ?>
+    <?php include __DIR__ . "/../navbar/navbar.php"; ?>
   </header>
         <div class='admin_title'>
             <h1>Administration des utilisateurs</h1>
@@ -75,7 +76,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                                 </form>
 
                                 <!-- Update User Button -->
-                                <form method='POST' action="../views/user/updateUserByAdmin.php/<?= $user['id']; ?>"  onsubmit="return confirm('Voulez-vous vraiment modifier ce compte utilisateur ?');">
+                                <form method='POST' action="<?=$basePathView?>/user/updateUserByAdmin.php/<?= $user['id']; ?>"  onsubmit="return confirm('Voulez-vous vraiment modifier ce compte utilisateur ?');">
                                     <input type="hidden" name="id" value="<?= $user['id']; ?>">
                                     <button type="submit" class="button">Modifier</button>
                                 </form>
@@ -89,7 +90,7 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
         <?php endif; ?>
   
   <footer class="footer section">
-    <?php include "./footer/footer.php"; ?>
+    <?php include __DIR__ . "/../footer/footer.php"; ?>
   </footer>
 
   <script src="src/js/main.js"></script>

@@ -1,6 +1,6 @@
 <?php
 
-require_once './../Models/User.php';
+require_once __DIR__ . './../Models/User.php';
 
 class UserController {
     private $user;
@@ -46,7 +46,7 @@ class UserController {
 
     public function update(int $id, string $username, string $email, string $password, string $confirmPassword): void {
         $response = $this->user->updateUser($id, $username, $email, $password, $confirmPassword);
-        $this->render('./../views/user/updateUser.php', $response);
+        $this->render('./../views/admin/admin_user.php', $response);
     }
 
     public function delete(int $id): void {
