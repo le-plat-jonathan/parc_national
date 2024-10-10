@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../../Helpers/verify_token.php';
+$is_token_verify = verify_token();
+
 // Déterminer le chemin de base en fonction de l'environnement
 if (strpos($_SERVER['HTTP_HOST'], 'localhost:8000') !== false) {
     // Mac (localhost)
@@ -76,7 +79,9 @@ $fileFooter = __DIR__ . '/../footer/footer.php';
                 <div class="room" id="chalet-3">Le Refuge Méditerranéen</div>
            </div>
         </div>
+        <?php if ($is_token_verify): ?>
         <button class="button button__booking" type="submit" id="reserve">Reserver</button>
+        <?php endif; ?>
         </section>
     </main>
 

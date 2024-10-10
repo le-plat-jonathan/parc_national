@@ -124,7 +124,6 @@ function handleClick (event) {
 
 // Réinitialise les réservations
 async function reserve (firstDate, secondDate) {
-    console.log("reserve atteinte")
 
     let allCellsClicked = document.getElementsByClassName("clicked");
 
@@ -227,8 +226,9 @@ async function checkReserve(allCellsClicked) {
 
 // Ajoute un événement au bouton de réservation pour réinitialiser la sélection
 reserveButton = document.getElementById("reserve")
+if (reserveButton){
 reserveButton.addEventListener("click", () => reserve(firstDate, secondDate))
-
+}
 // Change de mois avec les boutons plus et moins
 btnPlus.addEventListener('click', () => {
     dateNow.setMonth(dateNow.getMonth() + 1)
