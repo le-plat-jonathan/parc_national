@@ -59,7 +59,9 @@ if ($request_method==='GET'){
 
         case 'updateBungalow':
             if($is_token_true){
-            $bungalow->updateBungalow($id);}
+            $bungalow->updateBungalow($id);} else {
+                echo "Token invalide";
+            }
         break;
 
         default:

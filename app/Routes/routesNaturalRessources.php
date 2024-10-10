@@ -31,7 +31,9 @@ if($request_method=== 'GET'){
         break;
       case 'update_ressources':
         if($is_token_true){
-          $ressource->update();}
+          $ressource->update();} else {
+            echo "Token invalide";
+        }
           break;
       case 'getAllRessources':
           $ressource->getAllNaturalRessources();

@@ -54,7 +54,9 @@ if ($method==='GET'){
 
         case 'updatePointOfInterest':
             if ($is_token_true){
-            $pointOfInterest->updatePointOfInterest($id);}
+            $pointOfInterest->updatePointOfInterest($id);} else {
+                echo "Token invalide";
+            }
         break;
 
         default:
