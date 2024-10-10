@@ -43,6 +43,10 @@ $url = trim($url, '/');
 $urlParsed = explode('/', $url );
 $endpoint = isset($urlParsed[0]) ? $urlParsed[0] : '';
 
+function isActive($pageUrl, $currentUrl) {
+    return strpos($currentUrl, $pageUrl) !== false ? 'active-link' : '';
+}
+
 ?>
 
 <nav class="nav container">
@@ -51,16 +55,16 @@ $endpoint = isset($urlParsed[0]) ? $urlParsed[0] : '';
     <div class="nav__menu" id="nav-menu">
         <ul class="nav__list">
             <li class="nav__item">
-            <a href="<?= $home ?>" class="nav__link active-link">Accueil</a>
+            <a href="<?= $home ?>" class="nav__link">Accueil</a>
             </li>
             <li class="nav__item">
-                <a href="<?= $trail ?>" class="nav__link">Sentiers</a>
+                <a href="<?= $trail ?>" class="nav__link <?= isActive('getAllTrail', $request_uri) ?>">Sentiers</a>
             </li>
             <li class="nav__item">
-                <a href="<?= $camping ?>" class="nav__link">Campings</a>
+                <a href="<?= $camping ?>" class="nav__link <?= isActive('getAllBooking', $request_uri) ?>">Campings</a>
             </li>
             <li class="nav__item">
-                <a href="<?= $ressources ?>" class="nav__link">Ressources naturelles</a>
+                <a href="<?= $ressources ?>" class="nav__link <?= isActive('getAllRessources', $request_uri) ?>">Ressources naturelles</a>
             </li>
             <?php if (isset($_COOKIE['auth_token'])) {
                 if ($endpoint === 'get_user') {
